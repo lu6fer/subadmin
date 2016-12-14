@@ -1,5 +1,26 @@
+
 import ActionTypes from '../constants/ActionTypes';
-// import WebAPIUtils from '../utils/WebAPIUtils';
+import WebAPIUtils from '../utils/WebAPIUtils';
+
+function requestUsers() {
+    return {
+        type: ActionTypes.FETCH_USERS_REQUEST
+    };
+}
+
+function receiveUsersSucess(json) {
+    return {
+        type: ActionTypes.FETCH_USERS_SUCCESS,
+        data: json
+    };
+}
+
+function receiveUsersError(json) {
+    return {
+        type: ActionTypes.FETCH_USERS_ERROR,
+        data: json
+    };
+}
 
 /**
  * App actions
@@ -59,6 +80,24 @@ const AppActions = {
         return {
             type: ActionTypes.TOGGLE_MENU,
             expanded
+        };
+    },
+
+    fetchUsers() {
+        return function thunk(dispatch) {
+            dispatch(requestUsers());
+            return WebAPIUtils.getUsers()
+                .then((data) => {
+                    console.log(data);
+                    if (data.errors) {
+                        dispatch(receiveUsersError(data.messages));
+                    } else {
+                        dispatch(receiveUsersSucess(data.data.data));
+                    }
+                })
+                .catch((error) => {
+                    dispatch(receiveUsersError(error.data));
+                });
         };
     }
 };

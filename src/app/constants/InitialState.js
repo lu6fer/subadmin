@@ -5,7 +5,13 @@
  */
 const InitialState = {
     template: 0,
-    expanded: false
+    expanded: false,
+    users: {
+        error: false,
+        errorMessage: [],
+        loading: false,
+        users: []
+    }
 };
 
 export default InitialState;

@@ -20,10 +20,14 @@ export default {
         new HtmlWebpackPlugin({ template: 'src/index.ejs', favicon: 'src/favicon.ico', inject: false })
     ],
 
+   /* externals: {
+        'Configuration': './src/config/config.dev.js'
+    },*/
+
     resolve: {
         alias: {
             'createjs-preloadjs$': 'createjs-preloadjs/lib/preloadjs-0.6.2.combined.js',
-            modernizr$: path.resolve(__dirname, '.modernizrrc')
+            modernizr$: path.resolve(__dirname, '.modernizrrc'),
         }
     },
 

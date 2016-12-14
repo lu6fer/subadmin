@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import style from './Nav.scss';
 
 const Nav = ({ expanded }) => {
@@ -9,7 +10,9 @@ const Nav = ({ expanded }) => {
 
     return (
         <div className={className.join(' ')}>
-            nav
+            <ul>
+                <li><Link to={'/users'}>Users</Link></li>
+            </ul>
         </div>
     );
 };

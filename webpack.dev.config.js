@@ -9,7 +9,7 @@ export default merge(common, {
         './src/entry/main.js'
     ],
 
-    devtool: '#cheap-module-source-map',
+    devtool: 'cheap-module-source-map',
 
     plugins: [
         new webpack.DefinePlugin({

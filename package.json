@@ -65,6 +65,7 @@
     "webpack-notifier": "^1.4.1"
   },
   "dependencies": {
+    "axios": "^0.15.3",
     "babel-polyfill": "^6.16.0",
     "breakpoint-sass": "^2.7.0",
     "createjs-preloadjs": "^0.6.3",
