@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 const configDev = {
-    server: 'http://localhost2.laravel',
+    server: 'http://subapi.localhost',
     api_root: 'api',
     api_version: 'v1'
 };

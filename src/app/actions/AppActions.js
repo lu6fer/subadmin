@@ -73,7 +73,9 @@ const AppActions = {
 
     /**
      * Toggle nav bar
+     *
      * @param expanded
+     *
      * @returns {{type: string, expanded: *}}
      */
     toggleMenu(expanded) {
@@ -83,6 +85,11 @@ const AppActions = {
         };
     },
 
+    /**
+     * Fetch users from API
+     *
+     * @returns {thunk}
+     */
     fetchUsers() {
         return function thunk(dispatch) {
             dispatch(requestUsers());
@@ -96,7 +103,13 @@ const AppActions = {
                     }
                 })
                 .catch((error) => {
-                    dispatch(receiveUsersError(error.data));
+                    let errorData = '';
+                    if (error.response) {
+                        errorData = error.response.data;
+                    } else {
+                        errorData = error.message;
+                    }
+                    dispatch(receiveUsersError(errorData));
                 });
         };
     }

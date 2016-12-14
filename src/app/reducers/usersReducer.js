@@ -18,6 +18,7 @@ export default function usersReducer(state = InitialState.users, action) {
                 error: false
             });
         case ActionTypes.FETCH_USERS_ERROR:
+            console.log(action);
             return Object.assign({}, state,
                 {
                     loading: false,

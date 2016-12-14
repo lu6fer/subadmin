@@ -5,6 +5,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 
 import style from './Users.scss';
 import AppActions from '../../actions/AppActions';
+import UserTable from '../../components/UsersTable/UsersTable';
 
 class Users extends React.Component {
 
@@ -26,9 +27,7 @@ class Users extends React.Component {
             <div className={style.users}>
                 {progress}
                 <div>
-                    <pre>
-                        {JSON.stringify(this.props.users.users)}
-                    </pre>
+                    <UserTable users={this.props.users.users} />
                 </div>
             </div>
         );

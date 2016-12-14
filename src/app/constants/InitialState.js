@@ -8,7 +8,7 @@ const InitialState = {
     expanded: false,
     users: {
         error: false,
-        errorMessage: [],
+        errorMessages: [],
         loading: false,
         users: []
     }
