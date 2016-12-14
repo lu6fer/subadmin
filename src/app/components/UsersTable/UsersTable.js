@@ -21,7 +21,7 @@ const UsersTable = ({ users }) => (
         </TableHeader>
         <TableBody>
             {users.map(user => (
-                <UserRow user={user} />
+                <UserRow key={user.id} user={user} />
             ))}
         </TableBody>
     </Table>

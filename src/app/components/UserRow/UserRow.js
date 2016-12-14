@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { TableRow, TableRowColumn } from 'material-ui/Table';
 
 const UserRow = ({ user }) => (
-    <TableRow>
+    <TableRow key={user.id}>
         <TableRowColumn>{user.name}</TableRowColumn>
         <TableRowColumn>{user.first_name}</TableRowColumn>
         <TableRowColumn>{user.email}</TableRowColumn>
