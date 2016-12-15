@@ -11,8 +11,8 @@ const InitialState = {
         errorMessages: [],
         loading: false,
         filter: {
-            text: null,
-            field: null
+            text: '',
+            field: ''
         },
         users: []
     }

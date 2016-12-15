@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CircularProgress from 'material-ui/CircularProgress';
-import _ from 'lodash';
+// import _ from 'lodash';
 
 import style from './Users.scss';
 import AppActions from '../../actions/AppActions';
@@ -12,7 +12,7 @@ class Users extends React.Component {
 
     static propTypes = {
         users: PropTypes.object,
-        filteredUser: PropTypes.object,
+        // filteredUser: PropTypes.object,
         actions: PropTypes.object.isRequired
     };
 
@@ -21,8 +21,6 @@ class Users extends React.Component {
     }
 
     render() {
-        console.log(this.props.filteredUser);
-        console.log(this.props.users);
         const progressClass = [style.progress];
         const usersClass = [style.users, style.users_hidden];
         if (!this.props.users.loading) {
@@ -37,6 +35,8 @@ class Users extends React.Component {
                     <UserTable
                         users={this.props.users.users}
                         filter={this.props.actions.filterUsers}
+                        filterField={this.props.users.filter.field}
+                        filterText={this.props.users.filter.text}
                     />
                 </div>
             </div>
@@ -53,17 +53,8 @@ class Users extends React.Component {
  * @return {Object}
  */
 function mapStateToProps(state) {
-    let filter = {};
-    if (state.users.filter.field && state.users.filter.text) {
-        const search = {};
-        search[state.users.filter.field] = state.users.filter.text;
-        filter = _.find(state.users.users, search);
-        console.log(filter);
-    }
     return {
-        users: state.users,
-        filteredUser: filter
-
+        users: state.users
     };
 }
 
