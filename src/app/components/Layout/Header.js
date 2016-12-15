@@ -5,7 +5,7 @@ import style from './Header.scss';
 const Header = ({ toggleMenu, expanded }) => (
     <div className={style.header}>
         <AppBar
-            title={'Subalcatel - administration'}
+            title={'administration'}
             onLeftIconButtonTouchTap={
                 () => {
                     toggleMenu(!expanded);

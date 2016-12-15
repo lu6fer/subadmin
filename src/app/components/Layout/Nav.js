@@ -5,7 +5,7 @@ import style from './Nav.scss';
 const Nav = ({ expanded }) => {
     const className = [style.nav];
     if (expanded) {
-        className.push(style.expand);
+        className.push(style.nav_expand);
     }
 
     return (

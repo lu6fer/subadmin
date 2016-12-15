@@ -10,6 +10,10 @@ const InitialState = {
         error: false,
         errorMessages: [],
         loading: false,
+        filter: {
+            text: null,
+            field: null
+        },
         users: []
     }
 };

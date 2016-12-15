@@ -112,6 +112,16 @@ const AppActions = {
                     dispatch(receiveUsersError(errorData));
                 });
         };
+    },
+
+    filterUsers(filter, name) {
+        return {
+            type: ActionTypes.FILTER_USER,
+            filter: {
+                field: name,
+                text: filter
+            }
+        };
     }
 };
 

@@ -2,14 +2,8 @@ import ActionTypes from '../constants/ActionTypes';
 import InitialState from '../constants/InitialState';
 
 /**
- * Users reducer, Toggle menu
+ * Users reducer
  */
-/* export default function usersReducer(state = {
-    users: InitialState.users,
-    error: InitialState.error,
-    errorMessages: InitialState.errorMessage,
-    loading: InitialState.loading
-}, */
 export default function usersReducer(state = InitialState.users, action) {
     switch (action.type) {
         case ActionTypes.FETCH_USERS_REQUEST:
@@ -31,6 +25,11 @@ export default function usersReducer(state = InitialState.users, action) {
                     loading: false,
                     users: action.data,
                     error: false
+                });
+        case ActionTypes.FILTER_USER:
+            return Object.assign({}, state,
+                {
+                    filter: action.filter
                 });
         default:
             return state;
