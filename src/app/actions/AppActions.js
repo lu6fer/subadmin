@@ -103,23 +103,51 @@ const AppActions = {
                     }
                 })
                 .catch((error) => {
-                    let errorData = '';
+                    const errorData = [];
                     if (error.response) {
-                        errorData = error.response.data;
+                        errorData.push(error.response.data);
                     } else {
-                        errorData = error.message;
+                        errorData.push(error.message);
                     }
                     dispatch(receiveUsersError(errorData));
                 });
         };
     },
 
-    filterUsers(filter, name) {
+    /**
+     * Filter user by field
+     *
+     * @param text
+     *
+     * @param field
+     *
+     * @returns {{type: string, filter: {field: *, field: *}}}
+     */
+    filterUsers(text, field) {
         return {
             type: ActionTypes.FILTER_USER,
             filter: {
-                field: name,
-                text: filter
+                field,
+                text
+            }
+        };
+    },
+
+    /**
+     * Sort user by field
+     *
+     * @param direction
+     *
+     * @param field
+     *
+     * @returns {{type: string, filter: {direction: *, field: *}}}
+     */
+    sortUsers(direction, field) {
+        return {
+            type: ActionTypes.SORT_USER,
+            filter: {
+                direction,
+                field
             }
         };
     }

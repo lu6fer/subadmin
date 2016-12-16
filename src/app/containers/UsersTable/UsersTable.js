@@ -14,13 +14,14 @@ import NavigationArrowDownward from 'material-ui/svg-icons/navigation/arrow-down
 
 import UserRow from '../../components/UserRow/UserRow';
 
-const UsersTable = ({
-    users,
-    filter,
-    filterText,
-    filterField
+const UsersTable = ({ users,
+    filter, filterText, filterField,
+    sort, sortDirection, sortField
 }) => {
     let filteredUsers = [];
+    /*
+     * Filter user list
+     */
     if (filterText && filterField && filterText !== '') {
         filteredUsers = users.filter(user =>
             user[filterField].match(
@@ -30,6 +31,53 @@ const UsersTable = ({
     } else {
         filteredUsers = users;
     }
+
+    /*
+     * Sort user list
+     */
+    if (sortDirection && sortField) {
+        if (sortDirection === 'asc') {
+            filteredUsers.sort((a, b) => {
+                const valA = a[sortField].toLowerCase();
+                const valB = b[sortField].toLowerCase();
+                if (valA < valB) {
+                    return -1;
+                }
+                if (valA > valB) {
+                    return 1;
+                }
+                return 0;
+            });
+        } else {
+            filteredUsers.sort((a, b) => {
+                const valA = a[sortField].toLowerCase();
+                const valB = b[sortField].toLowerCase();
+                if (valA > valB) {
+                    return -1;
+                }
+                if (valA < valB) {
+                    return 1;
+                }
+                return 0;
+            });
+        }
+    }
+
+    const handleClickButton = (field) => {
+        let direction = 'none';
+        switch (sortDirection) {
+            case 'asc':
+                direction = 'desc';
+                break;
+            case 'desc':
+                direction = 'none';
+                break;
+            default:
+                direction = 'asc';
+        }
+
+        sort(direction, field);
+    };
 
     return (
         <Table
@@ -51,6 +99,9 @@ const UsersTable = ({
                                 width: '12px',
                                 height: '12px'
                             }}
+                            onClick={() => {
+                                handleClickButton('name');
+                            }}
                         >
                             <NavigationArrowDownward />
                         </IconButton>
@@ -67,6 +118,9 @@ const UsersTable = ({
                                 width: '12px',
                                 height: '12px'
                             }}
+                            onClick={() => {
+                                handleClickButton('first_name');
+                            }}
                         >
                             <NavigationArrowDownward />
                         </IconButton>
@@ -82,6 +136,9 @@ const UsersTable = ({
                             iconStyle={{
                                 width: '12px',
                                 height: '12px'
+                            }}
+                            onClick={() => {
+                                handleClickButton('email');
                             }}
                         >
                             <NavigationArrowUpward />
@@ -115,7 +172,10 @@ UsersTable.propTypes = {
     users: PropTypes.array,
     filter: PropTypes.func,
     filterText: PropTypes.string,
-    filterField: PropTypes.string
+    filterField: PropTypes.string,
+    sort: PropTypes.func,
+    sortDirection: PropTypes.string,
+    sortField: PropTypes.string
 };
 
 

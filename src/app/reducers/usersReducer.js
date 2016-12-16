@@ -31,6 +31,11 @@ export default function usersReducer(state = InitialState.users, action) {
                 {
                     filter: action.filter
                 });
+        case ActionTypes.SORT_USER:
+            return Object.assign({}, state,
+                {
+                    sort: action.sort
+                });
         default:
             return state;
     }

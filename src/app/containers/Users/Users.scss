@@ -19,3 +19,32 @@
         opacity: 0;
     }
 }
+
+.error {
+    opacity: 1;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    &_hidden {
+        display: none;
+    }
+    &__message {
+        position: absolute !important;
+        left: 50% !important;
+        top: 50% !important;
+        bottom: auto !important;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    &__background {
+        position: absolute;
+        width: 80% !important;
+        height: 80% !important;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        color: rgba(0, 0, 0, 0.1) !important;
+    }
+}

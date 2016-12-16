@@ -14,6 +14,10 @@ const InitialState = {
             text: '',
             field: ''
         },
+        sort: {
+            direction: 'none',
+            field: ''
+        },
         users: []
     }
 };
