@@ -9,74 +9,47 @@ import {
 import ActionSetings from 'material-ui/svg-icons/action/settings';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
-import NavigationArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
-import NavigationArrowDownward from 'material-ui/svg-icons/navigation/arrow-downward';
+import ContentSort from 'material-ui/svg-icons/content/sort';
+
 
 import UserRow from '../../components/UserRow/UserRow';
 
-const UsersTable = ({ users,
-    filter, filterText, filterField,
-    sort, sortDirection, sortField
+const UsersTable = ({
+    users,
+    sortAction, sortData,
+    filterAction
 }) => {
-    let filteredUsers = [];
     /*
-     * Filter user list
+     * Handle sort button
      */
-    if (filterText && filterField && filterText !== '') {
-        filteredUsers = users.filter(user =>
-            user[filterField].match(
-                new RegExp(`^${filterText}`, 'i')
-            )
-        );
-    } else {
-        filteredUsers = users;
-    }
-
-    /*
-     * Sort user list
-     */
-    if (sortDirection && sortField) {
-        if (sortDirection === 'asc') {
-            filteredUsers.sort((a, b) => {
-                const valA = a[sortField].toLowerCase();
-                const valB = b[sortField].toLowerCase();
-                if (valA < valB) {
-                    return -1;
-                }
-                if (valA > valB) {
-                    return 1;
-                }
-                return 0;
-            });
-        } else {
-            filteredUsers.sort((a, b) => {
-                const valA = a[sortField].toLowerCase();
-                const valB = b[sortField].toLowerCase();
-                if (valA > valB) {
-                    return -1;
-                }
-                if (valA < valB) {
-                    return 1;
-                }
-                return 0;
-            });
-        }
-    }
-
     const handleClickButton = (field) => {
-        let direction = 'none';
-        switch (sortDirection) {
+        let direction = 'asc';
+        switch (sortData.direction) {
             case 'asc':
                 direction = 'desc';
-                break;
-            case 'desc':
-                direction = 'none';
                 break;
             default:
                 direction = 'asc';
         }
+        sortAction(direction, field);
+    };
 
-        sort(direction, field);
+    /*
+     *
+     */
+    const iconStyle = (name) => {
+        const style = {
+            height: '12px',
+            width: '12px',
+            color: 'rgba(0, 0, 0, 0.298039)'
+        };
+        if (sortData.field === name) {
+            style.transform = (sortData.direction === 'asc') ?
+                    'rotate(180deg)' :
+                    'rotate(360deg)';
+            style.color = 'rgb(0,0,0)';
+        }
+        return style;
     };
 
     return (
@@ -95,59 +68,50 @@ const UsersTable = ({ users,
                 >
                     <TableHeaderColumn>
                         <IconButton
-                            iconStyle={{
-                                width: '12px',
-                                height: '12px'
-                            }}
+                            iconStyle={iconStyle('name')}
                             onClick={() => {
                                 handleClickButton('name');
                             }}
                         >
-                            <NavigationArrowDownward />
+                            <ContentSort />
                         </IconButton>
                         <TextField
                             style={{ backgroundColor: 'rgb(224, 224, 224)' }}
                             fullWidth={true}
                             hintText="Nom"
-                            onChange={(e, value) => filter(value, 'name')}
+                            onChange={(e, value) => filterAction(value, 'name')}
                         />
                     </TableHeaderColumn>
                     <TableHeaderColumn>
                         <IconButton
-                            iconStyle={{
-                                width: '12px',
-                                height: '12px'
-                            }}
+                            iconStyle={iconStyle('first_name')}
                             onClick={() => {
                                 handleClickButton('first_name');
                             }}
                         >
-                            <NavigationArrowDownward />
+                            <ContentSort />
                         </IconButton>
                         <TextField
                             style={{ backgroundColor: 'rgb(224, 224, 224)' }}
                             fullWidth={true}
                             hintText="Prénom"
-                            onChange={(e, value) => filter(value, 'first_name')}
+                            onChange={(e, value) => filterAction(value, 'first_name')}
                         />
                     </TableHeaderColumn>
                     <TableHeaderColumn>
                         <IconButton
-                            iconStyle={{
-                                width: '12px',
-                                height: '12px'
-                            }}
+                            iconStyle={iconStyle('email')}
                             onClick={() => {
                                 handleClickButton('email');
                             }}
                         >
-                            <NavigationArrowUpward />
+                            <ContentSort />
                         </IconButton>
                         <TextField
                             style={{ backgroundColor: 'rgb(224, 224, 224)' }}
                             fullWidth={true}
                             hintText="E-mail"
-                            onChange={(e, value) => filter(value, 'email')}
+                            onChange={(e, value) => filterAction(value, 'email')}
                         />
                     </TableHeaderColumn>
                     <TableHeaderColumn>
@@ -160,9 +124,12 @@ const UsersTable = ({ users,
             <TableBody
                 stripedRows={true}
             >
-                {filteredUsers.map(user => (
-                    <UserRow key={user.id} user={user} />
-                ))}
+                {users.map((user) => {
+                    if (user.id) {
+                        return <UserRow key={user.id} user={user} />;
+                    }
+                    return null;
+                })}
             </TableBody>
         </Table>
     );
@@ -170,12 +137,9 @@ const UsersTable = ({ users,
 
 UsersTable.propTypes = {
     users: PropTypes.array,
-    filter: PropTypes.func,
-    filterText: PropTypes.string,
-    filterField: PropTypes.string,
-    sort: PropTypes.func,
-    sortDirection: PropTypes.string,
-    sortField: PropTypes.string
+    filterAction: PropTypes.func,
+    sortAction: PropTypes.func,
+    sortData: PropTypes.object
 };
 
 

@@ -140,12 +140,12 @@ const AppActions = {
      *
      * @param field
      *
-     * @returns {{type: string, filter: {direction: *, field: *}}}
+     * @returns {{type: string, sort: {direction: *, field: *}}}
      */
     sortUsers(direction, field) {
         return {
             type: ActionTypes.SORT_USER,
-            filter: {
+            sort: {
                 direction,
                 field
             }

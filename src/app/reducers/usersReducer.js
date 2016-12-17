@@ -1,3 +1,4 @@
+// import update from 'react-addons-update';
 import ActionTypes from '../constants/ActionTypes';
 import InitialState from '../constants/InitialState';
 
@@ -7,35 +8,45 @@ import InitialState from '../constants/InitialState';
 export default function usersReducer(state = InitialState.users, action) {
     switch (action.type) {
         case ActionTypes.FETCH_USERS_REQUEST:
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 loading: true,
-                error: false
-            });
+                error: {
+                    status: false,
+                    messages: []
+                }
+            };
         case ActionTypes.FETCH_USERS_ERROR:
             console.log(action);
-            return Object.assign({}, state,
-                {
-                    loading: false,
-                    errorMessages: action.data,
-                    error: true
-                });
+            return {
+                ...state,
+                loading: false,
+                error: {
+                    status: true,
+                    messages: action.data
+                }
+            };
         case ActionTypes.FETCH_USERS_SUCCESS:
-            return Object.assign({}, state,
-                {
-                    loading: false,
-                    users: action.data,
-                    error: false
-                });
+            return {
+                ...state,
+                loading: false,
+                users: action.data,
+                error: {
+                    status: false,
+                    messages: []
+                }
+            };
         case ActionTypes.FILTER_USER:
-            return Object.assign({}, state,
-                {
-                    filter: action.filter
-                });
-        case ActionTypes.SORT_USER:
-            return Object.assign({}, state,
-                {
-                    sort: action.sort
-                });
+            return {
+                ...state,
+                filter: action.filter
+            };
+        case ActionTypes.SORT_USER: {
+            return {
+                ...state,
+                sort: action.sort
+            };
+        }
         default:
             return state;
     }

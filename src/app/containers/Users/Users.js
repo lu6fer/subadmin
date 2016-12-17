@@ -5,7 +5,9 @@ import CircularProgress from 'material-ui/CircularProgress';
 import Snackbar from 'material-ui/Snackbar';
 import { red500 } from 'material-ui/styles/colors';
 import SocialSentimentVeryDissatisfied from 'material-ui/svg-icons/social/sentiment-very-dissatisfied';
-// import _ from 'lodash';
+// import NavigationArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
+// import NavigationArrowDownward from 'material-ui/svg-icons/navigation/arrow-downward';
+// import ContentSort from 'material-ui/svg-icons/content/sort';
 
 import style from './Users.scss';
 import AppActions from '../../actions/AppActions';
@@ -15,7 +17,10 @@ import UserTable from '../UsersTable/UsersTable';
 class Users extends React.Component {
 
     static propTypes = {
-        users: PropTypes.object,
+        users: PropTypes.array,
+        filter: PropTypes.object,
+        sort: PropTypes.object,
+        error: PropTypes.object,
         actions: PropTypes.object.isRequired
     };
 
@@ -41,13 +46,11 @@ class Users extends React.Component {
                 <CircularProgress className={progressClass.join(' ')} />
                 <div className={usersClass.join(' ')}>
                     <UserTable
-                        users={this.props.users.users}
-                        filter={this.props.actions.filterUsers}
-                        filterField={this.props.users.filter.field}
-                        filterText={this.props.users.filter.text}
-                        sort={this.props.actions.sortUsers}
-                        sortDirection={this.props.users.sort.direction}
-                        sortField={this.props.users.sort.field}
+                        users={this.props.users}
+                        filterAction={this.props.actions.filterUsers}
+                        filterData={this.props.filter}
+                        sortAction={this.props.actions.sortUsers}
+                        sortData={this.props.sort}
                     />
                 </div>
                 <div className={errorClass.join(' ')}>
@@ -55,10 +58,10 @@ class Users extends React.Component {
                         className={style.error__background}
                     />
                     <Snackbar
-                        open={this.props.users.error}
+                        open={this.props.error.status}
                         message={
                             <ul>
-                                {this.props.users.errorMessages.map((message, id) => (
+                                {this.props.error.messages.map((message, id) => (
                                     <li key={id}>{message}</li>
                                 ))}
                             </ul>
@@ -76,6 +79,53 @@ class Users extends React.Component {
     }
 }
 
+/**
+ * Filter and sort users
+ *
+ * @param usersObject
+ *
+ * @returns {*}
+ */
+function filterSortUsers(usersObject) {
+    const { users, filter, sort } = usersObject;
+    if (users.length > 0) {
+        return users
+            .filter((user) => {
+                if (user[filter.field]) {
+                    return user[filter.field].match(
+                        new RegExp(`^${filter.text}`, 'i')
+                    );
+                }
+                return true;
+            })
+            .sort((a, b) => {
+                if (a[sort.field] && b[sort.field]) {
+                    const valA = a[sort.field].toLowerCase();
+                    const valB = b[sort.field].toLowerCase();
+                    if (sort.direction === 'asc') {
+                        if (valA > valB) {
+                            return 1;
+                        }
+                        if (valA < valB) {
+                            return -1;
+                        }
+                        return 0;
+                    }
+                    if (valA < valB) {
+                        return 1;
+                    }
+                    if (valA > valB) {
+                        return -1;
+                    }
+                    return 0;
+                }
+                return 0;
+            });
+    }
+
+    return users;
+}
+
 
 /**
  * Map Redux store state to Component props
@@ -85,8 +135,12 @@ class Users extends React.Component {
  * @return {Object}
  */
 function mapStateToProps(state) {
+    const { users } = state;
     return {
-        users: state.users
+        users: filterSortUsers(users),
+        sort: users.sort,
+        filter: users.filter,
+        error: users.error
     };
 }
 

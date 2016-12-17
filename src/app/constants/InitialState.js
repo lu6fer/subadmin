@@ -7,18 +7,20 @@ const InitialState = {
     template: 0,
     expanded: false,
     users: {
-        error: false,
-        errorMessages: [],
         loading: false,
+        users: [],
+        error: {
+            status: false,
+            messages: []
+        },
         filter: {
             text: '',
             field: ''
         },
         sort: {
-            direction: 'none',
-            field: ''
-        },
-        users: []
+            direction: 'asc',
+            field: 'name'
+        }
     }
 };
 
