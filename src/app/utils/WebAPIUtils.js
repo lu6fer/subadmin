@@ -16,8 +16,29 @@ const adminApi = axios.create({
 
 
 const WebAPIUtils = {
+    /*
+     |----------------------------------------------------------------------------------------------
+     | Users
+     |----------------------------------------------------------------------------------------------
+     */
+    /**
+     * Get users
+     *
+     * @returns {Promise}
+     */
     getUsers() {
         return adminApi.get('/users');
+    },
+
+    /**
+     * Delete user
+     *
+     * @param slug
+     *
+     * @returns {Promise}
+     */
+    deleteUser(slug) {
+        return adminApi.delete(`/users/${slug}`);
     }
 };
 

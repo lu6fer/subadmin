@@ -2,23 +2,35 @@
 import ActionTypes from '../constants/ActionTypes';
 import WebAPIUtils from '../utils/WebAPIUtils';
 
-function requestUsers() {
+/*
+ * Fetch Users
+ */
+function requestFetchUsers() {
     return {
         type: ActionTypes.FETCH_USERS_REQUEST
     };
 }
 
-function receiveUsersSucess(json) {
+function receiveFetchUsersSucess(json) {
     return {
         type: ActionTypes.FETCH_USERS_SUCCESS,
         data: json
     };
 }
 
-function receiveUsersError(json) {
+function receiveFetchUsersError(json) {
     return {
         type: ActionTypes.FETCH_USERS_ERROR,
         data: json
+    };
+}
+
+/*
+ * Delete
+ */
+function requestDeleteUser() {
+    return {
+        type: ActionTypes.DELETE_USERS_REQUEST
     };
 }
 
@@ -92,14 +104,13 @@ const AppActions = {
      */
     fetchUsers() {
         return function thunk(dispatch) {
-            dispatch(requestUsers());
+            dispatch(requestFetchUsers());
             return WebAPIUtils.getUsers()
                 .then((data) => {
-                    console.log(data);
                     if (data.errors) {
-                        dispatch(receiveUsersError(data.messages));
+                        dispatch(receiveFetchUsersError(data.messages));
                     } else {
-                        dispatch(receiveUsersSucess(data.data.data));
+                        dispatch(receiveFetchUsersSucess(data.data.data));
                     }
                 })
                 .catch((error) => {
@@ -109,7 +120,27 @@ const AppActions = {
                     } else {
                         errorData.push(error.message);
                     }
-                    dispatch(receiveUsersError(errorData));
+                    dispatch(receiveFetchUsersError(errorData));
+                });
+        };
+    },
+
+    deleteUserRequested(slug) {
+        return {
+            type: ActionTypes.DELETE_USERS_REQUESTED,
+            slug
+        };
+    },
+
+    deleteUser(slug) {
+        return function thunk(dispatch) {
+            dispatch(requestDeleteUser());
+            return WebAPIUtils.deleteUser(slug)
+                .then((data) => {
+                    console.log(data);
+                })
+                .catch((error) => {
+                    console.log(error);
                 });
         };
     },

@@ -9,6 +9,7 @@ const InitialState = {
     users: {
         loading: false,
         users: [],
+        deleting: '',
         error: {
             status: false,
             messages: []

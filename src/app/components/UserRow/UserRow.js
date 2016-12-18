@@ -4,7 +4,7 @@ import IconButton from 'material-ui/IconButton';
 import ImageEdit from 'material-ui/svg-icons/image/edit';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 
-const UserRow = ({ user }) => (
+const UserRow = ({ user, actions }) => (
     <TableRow key={user.id}>
         <TableRowColumn>{user.name}</TableRowColumn>
         <TableRowColumn>{user.first_name}</TableRowColumn>
@@ -15,7 +15,9 @@ const UserRow = ({ user }) => (
                     style={{ color: 'inherit' }}
                 />
             </IconButton>
-            <IconButton>
+            <IconButton
+                onClick={() => actions.delete(user.slug)}
+            >
                 <ActionDelete
                     style={{ color: 'inherit' }}
                 />
@@ -25,7 +27,8 @@ const UserRow = ({ user }) => (
 );
 
 UserRow.propTypes = {
-    user: PropTypes.object
+    user: PropTypes.object,
+    actions: PropTypes.object
 };
 
 export default UserRow;

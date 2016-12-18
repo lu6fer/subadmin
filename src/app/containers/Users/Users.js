@@ -5,9 +5,8 @@ import CircularProgress from 'material-ui/CircularProgress';
 import Snackbar from 'material-ui/Snackbar';
 import { red500 } from 'material-ui/styles/colors';
 import SocialSentimentVeryDissatisfied from 'material-ui/svg-icons/social/sentiment-very-dissatisfied';
-// import NavigationArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
-// import NavigationArrowDownward from 'material-ui/svg-icons/navigation/arrow-downward';
-// import ContentSort from 'material-ui/svg-icons/content/sort';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 
 import style from './Users.scss';
 import AppActions from '../../actions/AppActions';
@@ -21,11 +20,34 @@ class Users extends React.Component {
         filter: PropTypes.object,
         sort: PropTypes.object,
         error: PropTypes.object,
+        deleting: PropTypes.string,
         actions: PropTypes.object.isRequired
     };
 
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            modalOpen: false
+        };
+    }
+
     componentDidMount() {
         this.props.actions.fetchUsers();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            modalOpen: nextProps.deleting !== ''
+        });
+    }
+
+    handleModalClose(deleteConfirmed) {
+        if (deleteConfirmed) {
+            this.props.actions.deleteUser(this.props.deleting);
+        }
+        this.setState({
+            modalOpen: false
+        });
     }
 
     render() {
@@ -41,18 +63,48 @@ class Users extends React.Component {
             }
         }
 
+        const modalAcions = [
+            <FlatButton
+                label="Annuler"
+                secondary={true}
+                onTouchTap={() => { this.handleModalClose(false); }}
+            />,
+            <FlatButton
+                label="Supprimer"
+                primary={true}
+                onTouchTap={() => { this.handleModalClose(true); }}
+            />
+        ];
+
         return (
             <div>
+                {/* Progress */}
                 <CircularProgress className={progressClass.join(' ')} />
+                {/* Users */}
                 <div className={usersClass.join(' ')}>
                     <UserTable
                         users={this.props.users}
-                        filterAction={this.props.actions.filterUsers}
-                        filterData={this.props.filter}
-                        sortAction={this.props.actions.sortUsers}
-                        sortData={this.props.sort}
+                        actions={{
+                            filter: this.props.actions.filterUsers,
+                            sort: this.props.actions.sortUsers,
+                            delete: this.props.actions.deleteUserRequested
+                        }}
+                        filter={this.props.filter}
+                        sort={this.props.sort}
                     />
                 </div>
+                {/* Confirm */}
+                <div>
+                    <Dialog
+                        title="Confirmation de la suppression"
+                        open={this.state.modalOpen}
+                        modal={true}
+                        actions={modalAcions}
+                    >
+                        Etes-vous certain de vouloir supprimer le compte
+                    </Dialog>
+                </div>
+                {/* Error */}
                 <div className={errorClass.join(' ')}>
                     <SocialSentimentVeryDissatisfied
                         className={style.error__background}
@@ -140,7 +192,8 @@ function mapStateToProps(state) {
         users: filterSortUsers(users),
         sort: users.sort,
         filter: users.filter,
-        error: users.error
+        error: users.error,
+        deleting: users.deleting
     };
 }
 

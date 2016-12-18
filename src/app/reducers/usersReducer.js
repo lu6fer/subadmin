@@ -17,7 +17,6 @@ export default function usersReducer(state = InitialState.users, action) {
                 }
             };
         case ActionTypes.FETCH_USERS_ERROR:
-            console.log(action);
             return {
                 ...state,
                 loading: false,
@@ -35,6 +34,11 @@ export default function usersReducer(state = InitialState.users, action) {
                     status: false,
                     messages: []
                 }
+            };
+        case ActionTypes.DELETE_USERS_REQUESTED:
+            return {
+                ...state,
+                deleting: action.slug
             };
         case ActionTypes.FILTER_USER:
             return {

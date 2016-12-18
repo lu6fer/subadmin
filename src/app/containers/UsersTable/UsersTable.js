@@ -14,24 +14,20 @@ import ContentSort from 'material-ui/svg-icons/content/sort';
 
 import UserRow from '../../components/UserRow/UserRow';
 
-const UsersTable = ({
-    users,
-    sortAction, sortData,
-    filterAction
-}) => {
+const UsersTable = ({ users, actions, sort }) => {
     /*
      * Handle sort button
      */
     const handleClickButton = (field) => {
         let direction = 'asc';
-        switch (sortData.direction) {
+        switch (sort.direction) {
             case 'asc':
                 direction = 'desc';
                 break;
             default:
                 direction = 'asc';
         }
-        sortAction(direction, field);
+        actions.sort(direction, field);
     };
 
     /*
@@ -43,8 +39,8 @@ const UsersTable = ({
             width: '12px',
             color: 'rgba(0, 0, 0, 0.298039)'
         };
-        if (sortData.field === name) {
-            style.transform = (sortData.direction === 'asc') ?
+        if (sort.field === name) {
+            style.transform = (sort.direction === 'asc') ?
                     'rotate(180deg)' :
                     'rotate(360deg)';
             style.color = 'rgb(0,0,0)';
@@ -79,7 +75,7 @@ const UsersTable = ({
                             style={{ backgroundColor: 'rgb(224, 224, 224)' }}
                             fullWidth={true}
                             hintText="Nom"
-                            onChange={(e, value) => filterAction(value, 'name')}
+                            onChange={(e, value) => actions.filter(value, 'name')}
                         />
                     </TableHeaderColumn>
                     <TableHeaderColumn>
@@ -95,7 +91,7 @@ const UsersTable = ({
                             style={{ backgroundColor: 'rgb(224, 224, 224)' }}
                             fullWidth={true}
                             hintText="Prénom"
-                            onChange={(e, value) => filterAction(value, 'first_name')}
+                            onChange={(e, value) => actions.filter(value, 'first_name')}
                         />
                     </TableHeaderColumn>
                     <TableHeaderColumn>
@@ -111,7 +107,7 @@ const UsersTable = ({
                             style={{ backgroundColor: 'rgb(224, 224, 224)' }}
                             fullWidth={true}
                             hintText="E-mail"
-                            onChange={(e, value) => filterAction(value, 'email')}
+                            onChange={(e, value) => actions.filter(value, 'email')}
                         />
                     </TableHeaderColumn>
                     <TableHeaderColumn>
@@ -126,7 +122,15 @@ const UsersTable = ({
             >
                 {users.map((user) => {
                     if (user.id) {
-                        return <UserRow key={user.id} user={user} />;
+                        return (
+                            <UserRow
+                                key={user.id}
+                                user={user}
+                                actions={{
+                                    delete: actions.delete
+                                }}
+                            />
+                        );
                     }
                     return null;
                 })}
@@ -137,9 +141,8 @@ const UsersTable = ({
 
 UsersTable.propTypes = {
     users: PropTypes.array,
-    filterAction: PropTypes.func,
-    sortAction: PropTypes.func,
-    sortData: PropTypes.object
+    actions: PropTypes.object,
+    sort: PropTypes.object
 };
 
 
