@@ -2,16 +2,14 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CircularProgress from 'material-ui/CircularProgress';
-import Snackbar from 'material-ui/Snackbar';
-import { red500 } from 'material-ui/styles/colors';
-import SocialSentimentVeryDissatisfied from 'material-ui/svg-icons/social/sentiment-very-dissatisfied';
+
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
 import style from './Users.scss';
 import AppActions from '../../actions/AppActions';
 import UserTable from '../UsersTable/UsersTable';
-// import Error from '../../components/Error/Error';
+import Notification from '../Notification/Notification';
 
 class Users extends React.Component {
 
@@ -19,8 +17,8 @@ class Users extends React.Component {
         users: PropTypes.array,
         filter: PropTypes.object,
         sort: PropTypes.object,
-        error: PropTypes.object,
-        deleting: PropTypes.string,
+        loading: PropTypes.bool,
+        deleting: PropTypes.object,
         actions: PropTypes.object.isRequired
     };
 
@@ -37,13 +35,15 @@ class Users extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            modalOpen: nextProps.deleting !== ''
+            modalOpen: (!!nextProps.deleting.slug && !nextProps.notification.open)
         });
     }
 
     handleModalClose(deleteConfirmed) {
         if (deleteConfirmed) {
             this.props.actions.deleteUser(this.props.deleting);
+        } else {
+            this.props.actions.deleteUserCanceled();
         }
         this.setState({
             modalOpen: false
@@ -53,14 +53,10 @@ class Users extends React.Component {
     render() {
         const progressClass = [style.progress];
         const usersClass = [style.users, style.users_hidden];
-        const errorClass = [style.error, style.error_hidden];
-        if (!this.props.users.loading) {
+        // const errorClass = [style.error, style.error_hidden];
+        if (!this.props.loading) {
             progressClass.push([style.progress_hidden]);
-            if (!this.props.users.error) {
-                usersClass.pop();
-            } else {
-                errorClass.pop();
-            }
+            usersClass.pop();
         }
 
         const modalAcions = [
@@ -91,6 +87,7 @@ class Users extends React.Component {
                         }}
                         filter={this.props.filter}
                         sort={this.props.sort}
+                        deleting={this.props.deleting}
                     />
                 </div>
                 {/* Confirm */}
@@ -101,31 +98,13 @@ class Users extends React.Component {
                         modal={true}
                         actions={modalAcions}
                     >
-                        Etes-vous certain de vouloir supprimer le compte
+                        Etes-vous certain de vouloir supprimer le compte de
+                        <strong>
+                            {`${this.props.deleting.first_name} ${this.props.deleting.name}`}
+                        </strong>
                     </Dialog>
                 </div>
-                {/* Error */}
-                <div className={errorClass.join(' ')}>
-                    <SocialSentimentVeryDissatisfied
-                        className={style.error__background}
-                    />
-                    <Snackbar
-                        open={this.props.error.status}
-                        message={
-                            <ul>
-                                {this.props.error.messages.map((message, id) => (
-                                    <li key={id}>{message}</li>
-                                ))}
-                            </ul>
-                        }
-                        className={style.error__message}
-                        bodyStyle={{
-                            height: 'auto',
-                            lineHeight: 'inherit',
-                            backgroundColor: red500
-                        }}
-                    />
-                </div>
+                <Notification />
             </div>
         );
     }
@@ -187,13 +166,14 @@ function filterSortUsers(usersObject) {
  * @return {Object}
  */
 function mapStateToProps(state) {
-    const { users } = state;
+    const { users, notification } = state;
     return {
         users: filterSortUsers(users),
         sort: users.sort,
         filter: users.filter,
-        error: users.error,
-        deleting: users.deleting
+        loading: users.loading,
+        deleting: users.deleting,
+        notification
     };
 }
 

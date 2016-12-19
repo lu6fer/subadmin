@@ -9,11 +9,7 @@ const InitialState = {
     users: {
         loading: false,
         users: [],
-        deleting: '',
-        error: {
-            status: false,
-            messages: []
-        },
+        deleting: {},
         filter: {
             text: '',
             field: ''
@@ -22,6 +18,11 @@ const InitialState = {
             direction: 'asc',
             field: 'name'
         }
+    },
+    notification: {
+        open: false,
+        type: null,
+        messages: []
     }
 };
 

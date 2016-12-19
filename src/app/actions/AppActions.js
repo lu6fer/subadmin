@@ -34,6 +34,21 @@ function requestDeleteUser() {
     };
 }
 
+function receiveDeleteUsersSucess(json, deleted) {
+    return {
+        type: ActionTypes.DELETE_USERS_SUCCESS,
+        data: json,
+        deleted
+    };
+}
+
+function receiveDeleteUsersError(json) {
+    return {
+        type: ActionTypes.DELETE_USERS_ERROR,
+        data: json
+    };
+}
+
 /**
  * App actions
  *
@@ -48,6 +63,17 @@ const AppActions = {
     initialize() {
         return {
             type: ActionTypes.INITIALIZE
+        };
+    },
+
+    /**
+     * Hide notification sncakbar
+     *
+     * @returns {{type: string}}
+     */
+    hideNotification() {
+        return {
+            type: ActionTypes.NOTIFICATION_HIDE
         };
     },
 
@@ -125,22 +151,58 @@ const AppActions = {
         };
     },
 
-    deleteUserRequested(slug) {
+    /**
+     * Delete user is requested
+     *
+     * @param user
+     *
+     * @returns {{type: string, user: *}}
+     */
+    deleteUserRequested(user) {
         return {
             type: ActionTypes.DELETE_USERS_REQUESTED,
-            slug
+            user
         };
     },
 
-    deleteUser(slug) {
+    /**
+     * Delete user is canceled
+     *
+     * @returns {{type: string}}
+     */
+    deleteUserCanceled() {
+        return {
+            type: ActionTypes.DELETE_USERS_CANCELED
+        };
+    },
+
+    /**
+     * Deleting user
+     *
+     * @param user
+     *
+     * @returns {thunk}
+     */
+    deleteUser(user) {
         return function thunk(dispatch) {
             dispatch(requestDeleteUser());
-            return WebAPIUtils.deleteUser(slug)
+            return WebAPIUtils.deleteUser(user)
                 .then((data) => {
                     console.log(data);
+                    if (data.errors) {
+                        dispatch(receiveDeleteUsersError(data.messages));
+                    } else {
+                        dispatch(receiveDeleteUsersSucess([data.data.data], user.slug));
+                    }
                 })
                 .catch((error) => {
-                    console.log(error);
+                    const errorData = [];
+                    if (error.response) {
+                        errorData.push(error.response.data);
+                    } else {
+                        errorData.push(error.message);
+                    }
+                    dispatch(receiveDeleteUsersError(errorData));
                 });
         };
     },

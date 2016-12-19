@@ -33,12 +33,12 @@ const WebAPIUtils = {
     /**
      * Delete user
      *
-     * @param slug
+     * @param user
      *
      * @returns {Promise}
      */
-    deleteUser(slug) {
-        return adminApi.delete(`/users/${slug}`);
+    deleteUser(user) {
+        return adminApi.delete(`/users/${user.slug}`);
     }
 };
 

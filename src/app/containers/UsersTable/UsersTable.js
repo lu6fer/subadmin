@@ -14,7 +14,7 @@ import ContentSort from 'material-ui/svg-icons/content/sort';
 
 import UserRow from '../../components/UserRow/UserRow';
 
-const UsersTable = ({ users, actions, sort }) => {
+const UsersTable = ({ users, actions, sort, deleting }) => {
     /*
      * Handle sort button
      */
@@ -122,6 +122,8 @@ const UsersTable = ({ users, actions, sort }) => {
             >
                 {users.map((user) => {
                     if (user.id) {
+                        const isDeleting = (deleting.slug === user.slug);
+
                         return (
                             <UserRow
                                 key={user.id}
@@ -129,6 +131,7 @@ const UsersTable = ({ users, actions, sort }) => {
                                 actions={{
                                     delete: actions.delete
                                 }}
+                                deleting={isDeleting}
                             />
                         );
                     }
@@ -142,7 +145,8 @@ const UsersTable = ({ users, actions, sort }) => {
 UsersTable.propTypes = {
     users: PropTypes.array,
     actions: PropTypes.object,
-    sort: PropTypes.object
+    sort: PropTypes.object,
+    deleting: PropTypes.string
 };
 
 
