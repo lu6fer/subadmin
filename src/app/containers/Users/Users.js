@@ -8,7 +8,7 @@ import FlatButton from 'material-ui/FlatButton';
 
 import style from './Users.scss';
 import AppActions from '../../actions/AppActions';
-import UserTable from '../UsersTable/UsersTable';
+import UserTable from './UsersTable/UsersTable';
 import Notification from '../Notification/Notification';
 
 class Users extends React.Component {

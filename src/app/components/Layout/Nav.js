@@ -43,7 +43,7 @@ const Nav = ({ expanded, toggleMenu, block }) => {
             <ul>
                 <li className={menuClass}>
                     <Link
-                        to="/users"
+                        to="/utilisateurs"
                         activeClassName={style.nav__item_active}
                         className={itemClass}
                     >
@@ -56,7 +56,7 @@ const Nav = ({ expanded, toggleMenu, block }) => {
                 <ul>
                     <li className={subMenuClass}>
                         <Link
-                            to={'/users/add'}
+                            to={'/utilisateurs/ajout'}
                             activeClassName={style.nav__subitem_active}
                             className={subItemClass}
                         >

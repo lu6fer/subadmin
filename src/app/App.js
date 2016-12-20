@@ -34,7 +34,9 @@ const App = {
             <AppContainer key={Math.random()}>
                 <MuiThemeProvider muiTheme={subadminTheme}>
                     <Provider store={store}>
-                        <Router history={history}>{routes}</Router>
+                        <Router history={history}>
+                            {routes}
+                        </Router>
                     </Provider>
                 </MuiThemeProvider>
             </AppContainer>,
