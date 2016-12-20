@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 
 import template from './templateReducer';
-import expanded from './layoutReducer';
+import layout from './layoutReducer';
 import users from './usersReducer';
 import notification from './notificationReducer';
 
@@ -11,7 +11,7 @@ import notification from './notificationReducer';
  */
 const rootReducer = combineReducers({
     template,
-    expanded,
+    layout,
     users,
     notification,
     routing

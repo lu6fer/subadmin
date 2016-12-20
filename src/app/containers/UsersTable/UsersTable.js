@@ -146,7 +146,7 @@ UsersTable.propTypes = {
     users: PropTypes.array,
     actions: PropTypes.object,
     sort: PropTypes.object,
-    deleting: PropTypes.string
+    deleting: PropTypes.object
 };
 
 

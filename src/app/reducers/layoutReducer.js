@@ -4,10 +4,14 @@ import InitialState from '../constants/InitialState';
 /**
  * Layout reducer, Toggle menu
  */
-export default function layoutReducer(state = InitialState.expanded, action) {
+export default function layoutReducer(state = InitialState.layout, action) {
     switch (action.type) {
         case ActionTypes.TOGGLE_MENU:
-            return action.expanded;
+            return {
+                ...state,
+                menuExpanded: action.menuExpanded,
+                blockExpand: action.blockExpand
+            };
         default:
             return state;
     }

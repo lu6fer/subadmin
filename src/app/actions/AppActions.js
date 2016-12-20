@@ -114,12 +114,15 @@ const AppActions = {
      *
      * @param expanded
      *
+     * @param block
+     *
      * @returns {{type: string, expanded: *}}
      */
-    toggleMenu(expanded) {
+    toggleMenu(expanded, block = false) {
         return {
             type: ActionTypes.TOGGLE_MENU,
-            expanded
+            menuExpanded: expanded,
+            blockExpand: block
         };
     },
 

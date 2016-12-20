@@ -1,43 +1,78 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import cx from 'classname';
 import SocialPeople from 'material-ui/svg-icons/social/people';
 
 import style from './Nav.scss';
 
-const Nav = ({ expanded }) => {
-    const navClassName = [style.nav];
-    const itemClassName = [style.nav__item];
-    const textClassName = [style.nav__text];
-    const iconClassName = [style.nav__icon];
-    if (expanded) {
-        navClassName.push(style.nav_expanded);
-        itemClassName.push(style.nav__item_expanded);
-        textClassName.push(style.nav__text_expanded);
-        iconClassName.push(style.nav__icon_expanded);
-    }
+const Nav = ({ expanded, toggleMenu, block }) => {
+    const navClass = cx(style.nav, {
+        [style.nav_expanded]: expanded
+    });
+    const menuClass = style.nav__menu;
+    const subMenuClass = cx(style.nav__submenu, {
+        [style.nav__submenu_expanded]: expanded
+    });
+    const itemClass = style.nav__item;
+    const subItemClass = cx(style.nav__subitem, {
+        [style.nav__subitem_expanded]: expanded
+    });
+    const iconClass = style.nav__icon;
+    const textClass = cx(style.nav__text, {
+        [style.nav__text_expanded]: expanded
+    });
+
+    const handleMouseOver = () => {
+        if (!block) {
+            toggleMenu(!expanded);
+        }
+    };
+
+    const handleMouseOut = () => {
+        if (!block) {
+            toggleMenu(!expanded);
+        }
+    };
 
     return (
-        <div className={navClassName.join(' ')}>
+        <div
+            className={navClass}
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
+        >
             <ul>
-                <li>
+                <li className={menuClass}>
                     <Link
-                        to={'/users'}
+                        to="/users"
                         activeClassName={style.nav__item_active}
-                        className={itemClassName.join(' ')}
+                        className={itemClass}
                     >
-                        <div className={style.nav__icon_background}>
-                            <SocialPeople className={iconClassName.join(' ')} />
+                        <div className={iconClass}>
+                            <SocialPeople />
                         </div>
+                        <span className={textClass}>Utilisateurs</span>
                     </Link>
-                    <span className={textClassName.join(' ')}>Utilisateurs</span>
                 </li>
+                <ul>
+                    <li className={subMenuClass}>
+                        <Link
+                            to={'/users/add'}
+                            activeClassName={style.nav__subitem_active}
+                            className={subItemClass}
+                        >
+                            <span className={textClass}>Ajouter</span>
+                        </Link>
+                    </li>
+                </ul>
             </ul>
         </div>
     );
 };
 
 Nav.propTypes = {
-    expanded: PropTypes.bool.isRequired
+    expanded: PropTypes.bool.isRequired,
+    toggleMenu: PropTypes.func,
+    block: PropTypes.bool
 };
 
 

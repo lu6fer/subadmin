@@ -5,7 +5,10 @@
  */
 const InitialState = {
     template: 0,
-    expanded: false,
+    layout: {
+        menuExpanded: false,
+        blockExpand: false
+    },
     users: {
         loading: false,
         users: [],

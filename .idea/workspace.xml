@@ -2,26 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="990eac0f-f559-4f78-9ebb-2826200d410f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/components/Notification/Error.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/components/Notification/Error.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/components/Notification/Success.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/components/UserRow/UserRow.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/containers/Notification/Notification.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/containers/Notification/Notification.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/reducers/notificationReducer.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/actions/AppActions.js" afterPath="$PROJECT_DIR$/src/app/actions/AppActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/components/Layout/Footer.scss" afterPath="$PROJECT_DIR$/src/app/components/Layout/Footer.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/components/Layout/Header.js" afterPath="$PROJECT_DIR$/src/app/components/Layout/Header.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/components/Layout/Nav.js" afterPath="$PROJECT_DIR$/src/app/components/Layout/Nav.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/components/Layout/Nav.scss" afterPath="$PROJECT_DIR$/src/app/components/Layout/Nav.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/components/UserRow/UserRow.js" afterPath="$PROJECT_DIR$/src/app/components/UserRow/UserRow.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/constants/ActionTypes.js" afterPath="$PROJECT_DIR$/src/app/constants/ActionTypes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/constants/InitialState.js" afterPath="$PROJECT_DIR$/src/app/constants/InitialState.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/containers/Users/Users.js" afterPath="$PROJECT_DIR$/src/app/containers/Users/Users.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/containers/Layout/Layout.js" afterPath="$PROJECT_DIR$/src/app/containers/Layout/Layout.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/containers/UsersTable/UsersTable.js" afterPath="$PROJECT_DIR$/src/app/containers/UsersTable/UsersTable.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/reducers/index.js" afterPath="$PROJECT_DIR$/src/app/reducers/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/reducers/usersReducer.js" afterPath="$PROJECT_DIR$/src/app/reducers/usersReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/utils/WebAPIUtils.js" afterPath="$PROJECT_DIR$/src/app/utils/WebAPIUtils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config/config.dev.js" afterPath="$PROJECT_DIR$/src/config/config.dev.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/reducers/layoutReducer.js" afterPath="$PROJECT_DIR$/src/app/reducers/layoutReducer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yarn.lock" afterPath="$PROJECT_DIR$/yarn.lock" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -42,127 +34,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Users.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/containers/Users/Users.js">
+      <file leaf-file-name="Nav.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/components/Layout/Nav.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="89" column="53" lean-forward="false" selection-start-line="89" selection-start-column="53" selection-end-line="89" selection-end-column="53" />
+            <state relative-caret-position="525">
+              <caret line="66" column="17" lean-forward="false" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
-                <element signature="n#!!block;n#componentWillReceiveProps#0;n#Users#0" expanded="true" />
-                <element signature="n#!!block;n#handleModalClose#0;n#Users#0" expanded="true" />
-                <element signature="e#2953#3496#0" expanded="false" />
-                <element signature="e#3814#4053#0" expanded="true" />
-                <element signature="n#!!block;n#mapStateToProps#0" expanded="true" />
+                <element signature="e#801#875#0" expanded="true" />
+                <element signature="e#911#985#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UsersTable.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/containers/UsersTable/UsersTable.js">
+      <file leaf-file-name="Nav.scss" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/components/Layout/Nav.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="72" column="37" lean-forward="true" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
+            <state relative-caret-position="291">
+              <caret line="109" column="0" lean-forward="true" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
               <folding>
-                <element signature="e#4303#4896#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="usersReducer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/reducers/usersReducer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="34" column="14" lean-forward="true" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
-              <folding>
-                <element signature="e#344#415#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserRow.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/components/UserRow/UserRow.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="17" column="57" lean-forward="true" selection-start-line="17" selection-start-column="57" selection-end-line="17" selection-end-column="57" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserRow.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/components/UserRow/UserRow.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" column="15" lean-forward="false" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InitialState.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/constants/InitialState.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="16" />
-              <folding>
-                <element signature="e#215#270#0" expanded="false" />
-                <element signature="e#286#353#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppActions.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/actions/AppActions.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="197" column="35" lean-forward="true" selection-start-line="197" selection-start-column="35" selection-end-line="197" selection-end-column="35" />
-              <folding>
-                <element signature="n#!!block;n#receiveFetchUsersSucess#0" expanded="true" />
-                <element signature="n#!!block;n#receiveFetchUsersError#0" expanded="true" />
-                <element signature="n#!!block;n#receiveDeleteUsersSucess#0" expanded="true" />
-                <element signature="e#1044#1120#0" expanded="false" />
-                <element signature="e#1236#1319#0" expanded="false" />
-                <element signature="e#1477#1571#0" expanded="false" />
-                <element signature="e#2152#2251#0" expanded="false" />
-                <element signature="e#2346#3154#0" expanded="false" />
-                <element signature="e#2388#3147#0" expanded="true" />
-                <element signature="e#2507#2764#0" expanded="true" />
-                <element signature="e#2800#3135#0" expanded="true" />
-                <element signature="e#3310#3416#0" expanded="false" />
-                <element signature="e#3531#3618#0" expanded="false" />
-                <element signature="e#3625#3714#0" expanded="true" />
-                <element signature="e#3903#4214#0" expanded="true" />
-                <element signature="e#4804#4962#0" expanded="false" />
-                <element signature="e#5169#5328#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WebAPIUtils.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/utils/WebAPIUtils.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="32" column="7" lean-forward="true" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Success.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/components/Notification/Success.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="25" column="2" lean-forward="true" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="2" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
+                <element signature="e#255#284#0" expanded="false" />
+                <element signature="e#298#327#0" expanded="false" />
+                <element signature="e#863#1435#0" expanded="false" />
+                <element signature="e#1452#2117#0" expanded="false" />
+                <marker date="1482249451604" expanded="false" signature="4486:4617" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -174,6 +70,7 @@
     <findStrings>
       <find>map</find>
       <find>ERROR</find>
+      <find>transition</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -190,11 +87,7 @@
         <option value="$PROJECT_DIR$/src/app/reducers/errorReducer.js" />
         <option value="$PROJECT_DIR$/src/app/containers/Error/Error.scss" />
         <option value="$PROJECT_DIR$/src/app/containers/Error/Error.js" />
-        <option value="$PROJECT_DIR$/src/app/components/Layout/Nav.scss" />
-        <option value="$PROJECT_DIR$/src/app/components/Layout/Nav.js" />
         <option value="$PROJECT_DIR$/src/app/constants/ActionTypes.js" />
-        <option value="$PROJECT_DIR$/src/app/constants/InitialState.js" />
-        <option value="$PROJECT_DIR$/src/app/reducers/index.js" />
         <option value="$PROJECT_DIR$/src/app/components/Notification/Error.js" />
         <option value="$PROJECT_DIR$/src/app/components/Notification/Error.scss" />
         <option value="$PROJECT_DIR$/src/app/containers/Notification/Notification.scss" />
@@ -203,12 +96,19 @@
         <option value="$PROJECT_DIR$/src/app/reducers/notificationReducer.js" />
         <option value="$PROJECT_DIR$/src/app/utils/WebAPIUtils.js" />
         <option value="$PROJECT_DIR$/src/app/components/Notification/Success.js" />
-        <option value="$PROJECT_DIR$/src/app/actions/AppActions.js" />
         <option value="$PROJECT_DIR$/src/app/reducers/usersReducer.js" />
         <option value="$PROJECT_DIR$/src/app/containers/Users/Users.js" />
         <option value="$PROJECT_DIR$/src/app/components/UserRow/UserRow.scss" />
         <option value="$PROJECT_DIR$/src/app/components/UserRow/UserRow.js" />
         <option value="$PROJECT_DIR$/src/app/containers/UsersTable/UsersTable.js" />
+        <option value="$PROJECT_DIR$/src/app/reducers/index.js" />
+        <option value="$PROJECT_DIR$/src/app/constants/InitialState.js" />
+        <option value="$PROJECT_DIR$/src/app/actions/AppActions.js" />
+        <option value="$PROJECT_DIR$/src/app/reducers/layoutReducer.js" />
+        <option value="$PROJECT_DIR$/src/app/components/Layout/Header.js" />
+        <option value="$PROJECT_DIR$/src/app/containers/Layout/Layout.js" />
+        <option value="$PROJECT_DIR$/src/app/components/Layout/Nav.scss" />
+        <option value="$PROJECT_DIR$/src/app/components/Layout/Nav.js" />
       </list>
     </option>
   </component>
@@ -392,59 +292,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
+              <option name="myItemId" value="containers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="UserRow" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="subadmin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="subadmin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="subadmin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="subadmin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Notification" />
+              <option name="myItemId" value="Layout" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -581,12 +433,12 @@
       <workItem from="1482137140332" duration="668000" />
       <workItem from="1482139222239" duration="14000" />
       <workItem from="1482139285798" duration="11223000" />
-      <workItem from="1482162133398" duration="3279000" />
+      <workItem from="1482162133398" duration="19431000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61593000" />
+    <option name="totallyTimeSpent" value="77745000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1024" extended-state="6" />
@@ -620,48 +472,35 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/app/components/Layout/Footer.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="89" lean-forward="false" selection-start-line="4" selection-start-column="89" selection-end-line="4" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/config.dev.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/actions/AppActions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
           <caret line="33" column="6" lean-forward="false" selection-start-line="33" selection-start-column="6" selection-end-line="33" selection-end-column="6" />
           <folding>
-            <element signature="n#!!block;n#receiveFetchUsersSucess#0" expanded="true" />
-            <element signature="n#!!block;n#receiveFetchUsersError#0" expanded="true" />
-            <element signature="n#!!block;n#receiveDeleteUsersSucess#0" expanded="true" />
+            <element signature="n#!!block;n#receiveFetchUsersSucess#0" expanded="false" />
+            <element signature="n#!!block;n#receiveFetchUsersError#0" expanded="false" />
+            <element signature="n#!!block;n#receiveDeleteUsersSucess#0" expanded="false" />
             <element signature="e#1044#1120#0" expanded="false" />
             <element signature="e#1236#1319#0" expanded="false" />
             <element signature="e#1477#1571#0" expanded="false" />
-            <element signature="e#2152#2251#0" expanded="false" />
-            <element signature="e#2346#3154#0" expanded="false" />
-            <element signature="e#2388#3147#0" expanded="true" />
-            <element signature="e#2507#2764#0" expanded="true" />
-            <element signature="e#2800#3135#0" expanded="true" />
-            <element signature="e#3310#3416#0" expanded="false" />
-            <element signature="e#3531#3618#0" expanded="false" />
-            <element signature="e#3625#3714#0" expanded="true" />
-            <element signature="e#3903#4214#0" expanded="true" />
-            <element signature="e#4804#4962#0" expanded="false" />
-            <element signature="e#5169#5328#0" expanded="false" />
+            <element signature="e#2434#3242#0" expanded="false" />
+            <element signature="e#2476#3235#0" expanded="false" />
+            <element signature="e#2595#2852#0" expanded="false" />
+            <element signature="e#2888#3223#0" expanded="false" />
+            <element signature="e#3398#3504#0" expanded="false" />
+            <element signature="e#3619#3706#0" expanded="false" />
+            <element signature="e#3713#3802#0" expanded="false" />
+            <element signature="e#3824#4693#0" expanded="false" />
+            <element signature="e#3866#4686#0" expanded="false" />
+            <element signature="e#3991#4302#0" expanded="false" />
+            <element signature="e#4338#4674#0" expanded="false" />
+            <element signature="e#4892#5050#0" expanded="false" />
+            <element signature="e#5257#5416#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -681,8 +520,8 @@
         <state relative-caret-position="126">
           <caret line="11" column="21" lean-forward="false" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
           <folding>
-            <element signature="e#215#270#0" expanded="false" />
-            <element signature="e#286#353#0" expanded="false" />
+            <element signature="e#271#326#0" expanded="false" />
+            <element signature="e#342#409#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -702,7 +541,7 @@
         <state relative-caret-position="36">
           <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -712,12 +551,12 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <element signature="n#!!block;n#componentWillReceiveProps#0;n#Users#0" expanded="true" />
-            <element signature="n#!!block;n#handleModalClose#0;n#Users#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="false" />
+            <element signature="n#!!block;n#componentWillReceiveProps#0;n#Users#0" expanded="false" />
+            <element signature="n#!!block;n#handleModalClose#0;n#Users#0" expanded="false" />
             <element signature="e#2953#3496#0" expanded="false" />
-            <element signature="e#3814#4053#0" expanded="true" />
-            <element signature="n#!!block;n#mapStateToProps#0" expanded="true" />
+            <element signature="e#3814#4053#0" expanded="false" />
+            <element signature="n#!!block;n#mapStateToProps#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -727,23 +566,25 @@
         <state relative-caret-position="594">
           <caret line="33" column="6" lean-forward="false" selection-start-line="33" selection-start-column="6" selection-end-line="33" selection-end-column="6" />
           <folding>
-            <element signature="n#!!block;n#receiveFetchUsersSucess#0" expanded="true" />
-            <element signature="n#!!block;n#receiveFetchUsersError#0" expanded="true" />
-            <element signature="n#!!block;n#receiveDeleteUsersSucess#0" expanded="true" />
+            <element signature="n#!!block;n#receiveFetchUsersSucess#0" expanded="false" />
+            <element signature="n#!!block;n#receiveFetchUsersError#0" expanded="false" />
+            <element signature="n#!!block;n#receiveDeleteUsersSucess#0" expanded="false" />
             <element signature="e#1044#1120#0" expanded="false" />
             <element signature="e#1236#1319#0" expanded="false" />
             <element signature="e#1477#1571#0" expanded="false" />
-            <element signature="e#2152#2251#0" expanded="false" />
-            <element signature="e#2346#3154#0" expanded="false" />
-            <element signature="e#2388#3147#0" expanded="true" />
-            <element signature="e#2507#2764#0" expanded="true" />
-            <element signature="e#2800#3135#0" expanded="true" />
-            <element signature="e#3310#3416#0" expanded="false" />
-            <element signature="e#3531#3618#0" expanded="false" />
-            <element signature="e#3625#3714#0" expanded="true" />
-            <element signature="e#3903#4214#0" expanded="true" />
-            <element signature="e#4804#4962#0" expanded="false" />
-            <element signature="e#5169#5328#0" expanded="false" />
+            <element signature="e#2434#3242#0" expanded="false" />
+            <element signature="e#2476#3235#0" expanded="false" />
+            <element signature="e#2595#2852#0" expanded="false" />
+            <element signature="e#2888#3223#0" expanded="false" />
+            <element signature="e#3398#3504#0" expanded="false" />
+            <element signature="e#3619#3706#0" expanded="false" />
+            <element signature="e#3713#3802#0" expanded="false" />
+            <element signature="e#3824#4693#0" expanded="false" />
+            <element signature="e#3866#4686#0" expanded="false" />
+            <element signature="e#3991#4302#0" expanded="false" />
+            <element signature="e#4338#4674#0" expanded="false" />
+            <element signature="e#4892#5050#0" expanded="false" />
+            <element signature="e#5257#5416#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -763,8 +604,8 @@
         <state relative-caret-position="126">
           <caret line="11" column="21" lean-forward="false" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
           <folding>
-            <element signature="e#215#270#0" expanded="false" />
-            <element signature="e#286#353#0" expanded="false" />
+            <element signature="e#271#326#0" expanded="false" />
+            <element signature="e#342#409#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -784,7 +625,7 @@
         <state relative-caret-position="36">
           <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -794,12 +635,12 @@
         <state relative-caret-position="306">
           <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <element signature="n#!!block;n#componentWillReceiveProps#0;n#Users#0" expanded="true" />
-            <element signature="n#!!block;n#handleModalClose#0;n#Users#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="false" />
+            <element signature="n#!!block;n#componentWillReceiveProps#0;n#Users#0" expanded="false" />
+            <element signature="n#!!block;n#handleModalClose#0;n#Users#0" expanded="false" />
             <element signature="e#2953#3496#0" expanded="false" />
-            <element signature="e#3814#4053#0" expanded="true" />
-            <element signature="n#!!block;n#mapStateToProps#0" expanded="true" />
+            <element signature="e#3814#4053#0" expanded="false" />
+            <element signature="n#!!block;n#mapStateToProps#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -809,23 +650,25 @@
         <state relative-caret-position="2574">
           <caret line="144" column="33" lean-forward="true" selection-start-line="144" selection-start-column="33" selection-end-line="144" selection-end-column="33" />
           <folding>
-            <element signature="n#!!block;n#receiveFetchUsersSucess#0" expanded="true" />
-            <element signature="n#!!block;n#receiveFetchUsersError#0" expanded="true" />
-            <element signature="n#!!block;n#receiveDeleteUsersSucess#0" expanded="true" />
+            <element signature="n#!!block;n#receiveFetchUsersSucess#0" expanded="false" />
+            <element signature="n#!!block;n#receiveFetchUsersError#0" expanded="false" />
+            <element signature="n#!!block;n#receiveDeleteUsersSucess#0" expanded="false" />
             <element signature="e#1044#1120#0" expanded="false" />
             <element signature="e#1236#1319#0" expanded="false" />
             <element signature="e#1477#1571#0" expanded="false" />
-            <element signature="e#2152#2251#0" expanded="false" />
-            <element signature="e#2346#3154#0" expanded="false" />
-            <element signature="e#2388#3147#0" expanded="true" />
-            <element signature="e#2507#2764#0" expanded="true" />
-            <element signature="e#2800#3135#0" expanded="true" />
-            <element signature="e#3310#3416#0" expanded="false" />
-            <element signature="e#3531#3618#0" expanded="false" />
-            <element signature="e#3625#3714#0" expanded="true" />
-            <element signature="e#3903#4214#0" expanded="true" />
-            <element signature="e#4804#4962#0" expanded="false" />
-            <element signature="e#5169#5328#0" expanded="false" />
+            <element signature="e#2434#3242#0" expanded="false" />
+            <element signature="e#2476#3235#0" expanded="false" />
+            <element signature="e#2595#2852#0" expanded="false" />
+            <element signature="e#2888#3223#0" expanded="false" />
+            <element signature="e#3398#3504#0" expanded="false" />
+            <element signature="e#3619#3706#0" expanded="false" />
+            <element signature="e#3713#3802#0" expanded="false" />
+            <element signature="e#3824#4693#0" expanded="false" />
+            <element signature="e#3866#4686#0" expanded="false" />
+            <element signature="e#3991#4302#0" expanded="false" />
+            <element signature="e#4338#4674#0" expanded="false" />
+            <element signature="e#4892#5050#0" expanded="false" />
+            <element signature="e#5257#5416#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -863,12 +706,12 @@
         <state relative-caret-position="450">
           <caret line="54" column="33" lean-forward="false" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <element signature="n#!!block;n#componentWillReceiveProps#0;n#Users#0" expanded="true" />
-            <element signature="n#!!block;n#handleModalClose#0;n#Users#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="false" />
+            <element signature="n#!!block;n#componentWillReceiveProps#0;n#Users#0" expanded="false" />
+            <element signature="n#!!block;n#handleModalClose#0;n#Users#0" expanded="false" />
             <element signature="e#2953#3496#0" expanded="false" />
-            <element signature="e#3814#4053#0" expanded="true" />
-            <element signature="n#!!block;n#mapStateToProps#0" expanded="true" />
+            <element signature="e#3814#4053#0" expanded="false" />
+            <element signature="n#!!block;n#mapStateToProps#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -907,13 +750,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/Error/Error.scss" />
     <entry file="file://$PROJECT_DIR$/src/app/components/Error/Error.js" />
-    <entry file="file://$PROJECT_DIR$/src/app/reducers/layoutReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.local/share/applications/jetbrains-webstorm.desktop">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -939,20 +775,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="89" lean-forward="false" selection-start-line="4" selection-start-column="89" selection-end-line="4" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/Layout/Nav.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="48" column="13" lean-forward="true" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/Layout/Nav.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="27" column="68" lean-forward="true" selection-start-line="27" selection-start-column="68" selection-end-line="27" selection-end-column="68" />
           <folding />
         </state>
       </provider>
@@ -975,16 +797,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/reducers/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#40#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/reducers/templateReducer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1000,7 +812,7 @@
         <state relative-caret-position="126">
           <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1026,7 +838,7 @@
         <state relative-caret-position="252">
           <caret line="63" column="29" lean-forward="true" selection-start-line="63" selection-start-column="29" selection-end-line="63" selection-end-column="29" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="false" />
             <element signature="e#338#1723#0" expanded="false" />
             <element signature="n#!!block;n#constructor#0;n#Notification#0" expanded="false" />
             <element signature="n#!!block;n#componentWillReceiveProps#0;n#Notification#0" expanded="false" />
@@ -1050,8 +862,41 @@
         <state relative-caret-position="522">
           <caret line="30" column="14" lean-forward="false" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
           <folding>
-            <element signature="e#107#131#0" expanded="true" />
+            <element signature="e#107#131#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/containers/Users/Users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="89" column="53" lean-forward="false" selection-start-line="89" selection-start-column="53" selection-end-line="89" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+            <element signature="n#!!block;n#componentWillReceiveProps#0;n#Users#0" expanded="false" />
+            <element signature="n#!!block;n#handleModalClose#0;n#Users#0" expanded="false" />
+            <element signature="e#2953#3496#0" expanded="false" />
+            <element signature="e#3814#4053#0" expanded="false" />
+            <element signature="n#!!block;n#mapStateToProps#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/UserRow/UserRow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="57" lean-forward="true" selection-start-line="17" selection-start-column="57" selection-end-line="17" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/UserRow/UserRow.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="15" lean-forward="false" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1068,67 +913,65 @@
         <state relative-caret-position="450">
           <caret line="25" column="2" lean-forward="true" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="2" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/actions/AppActions.js">
+    <entry file="file://$PROJECT_DIR$/src/app/containers/UsersTable/UsersTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="197" column="35" lean-forward="true" selection-start-line="197" selection-start-column="35" selection-end-line="197" selection-end-column="35" />
-          <folding>
-            <element signature="n#!!block;n#receiveFetchUsersSucess#0" expanded="true" />
-            <element signature="n#!!block;n#receiveFetchUsersError#0" expanded="true" />
-            <element signature="n#!!block;n#receiveDeleteUsersSucess#0" expanded="true" />
-            <element signature="e#1044#1120#0" expanded="false" />
-            <element signature="e#1236#1319#0" expanded="false" />
-            <element signature="e#1477#1571#0" expanded="false" />
-            <element signature="e#2152#2251#0" expanded="false" />
-            <element signature="e#2346#3154#0" expanded="false" />
-            <element signature="e#2388#3147#0" expanded="true" />
-            <element signature="e#2507#2764#0" expanded="true" />
-            <element signature="e#2800#3135#0" expanded="true" />
-            <element signature="e#3310#3416#0" expanded="false" />
-            <element signature="e#3531#3618#0" expanded="false" />
-            <element signature="e#3625#3714#0" expanded="true" />
-            <element signature="e#3903#4214#0" expanded="true" />
-            <element signature="e#4804#4962#0" expanded="false" />
-            <element signature="e#5169#5328#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/UserRow/UserRow.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="15" lean-forward="false" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
+        <state relative-caret-position="363">
+          <caret line="131" column="58" lean-forward="true" selection-start-line="131" selection-start-column="58" selection-end-line="131" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/containers/Users/Users.js">
+    <entry file="file://$PROJECT_DIR$/src/app/reducers/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="89" column="53" lean-forward="false" selection-start-line="89" selection-start-column="53" selection-end-line="89" selection-end-column="53" />
+        <state relative-caret-position="216">
+          <caret line="12" column="13" lean-forward="true" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <element signature="n#!!block;n#componentWillReceiveProps#0;n#Users#0" expanded="true" />
-            <element signature="n#!!block;n#handleModalClose#0;n#Users#0" expanded="true" />
-            <element signature="e#2953#3496#0" expanded="false" />
-            <element signature="e#3814#4053#0" expanded="true" />
-            <element signature="n#!!block;n#mapStateToProps#0" expanded="true" />
+            <element signature="e#0#40#0" expanded="false" />
+            <element signature="e#272#299#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/constants/InitialState.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="16" />
+        <state relative-caret-position="72">
+          <caret line="8" column="20" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="20" />
           <folding>
-            <element signature="e#215#270#0" expanded="false" />
-            <element signature="e#286#353#0" expanded="false" />
+            <element signature="e#271#326#0" expanded="false" />
+            <element signature="e#342#409#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/actions/AppActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="564">
+          <caret line="111" column="7" lean-forward="true" selection-start-line="111" selection-start-column="7" selection-end-line="111" selection-end-column="7" />
+          <folding>
+            <element signature="n#!!block;n#receiveFetchUsersSucess#0" expanded="false" />
+            <element signature="n#!!block;n#receiveFetchUsersError#0" expanded="false" />
+            <element signature="n#!!block;n#receiveDeleteUsersSucess#0" expanded="false" />
+            <element signature="e#1044#1120#0" expanded="false" />
+            <element signature="e#1236#1319#0" expanded="false" />
+            <element signature="e#1477#1571#0" expanded="false" />
+            <element signature="e#2434#3242#0" expanded="false" />
+            <element signature="e#2476#3235#0" expanded="false" />
+            <element signature="e#2595#2852#0" expanded="false" />
+            <element signature="e#2888#3223#0" expanded="false" />
+            <element signature="e#3398#3504#0" expanded="false" />
+            <element signature="e#3619#3706#0" expanded="false" />
+            <element signature="e#3713#3802#0" expanded="false" />
+            <element signature="e#3824#4693#0" expanded="false" />
+            <element signature="e#3866#4686#0" expanded="false" />
+            <element signature="e#3991#4302#0" expanded="false" />
+            <element signature="e#4338#4674#0" expanded="false" />
+            <element signature="e#4892#5050#0" expanded="false" />
+            <element signature="e#5257#5416#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1143,22 +986,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/UserRow/UserRow.js">
+    <entry file="file://$PROJECT_DIR$/src/app/reducers/layoutReducer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="57" lean-forward="true" selection-start-line="17" selection-start-column="57" selection-end-line="17" selection-end-column="57" />
+        <state relative-caret-position="270">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#221#499#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/containers/UsersTable/UsersTable.js">
+    <entry file="file://$PROJECT_DIR$/src/app/components/Layout/Header.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="72" column="37" lean-forward="true" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
+        <state relative-caret-position="270">
+          <caret line="15" column="2" lean-forward="true" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
           <folding>
-            <element signature="e#4303#4896#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="false" />
+            <element signature="e#322#392#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/containers/Layout/Layout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="52" lean-forward="false" selection-start-line="11" selection-start-column="52" selection-end-line="11" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+            <element signature="n#!!doc;n#mapStateToProps#0" expanded="false" />
+            <element signature="n#!!block;n#mapStateToProps#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/Layout/Nav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="66" column="17" lean-forward="false" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#801#875#0" expanded="true" />
+            <element signature="e#911#985#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/Layout/Nav.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="109" column="0" lean-forward="true" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+          <folding>
+            <element signature="e#255#284#0" expanded="false" />
+            <element signature="e#298#327#0" expanded="false" />
+            <element signature="e#863#1435#0" expanded="false" />
+            <element signature="e#1452#2117#0" expanded="false" />
+            <marker date="1482249451604" expanded="false" signature="4486:4617" ph="{...}" />
           </folding>
         </state>
       </provider>

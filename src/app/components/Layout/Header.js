@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react';
 import AppBar from 'material-ui/AppBar';
 import style from './Header.scss';
 
-const Header = ({ toggleMenu, expanded }) => (
+const Header = ({ toggleMenu, expanded, block }) => (
     <div className={style.header}>
         <AppBar
             title={'administration'}
             onLeftIconButtonTouchTap={
                 () => {
-                    toggleMenu(!expanded);
+                    toggleMenu(!expanded, !block);
                 }
             }
         />
@@ -17,7 +17,8 @@ const Header = ({ toggleMenu, expanded }) => (
 
 Header.propTypes = {
     toggleMenu: PropTypes.func.isRequired,
-    expanded: PropTypes.bool.isRequired
+    expanded: PropTypes.bool.isRequired,
+    block: PropTypes.bool
 };
 
 export default Header;

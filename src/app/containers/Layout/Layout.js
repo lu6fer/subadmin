@@ -9,15 +9,18 @@ import Header from '../../components/Layout/Header';
 import Nav from '../../components/Layout/Nav';
 import Footer from '../../components/Layout/Footer';
 
-const Layout = ({ children, expanded, actions }) => (
+const Layout = ({ children, expanded, actions, block }) => (
     <div className={style.main}>
         <Header
             toggleMenu={actions.toggleMenu}
             expanded={expanded}
+            block={block}
         />
         <div className={style.wrapper}>
             <Nav
                 expanded={expanded}
+                toggleMenu={actions.toggleMenu}
+                block={block}
             />
             <div className={style.content}>
                 {children}
@@ -30,6 +33,7 @@ const Layout = ({ children, expanded, actions }) => (
 Layout.propTypes = {
     children: PropTypes.object,
     expanded: PropTypes.bool,
+    block: PropTypes.bool,
     actions: PropTypes.object.isRequired
 };
 
@@ -41,8 +45,10 @@ Layout.propTypes = {
  * @return {Object}
  */
 function mapStateToProps(state) {
+    const { layout } = state;
     return {
-        expanded: state.expanded
+        expanded: layout.menuExpanded,
+        block: layout.blockExpand
     };
 }
 
