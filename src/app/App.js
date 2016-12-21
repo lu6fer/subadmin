@@ -17,6 +17,9 @@ let store;
 let history;
 const subadminTheme = getMuiTheme();
 
+// Material-ui Tap event
+injectTapEventPlugin();
+
 const App = {
     /**
      * Run application
@@ -28,7 +31,6 @@ const App = {
         // create browser history for router
         history = syncHistoryWithStore(browserHistory, store);
 
-        injectTapEventPlugin();
         // render aplication
         ReactDOM.render(
             <AppContainer key={Math.random()}>
@@ -53,7 +55,6 @@ if (module.hot) {
     module.hot.accept('./routes', () => {
         const nextRoutes = require('./routes').default;
 
-        injectTapEventPlugin();
         ReactDOM.render(
             <AppContainer key={Math.random()}>
                 <MuiThemeProvider muiTheme={subadminTheme}>

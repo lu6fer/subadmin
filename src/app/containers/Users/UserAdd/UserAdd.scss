@@ -1,0 +1,69 @@
+.useradd {
+    width: 80%;
+    height: 80%;
+    overflow: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+        font-size: 24px;
+        line-height: 60px;
+        text-align: center;
+        background-color: #00bcd4;
+        color: white;
+        padding: 5px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    }
+
+    &__form {
+        margin-top: 80px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__fields {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+
+    &__fieldstitle {
+        position: absolute;
+        top: -6px;
+        left: 0;
+        border-bottom: 1px dashed black;
+        width: 100%;
+        font-size: 20px;
+    }
+
+    &__controls {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding: 5px;
+        min-height: 46px;
+    }
+
+    &__button {
+        &_save {
+            margin-right: 5px;
+        }
+
+        &_cancel {
+            margin-left: 5px;
+        }
+    }
+}

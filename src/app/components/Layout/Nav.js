@@ -22,13 +22,13 @@ const Nav = ({ expanded, toggleMenu, block }) => {
         [style.nav__text_expanded]: expanded
     });
 
-    const handleMouseOver = () => {
+    const handleMouseEnter = () => {
         if (!block) {
             toggleMenu(!expanded);
         }
     };
 
-    const handleMouseOut = () => {
+    const handleMouseLeave = () => {
         if (!block) {
             toggleMenu(!expanded);
         }
@@ -37,8 +37,8 @@ const Nav = ({ expanded, toggleMenu, block }) => {
     return (
         <div
             className={navClass}
-            onMouseOver={handleMouseOver}
-            onMouseOut={handleMouseOut}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
         >
             <ul>
                 <li className={menuClass}>

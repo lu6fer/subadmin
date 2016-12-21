@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CircularProgress from 'material-ui/CircularProgress';
+import cx from 'classname';
 
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -14,6 +15,7 @@ import Notification from '../Notification/Notification';
 class Users extends React.Component {
 
     static propTypes = {
+        children: PropTypes.object,
         users: PropTypes.array,
         filter: PropTypes.object,
         sort: PropTypes.object,
@@ -51,13 +53,15 @@ class Users extends React.Component {
     }
 
     render() {
-        const progressClass = [style.progress];
-        const usersClass = [style.users, style.users_hidden];
-        // const errorClass = [style.error, style.error_hidden];
-        if (!this.props.loading) {
-            progressClass.push([style.progress_hidden]);
-            usersClass.pop();
-        }
+        const progressClass = cx(style.progress, {
+            [style.progress_hidden]: !this.props.loading
+        });
+        const usersClass = cx(style.users, {
+            [style.users_hidden]: this.props.loading
+        });
+        const childrenClass = cx(style.users__children, {
+            [style.users__children_hidden]: (this.props.children === null)
+        });
 
         const modalAcions = [
             <FlatButton
@@ -75,9 +79,9 @@ class Users extends React.Component {
         return (
             <div>
                 {/* Progress */}
-                <CircularProgress className={progressClass.join(' ')} />
+                <CircularProgress className={progressClass} />
                 {/* Users */}
-                <div className={usersClass.join(' ')}>
+                <div className={usersClass}>
                     <UserTable
                         users={this.props.users}
                         actions={{
@@ -105,6 +109,9 @@ class Users extends React.Component {
                     </Dialog>
                 </div>
                 <Notification />
+                <div className={childrenClass}>
+                    {this.props.children}
+                </div>
             </div>
         );
     }
