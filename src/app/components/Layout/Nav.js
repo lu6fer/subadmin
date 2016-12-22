@@ -102,22 +102,40 @@ const Nav = ({ expanded, toggleMenu, block, router, theme }) => {
                     </Link>
                 </li>
                 <ul>
-                    <li className={subMenuClass('/utilisateurs/ajout', true)}>
-                        <Link
-                            to={'/utilisateurs/ajout'}
-                            className={subItemClass('/utilisateurs/ajout', true)}
-                        >
-                            <span
-                                className={textClass('/utilisateurs/ajout', true)}
+                    <li
+                        className={style.nav__submenu_before}
+                        style={{
+                            borderLeft: isActive('/utilisateurs/ajout', true) ?
+                                `1px dashed ${theme.floatingActionButton.secondaryColor}` :
+                                `1px dashed ${theme.floatingActionButton.disabledColor}`
+                        }}
+                    >
+                        <div className={subMenuClass('/utilisateurs/ajout', true)}>
+                            <div
+                                className={style.nav__subitem_before}
                                 style={{
-                                    color: isActive('/utilisateurs/ajout', true) ?
-                                        theme.floatingActionButton.secondaryColor :
-                                        theme.floatingActionButton.disabledColor
+                                    borderBottom: isActive('/utilisateurs/ajout', true) ?
+                                        `1px dashed ${theme.floatingActionButton.secondaryColor}` :
+                                        `1px dashed ${theme.floatingActionButton.disabledColor}`
                                 }}
                             >
-                                Ajouter
-                            </span>
-                        </Link>
+                                <Link
+                                    to={'/utilisateurs/ajout'}
+                                    className={subItemClass('/utilisateurs/ajout', true)}
+                                >
+                                    <span
+                                        className={textClass('/utilisateurs/ajout', true)}
+                                        style={{
+                                            color: isActive('/utilisateurs/ajout', true) ?
+                                                theme.floatingActionButton.secondaryColor :
+                                                theme.floatingActionButton.disabledColor
+                                        }}
+                                    >
+                                        Ajouter
+                                    </span>
+                                </Link>
+                            </div>
+                        </div>
                     </li>
                 </ul>
                 <FloatingActionButton mini={true}>

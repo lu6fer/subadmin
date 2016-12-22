@@ -30,26 +30,17 @@
         position: relative;
         height: 0;
         transition: height 300ms ease-in-out;
+        &_before {
+            left: 20px;
+            top: -20px;
+            bottom: 20px;
+            position: relative;
+            display: block;
+            width: 1px;
+            z-index: 1;
+        }
         &_expanded {
             height: 40px;
-            &:before {
-                content: "";
-                left: 20px;
-                top: -20px;
-                bottom: 20px;
-                position: absolute;
-                display: block;
-                width: 1px;
-                border-left: 1px dashed rgba(255, 255, 255, 0.3);
-                z-index: 1;
-            }
-            &:first-child:before {
-                top: 0;
-            }
-        }
-
-        &_active:before {
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.9);
         }
     }
 
@@ -60,21 +51,20 @@
         position: relative;
         opacity: 0;
         transition: opacity 300ms ease-in-out;
+        &_before {
+            position: relative;
+            width: 25px;
+            z-index: 1;
+            display: inline-block;
+        }
         &_expanded {
             opacity: 1;
-            &:before {
-                content: "";
-                left: 20px;
-                top: 20px;
-                position: absolute;
-                display: block;
-                width: 25px;
-                border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
-                z-index: 1;
-            }
         }
-        &_active:before {
-            border-left: 1px dashed rgba(255, 255, 255, 0.9);
+
+        .nav__text {
+            position: relative;
+            left: -20px;
+            top: 20px;
         }
     }
 
@@ -86,6 +76,7 @@
         top: 0;
         left: 0;
         border-radius: 50%;
+        z-index: 10;
         >svg {
             color: inherit !important;
             display:block !important;
@@ -103,6 +94,7 @@
         margin-left: 50px;
         opacity: 0;
         transition: opacity 300ms ease-in-out;
+
 
         &_expanded {
             display: block;
