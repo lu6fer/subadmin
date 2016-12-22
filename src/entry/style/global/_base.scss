@@ -3,13 +3,13 @@
 @include border-box-sizing;
 
 html {
-    font-size: 16px;
+    font-size: .625em; /* fallback IE8+ */
+    font-size: calc(1em * .625); /* IE9-IE11 math fixing. See http://bit.ly/1g4X0bX */
 }
-
 body {
+    font-size: 1.4em; /* base font-size is equivalent "14px" */
     color: $color03;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 62.5%; // 1em = 10px
 }
 
 a {

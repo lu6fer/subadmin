@@ -5,7 +5,7 @@ import Template from './containers/Template/Template';
 import Layout from './containers/Layout/Layout';
 
 import Users from './containers/Users/Users';
-import UsersAdd from './containers/Users/UserAdd/UserAdd';
+import UsersAdd from './containers/Users/Add/Add';
 
 /**
  * Define routes

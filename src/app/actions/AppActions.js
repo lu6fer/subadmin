@@ -30,13 +30,13 @@ function receiveFetchUsersError(json) {
  */
 function requestDeleteUser() {
     return {
-        type: ActionTypes.DELETE_USERS_REQUEST
+        type: ActionTypes.DELETE_USER_REQUEST
     };
 }
 
 function receiveDeleteUsersSucess(json, deleted) {
     return {
-        type: ActionTypes.DELETE_USERS_SUCCESS,
+        type: ActionTypes.DELETE_USER_SUCCESS,
         data: json,
         deleted
     };
@@ -44,7 +44,7 @@ function receiveDeleteUsersSucess(json, deleted) {
 
 function receiveDeleteUsersError(json) {
     return {
-        type: ActionTypes.DELETE_USERS_ERROR,
+        type: ActionTypes.DELETE_USER_ERROR,
         data: json
     };
 }
@@ -163,7 +163,7 @@ const AppActions = {
      */
     deleteUserRequested(user) {
         return {
-            type: ActionTypes.DELETE_USERS_REQUESTED,
+            type: ActionTypes.DELETE_USER_REQUESTED,
             user
         };
     },
@@ -175,7 +175,7 @@ const AppActions = {
      */
     deleteUserCanceled() {
         return {
-            type: ActionTypes.DELETE_USERS_CANCELED
+            type: ActionTypes.DELETE_USER_CANCELED
         };
     },
 

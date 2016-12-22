@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import muiThemeable from 'material-ui/styles/muiThemeable';
 
 import style from './Layout.scss';
 import AppActions from '../../actions/AppActions';
@@ -9,7 +10,7 @@ import Header from '../../components/Layout/Header';
 import Nav from '../../components/Layout/Nav';
 import Footer from '../../components/Layout/Footer';
 
-const Layout = ({ children, expanded, actions, block }) => (
+const Layout = ({ children, expanded, actions, block, router, muiTheme }) => (
     <div className={style.main}>
         <Header
             toggleMenu={actions.toggleMenu}
@@ -21,6 +22,8 @@ const Layout = ({ children, expanded, actions, block }) => (
                 expanded={expanded}
                 toggleMenu={actions.toggleMenu}
                 block={block}
+                router={router}
+                theme={muiTheme}
             />
             <div className={style.content}>
                 {children}
@@ -34,8 +37,11 @@ Layout.propTypes = {
     children: PropTypes.object,
     expanded: PropTypes.bool,
     block: PropTypes.bool,
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    router: PropTypes.object,
+    muiTheme: PropTypes.object
 };
+
 
 /**
  * Map Redux store state to Component props
@@ -44,11 +50,12 @@ Layout.propTypes = {
  *
  * @return {Object}
  */
-function mapStateToProps(state) {
+function mapStateToProps(state, context) {
     const { layout } = state;
     return {
         expanded: layout.menuExpanded,
-        block: layout.blockExpand
+        block: layout.blockExpand,
+        router: context.router
     };
 }
 
@@ -65,4 +72,6 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default connect(mapStateToProps, mapDispatchToProps)(
+    muiThemeable()(Layout)
+);

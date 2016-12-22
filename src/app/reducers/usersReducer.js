@@ -23,22 +23,22 @@ export default function usersReducer(state = InitialState.users, action) {
                 loading: false,
                 users: action.data
             };
-        case ActionTypes.DELETE_USERS_REQUESTED:
+        case ActionTypes.DELETE_USER_REQUESTED:
             return {
                 ...state,
                 deleting: action.user
             };
-        case ActionTypes.DELETE_USERS_CANCELED:
+        case ActionTypes.DELETE_USER_CANCELED:
             return {
                 ...state,
                 deleting: InitialState.users.deleting
             };
-        case ActionTypes.DELETE_USERS_ERROR:
+        case ActionTypes.DELETE_USER_ERROR:
             return {
                 ...state,
                 deleting: InitialState.users.deleting
             };
-        case ActionTypes.DELETE_USERS_SUCCESS:
+        case ActionTypes.DELETE_USER_SUCCESS:
             return {
                 ...state,
                 users: state.users.filter(user => user.slug !== action.deleted),

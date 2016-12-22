@@ -1,10 +1,14 @@
 import React from 'react';
+import Paper from 'material-ui/Paper';
 import style from './Footer.scss';
 
 const Footer = () => (
-    <div className={style.footer}>
+    <Paper
+        className={style.footer}
+        rounded={false}
+    >
         footer
-    </div>
+    </Paper>
 );
 
 /*

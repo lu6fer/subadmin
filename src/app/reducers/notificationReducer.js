@@ -14,15 +14,18 @@ export default function notificationReducer(state = InitialState.notification, a
                 messages: InitialState.notification.messages
             };
         case ActionTypes.FETCH_USERS_ERROR:
-        case ActionTypes.UPDATE_USERS_ERROR:
-        case ActionTypes.DELETE_USERS_ERROR:
+        case ActionTypes.UPDATE_USER_ERROR:
+        case ActionTypes.DELETE_USER_ERROR:
+        case ActionTypes.ADD_USER_ERROR:
             return {
                 ...state,
                 open: true,
                 type: 'error',
                 messages: action.data
             };
-        case ActionTypes.DELETE_USERS_SUCCESS:
+        case ActionTypes.UPDATE_USER_SUCCESS:
+        case ActionTypes.DELETE_USER_SUCCESS:
+        case ActionTypes.ADD_USER_SUCCESS:
             return {
                 ...state,
                 open: true,
