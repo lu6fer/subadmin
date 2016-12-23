@@ -23,6 +23,17 @@ export default function usersReducer(state = InitialState.users, action) {
                 loading: false,
                 users: action.data
             };
+        case ActionTypes.ADD_USER_REQUEST:
+            return {
+                ...state,
+                loading: true
+            };
+        case ActionTypes.ADD_USER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                users: [...state.users, action.data]
+            };
         case ActionTypes.DELETE_USER_REQUESTED:
             return {
                 ...state,

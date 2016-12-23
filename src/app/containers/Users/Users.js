@@ -24,6 +24,10 @@ class Users extends React.Component {
         actions: PropTypes.object.isRequired
     };
 
+    static contextTypes = {
+        muiTheme: PropTypes.object
+    };
+
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -92,6 +96,7 @@ class Users extends React.Component {
                         filter={this.props.filter}
                         sort={this.props.sort}
                         deleting={this.props.deleting}
+                        theme={this.context.muiTheme}
                     />
                 </div>
                 {/* Confirm */}

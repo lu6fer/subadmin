@@ -11,10 +11,10 @@ import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import ContentSort from 'material-ui/svg-icons/content/sort';
 
-
+import style from './UserTable.scss';
 import UserRow from '../../../components/UserRow/UserRow';
 
-const UsersTable = ({ users, actions, sort, deleting }) => {
+const UsersTable = ({ users, actions, sort, deleting, theme }) => {
     /*
      * Handle sort button
      */
@@ -34,37 +34,38 @@ const UsersTable = ({ users, actions, sort, deleting }) => {
      *
      */
     const iconStyle = (name) => {
-        const style = {
+        const icon = {
             height: '12px',
             width: '12px',
-            color: 'rgba(0, 0, 0, 0.298039)'
+            color: theme.palette.disabledColor
         };
         if (sort.field === name) {
-            style.transform = (sort.direction === 'asc') ?
+            icon.transform = (sort.direction === 'asc') ?
                     'rotate(180deg)' :
                     'rotate(360deg)';
-            style.color = 'rgb(0,0,0)';
+            icon.color = theme.palette.textColor;
         }
-        return style;
+        return icon;
     };
+
+    console.log(theme);
 
     return (
         <Table
-            height={'100%'}
-            fixedHeader={true}
-            selectable={false}
+            className={style.usertable}
         >
             <TableHeader
-                style={{ backgroundColor: 'rgb(224, 224, 224)' }}
                 displaySelectAll={false}
                 adjustForCheckbox={false}
+                className={style.usertable__header}
             >
-                <TableRow
-                    style={{ backgroundColor: 'rgb(224, 224, 224)' }}
-                >
-                    <TableHeaderColumn>
+                <TableRow>
+                    <TableHeaderColumn
+                        className={style.usertable__column}
+                    >
                         <IconButton
                             iconStyle={iconStyle('name')}
+                            className={style.usertable__button}
                             onClick={() => {
                                 handleClickButton('name');
                             }}
@@ -72,13 +73,15 @@ const UsersTable = ({ users, actions, sort, deleting }) => {
                             <ContentSort />
                         </IconButton>
                         <TextField
-                            style={{ backgroundColor: 'rgb(224, 224, 224)' }}
                             fullWidth={true}
                             hintText="Nom"
                             onChange={(e, value) => actions.filter(value, 'name')}
+                            className={style.usertable__field}
                         />
                     </TableHeaderColumn>
-                    <TableHeaderColumn>
+                    <TableHeaderColumn
+                        className={style.usertable__column}
+                    >
                         <IconButton
                             iconStyle={iconStyle('first_name')}
                             onClick={() => {
@@ -88,13 +91,15 @@ const UsersTable = ({ users, actions, sort, deleting }) => {
                             <ContentSort />
                         </IconButton>
                         <TextField
-                            style={{ backgroundColor: 'rgb(224, 224, 224)' }}
                             fullWidth={true}
                             hintText="Prénom"
                             onChange={(e, value) => actions.filter(value, 'first_name')}
+                            className={style.usertable__field}
                         />
                     </TableHeaderColumn>
-                    <TableHeaderColumn>
+                    <TableHeaderColumn
+                        className={style.usertable__column}
+                    >
                         <IconButton
                             iconStyle={iconStyle('email')}
                             onClick={() => {
@@ -104,22 +109,24 @@ const UsersTable = ({ users, actions, sort, deleting }) => {
                             <ContentSort />
                         </IconButton>
                         <TextField
-                            style={{ backgroundColor: 'rgb(224, 224, 224)' }}
                             fullWidth={true}
                             hintText="E-mail"
                             onChange={(e, value) => actions.filter(value, 'email')}
+                            className={style.usertable__field}
                         />
                     </TableHeaderColumn>
-                    <TableHeaderColumn>
+                    <TableHeaderColumn
+                        className={style.usertable__column}
+                    >
                         <ActionSetings
-                            style={{ color: 'inherit' }}
+                            style={{
+                                color: theme.palette.disabledColor
+                            }}
                         />
                     </TableHeaderColumn>
                 </TableRow>
             </TableHeader>
-            <TableBody
-                stripedRows={true}
-            >
+            <TableBody>
                 {users.map((user) => {
                     if (user.id) {
                         const isDeleting = (deleting.slug === user.slug);
@@ -146,7 +153,8 @@ UsersTable.propTypes = {
     users: PropTypes.array,
     actions: PropTypes.object,
     sort: PropTypes.object,
-    deleting: PropTypes.object
+    deleting: PropTypes.object,
+    theme: PropTypes.object
 };
 
 

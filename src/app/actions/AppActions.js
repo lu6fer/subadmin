@@ -3,7 +3,13 @@ import ActionTypes from '../constants/ActionTypes';
 import WebAPIUtils from '../utils/WebAPIUtils';
 
 /*
- * Fetch Users
+ |--------------------------------------------------------------------------------------------------
+ | Fetch Users
+ |--------------------------------------------------------------------------------------------------
+ */
+/**
+ * Dispatch fetch users request
+ * @returns {{type: string}}
  */
 function requestFetchUsers() {
     return {
@@ -11,6 +17,11 @@ function requestFetchUsers() {
     };
 }
 
+/**
+ * Dispatch fetch users success
+ * @param json
+ * @returns {{type: string, data: *}}
+ */
 function receiveFetchUsersSucess(json) {
     return {
         type: ActionTypes.FETCH_USERS_SUCCESS,
@@ -18,6 +29,11 @@ function receiveFetchUsersSucess(json) {
     };
 }
 
+/**
+ * dispatch fetch users error
+ * @param json
+ * @returns {{type: string, data: *}}
+ */
 function receiveFetchUsersError(json) {
     return {
         type: ActionTypes.FETCH_USERS_ERROR,
@@ -26,7 +42,52 @@ function receiveFetchUsersError(json) {
 }
 
 /*
- * Delete
+ |--------------------------------------------------------------------------------------------------
+ | Add Users
+ |--------------------------------------------------------------------------------------------------
+ */
+/**
+ * Dispatch add user request
+ * @returns {{type: string}}
+ */
+function requestAddUser() {
+    return {
+        type: ActionTypes.FETCH_USERS_REQUEST
+    };
+}
+
+/**
+ * Dispatch add user success
+ * @param json
+ * @returns {{type: string, data: *}}
+ */
+function receiveAddUserSucess(json) {
+    return {
+        type: ActionTypes.FETCH_USERS_SUCCESS,
+        data: json
+    };
+}
+
+/**
+ * dispatch add user error
+ * @param json
+ * @returns {{type: string, data: *}}
+ */
+function receiveFAddUserError(json) {
+    return {
+        type: ActionTypes.FETCH_USERS_ERROR,
+        data: json
+    };
+}
+
+/*
+ |--------------------------------------------------------------------------------------------------
+ | Delete User
+ |--------------------------------------------------------------------------------------------------
+ */
+/**
+ * Dispatch delete user request
+ * @returns {{type: string}}
  */
 function requestDeleteUser() {
     return {
@@ -34,6 +95,12 @@ function requestDeleteUser() {
     };
 }
 
+/**
+ * Dispatch delete user success
+ * @param json
+ * @param deleted
+ * @returns {{type: string, data: *, deleted: *}}
+ */
 function receiveDeleteUsersSucess(json, deleted) {
     return {
         type: ActionTypes.DELETE_USER_SUCCESS,
@@ -42,6 +109,11 @@ function receiveDeleteUsersSucess(json, deleted) {
     };
 }
 
+/**
+ * Dispatch delete user error
+ * @param json
+ * @returns {{type: string, data: *}}
+ */
 function receiveDeleteUsersError(json) {
     return {
         type: ActionTypes.DELETE_USER_ERROR,
@@ -191,7 +263,6 @@ const AppActions = {
             dispatch(requestDeleteUser());
             return WebAPIUtils.deleteUser(user)
                 .then((data) => {
-                    console.log(data);
                     if (data.errors) {
                         dispatch(receiveDeleteUsersError(data.messages));
                     } else {
@@ -206,6 +277,31 @@ const AppActions = {
                         errorData.push(error.message);
                     }
                     dispatch(receiveDeleteUsersError(errorData));
+                });
+        };
+    },
+
+    addUser(user) {
+        return function thunk(dispatch) {
+            dispatch(requestAddUser());
+            const formattedUser = user;
+            formattedUser.birthday = `${user.birthday.getFullYear()}/${user.birthday.getMonth() + 1}/${user.birthday.getDate()}`;
+            return WebAPIUtils.addUser(formattedUser)
+                .then((data) => {
+                    if (data.errors) {
+                        dispatch(receiveFAddUserError(data.messages));
+                    } else {
+                        dispatch(receiveAddUserSucess([data.data.data]));
+                    }
+                })
+                .catch((error) => {
+                    const errorData = [];
+                    if (error.response) {
+                        errorData.push(error.response.data);
+                    } else {
+                        errorData.push(error.message);
+                    }
+                    dispatch(receiveFAddUserError(errorData));
                 });
         };
     },

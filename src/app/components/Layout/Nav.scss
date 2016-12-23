@@ -1,8 +1,11 @@
 
 .nav {
-    width: 50px;
+    max-width: 0;
+    @media screen and (min-width: 768px) {
+        max-width: 50px;
+        padding: 5px;
+    }
     height: 100%;
-    padding: 5px;
     transition: width 300ms ease-in-out;
     ul {
         list-style: none;
@@ -12,7 +15,8 @@
     }
 
     &_expanded {
-        width: 200px;
+        max-width: 200px;
+        padding: 5px;
     }
 
     &__menu {
@@ -69,8 +73,12 @@
     }
 
     &__icon {
-        width: 40px;
-        height: 40px;
+        width: 0;
+        height: 0;
+        @media screen and (min-width: 768px) {
+            width: 40px;
+            height: 40px;
+        }
         display: inline-block;
         position: absolute;
         top: 0;
@@ -84,6 +92,20 @@
             left: 50%;
             top: 50%;
             transform: translate(-50%,-50%);
+            @media screen and (max-width: 767px) {
+                width: 0!important;
+                height: 0!important;
+            }
+        }
+        &_expanded {
+            width: 40px;
+            height: 40px;
+            >svg {
+                @media screen and (max-width: 767px) {
+                    width: 24px!important;
+                    height: 24px!important;
+                }
+            }
         }
     }
 

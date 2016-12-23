@@ -9,7 +9,7 @@ import FormsyDate from 'formsy-material-ui/lib/FormsyDate';
 
 import style from './UserAdd.scss';
 
-const UserAdd = ({ back, theme }) => {
+const UserAdd = ({ back, theme, save }) => {
     const cancelClass = classNames(
         [style.useradd__button],
         [style.useradd__button_cancel]
@@ -45,6 +45,7 @@ const UserAdd = ({ back, theme }) => {
             </div>
             <Formsy.Form
                 className={style.useradd__form}
+                onSubmit={save}
             >
                 <div className={style.useradd__fields}>
                     <div className={style.useradd__fieldstitle}>
@@ -174,33 +175,35 @@ const UserAdd = ({ back, theme }) => {
                         fullWidth={true}
                     />
                 </div>
-            </Formsy.Form>
-            <div
-                className={style.useradd__controls}
-                style={{
-                    borderTop: `1px solid ${theme.palette.borderColor}`
-                }}
-            >
-                <RaisedButton
-                    label="enregister"
-                    className={saveClass}
-                />
-                <RaisedButton
-                    className={cancelClass}
-                    label="annuler"
-                    secondary={true}
-                    onClick={() => {
-                        back();
+                <div
+                    className={style.useradd__controls}
+                    style={{
+                        borderTop: `1px solid ${theme.palette.borderColor}`
                     }}
-                />
-            </div>
+                >
+                    <RaisedButton
+                        label="enregister"
+                        className={saveClass}
+                        type="submit"
+                    />
+                    <RaisedButton
+                        className={cancelClass}
+                        label="annuler"
+                        secondary={true}
+                        onClick={() => {
+                            back();
+                        }}
+                    />
+                </div>
+            </Formsy.Form>
         </Paper>
     );
 };
 
 UserAdd.propTypes = {
     back: PropTypes.func,
-    theme: PropTypes.object
+    theme: PropTypes.object,
+    save: PropTypes.func
 };
 
 export default UserAdd;

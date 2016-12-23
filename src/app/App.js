@@ -7,7 +7,7 @@ import { AppContainer } from 'react-hot-loader';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-// import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 
 import configureStore from './store/configureStore';
 import routes from './routes';
@@ -15,7 +15,7 @@ import AppActions from './actions/AppActions';
 
 let store;
 let history;
-const subadminTheme = getMuiTheme();
+const subadminTheme = getMuiTheme(darkBaseTheme);
 
 // Material-ui Tap event
 injectTapEventPlugin();

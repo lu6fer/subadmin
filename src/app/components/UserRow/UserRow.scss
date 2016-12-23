@@ -1,7 +1,15 @@
-.user {
+.userrow {
     opacity: 1;
     transition: opacity 300ms ease-in-out;
+
     &_deleting {
         opacity: 0;
+    }
+
+    &__column:last-child {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
     }
 }

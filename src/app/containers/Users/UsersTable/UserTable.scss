@@ -1,0 +1,17 @@
+.usertable {
+    &__header {}
+    &__column {
+        &:not(:last-child) {
+            padding-left: 0 !important;
+        }
+        &:last-child {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+   &__field {
+       width: 60% !important;
+   }
+}

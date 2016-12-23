@@ -30,6 +30,10 @@ const WebAPIUtils = {
         return adminApi.get('/users');
     },
 
+    addUser(user) {
+        return adminApi.post('/users', user);
+    },
+
     /**
      * Delete user
      *

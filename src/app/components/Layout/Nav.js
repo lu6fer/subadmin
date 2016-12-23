@@ -1,9 +1,8 @@
+/* eslint-disable no-nested-ternary */
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import cx from 'classname';
 import SocialPeople from 'material-ui/svg-icons/social/people';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 import Paper from 'material-ui/Paper';
 
 import style from './Nav.scss';
@@ -36,7 +35,8 @@ const Nav = ({ expanded, toggleMenu, block, router, theme }) => {
 
     const iconClass = (path, strict = false) => (
         cx(style.nav__icon, {
-            [style.nav__icon_active]: isActive(path, strict)
+            [style.nav__icon_active]: isActive(path, strict),
+            [style.nav__icon_expanded]: expanded
         })
     );
 
@@ -58,9 +58,6 @@ const Nav = ({ expanded, toggleMenu, block, router, theme }) => {
             toggleMenu(!expanded);
         }
     };
-
-    console.log(theme);
-    console.log(router);
 
     return (
         <Paper
@@ -114,9 +111,11 @@ const Nav = ({ expanded, toggleMenu, block, router, theme }) => {
                             <div
                                 className={style.nav__subitem_before}
                                 style={{
-                                    borderBottom: isActive('/utilisateurs/ajout', true) ?
-                                        `1px dashed ${theme.floatingActionButton.secondaryColor}` :
-                                        `1px dashed ${theme.floatingActionButton.disabledColor}`
+                                    borderBottom: expanded ?
+                                        isActive('/utilisateurs/ajout', true) ?
+                                            `1px dashed ${theme.floatingActionButton.secondaryColor}` :
+                                            `1px dashed ${theme.floatingActionButton.disabledColor}`
+                                        : 'none'
                                 }}
                             >
                                 <Link
@@ -138,9 +137,6 @@ const Nav = ({ expanded, toggleMenu, block, router, theme }) => {
                         </div>
                     </li>
                 </ul>
-                <FloatingActionButton mini={true}>
-                    <ContentAdd />
-                </FloatingActionButton>
             </ul>
         </Paper>
     );
@@ -156,3 +152,4 @@ Nav.propTypes = {
 
 
 export default Nav;
+/* eslint-enable no-nested-ternary */

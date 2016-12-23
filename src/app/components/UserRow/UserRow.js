@@ -3,20 +3,35 @@ import { TableRow, TableRowColumn } from 'material-ui/Table';
 import IconButton from 'material-ui/IconButton';
 import ImageEdit from 'material-ui/svg-icons/image/edit';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
+import cx from 'classname';
 
 import style from './UserRow.scss';
 
 const UserRow = ({ user, actions, deleting }) => {
-    const userClassName = [style.user];
-    if (deleting) {
-        userClassName.push(style.user_deleting);
-    }
+    const userClassName = cx(style.userrow, {
+        [style.userrow_deleting]: deleting
+    });
+
     return (
-        <TableRow key={user.id} className={userClassName.join(' ')}>
-            <TableRowColumn>{user.name}</TableRowColumn>
-            <TableRowColumn>{user.first_name}</TableRowColumn>
-            <TableRowColumn>{user.email}</TableRowColumn>
-            <TableRowColumn>
+        <TableRow key={user.id} className={userClassName}>
+            <TableRowColumn
+                className={style.userrow__column}
+            >
+                {user.name}
+            </TableRowColumn>
+            <TableRowColumn
+                className={style.userrow__column}
+            >
+                {user.first_name}
+            </TableRowColumn>
+            <TableRowColumn
+                className={style.userrow_column}
+            >
+                {user.email}
+            </TableRowColumn>
+            <TableRowColumn
+                className={style.userrow__column}
+            >
                 <IconButton>
                     <ImageEdit
                         style={{ color: 'inherit' }}

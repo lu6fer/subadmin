@@ -1,16 +1,19 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import UserAdd from '../../../components/UserAdd/UserAdd';
+import AppActions from '../../../actions/AppActions';
 
 class Add extends React.Component {
     static contextTypes = {
-        router: PropTypes.func,
+        router: PropTypes.object,
         muiTheme: PropTypes.object
     };
 
-    constructor(props, context) {
-        super(props, context);
-        this.test = null;
-    }
+    static propTypes = {
+        actions: PropTypes.object
+    };
 
     render() {
         console.log(this.test);
@@ -18,10 +21,25 @@ class Add extends React.Component {
             <UserAdd
                 back={this.context.router.goBack}
                 theme={this.context.muiTheme}
+                save={this.props.actions.addUser}
             />
         );
     }
 
 }
 
-export default Add;
+
+/**
+ * Bind AppActions to Redux store function and map them to Component props
+ *
+ * @param  {Function} dispatch Redux store dispatch function
+ *
+ * @return {Object}
+ */
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(AppActions, dispatch)
+    };
+}
+
+export default connect(null, mapDispatchToProps)(Add);
