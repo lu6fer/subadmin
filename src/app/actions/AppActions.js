@@ -1,3 +1,4 @@
+import { browserHistory } from 'react-router';
 
 import ActionTypes from '../constants/ActionTypes';
 import WebAPIUtils from '../utils/WebAPIUtils';
@@ -52,7 +53,7 @@ function receiveFetchUsersError(json) {
  */
 function requestAddUser() {
     return {
-        type: ActionTypes.FETCH_USERS_REQUEST
+        type: ActionTypes.ADD_USER_REQUEST
     };
 }
 
@@ -62,9 +63,11 @@ function requestAddUser() {
  * @returns {{type: string, data: *}}
  */
 function receiveAddUserSucess(json) {
+    browserHistory.push('/utilisateurs');
     return {
-        type: ActionTypes.FETCH_USERS_SUCCESS,
-        data: json
+        type: ActionTypes.ADD_USER_SUCCESS,
+        data: json,
+        message: [`${json.first_name} ${json.name} correctement ajouté`]
     };
 }
 
@@ -75,7 +78,7 @@ function receiveAddUserSucess(json) {
  */
 function receiveFAddUserError(json) {
     return {
-        type: ActionTypes.FETCH_USERS_ERROR,
+        type: ActionTypes.ADD_USER_ERROR,
         data: json
     };
 }
@@ -284,14 +287,22 @@ const AppActions = {
     addUser(user) {
         return function thunk(dispatch) {
             dispatch(requestAddUser());
-            const formattedUser = user;
+            const formattedUser = Object.keys(user).reduce((acc, key) => {
+                const value = user[key];
+                const obj = acc;
+                if (value !== null && value !== '' && typeof value !== 'undefined') {
+                    obj[key] = value;
+                }
+                return obj;
+            }, {});
+
             formattedUser.birthday = `${user.birthday.getFullYear()}/${user.birthday.getMonth() + 1}/${user.birthday.getDate()}`;
             return WebAPIUtils.addUser(formattedUser)
-                .then((data) => {
-                    if (data.errors) {
-                        dispatch(receiveFAddUserError(data.messages));
+                .then((response) => {
+                    if (response.data.errors) {
+                        dispatch(receiveFAddUserError(response.data.message));
                     } else {
-                        dispatch(receiveAddUserSucess([data.data.data]));
+                        dispatch(receiveAddUserSucess(response.data.data));
                     }
                 })
                 .catch((error) => {

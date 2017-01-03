@@ -13,6 +13,8 @@ const InitialState = {
         loading: false,
         users: [],
         deleting: {},
+        validationError: false,
+        validationMessages: {},
         filter: {
             text: '',
             field: ''

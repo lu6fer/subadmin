@@ -26,12 +26,21 @@ export default function usersReducer(state = InitialState.users, action) {
         case ActionTypes.ADD_USER_REQUEST:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                validationError: false
+            };
+        case ActionTypes.ADD_USER_ERROR:
+            return {
+                ...state,
+                validationError: true,
+                validationMessages: action.data
             };
         case ActionTypes.ADD_USER_SUCCESS:
             return {
                 ...state,
                 loading: false,
+                validationError: false,
+                validationMessages: InitialState.users.validationMessages,
                 users: [...state.users, action.data]
             };
         case ActionTypes.DELETE_USER_REQUESTED:

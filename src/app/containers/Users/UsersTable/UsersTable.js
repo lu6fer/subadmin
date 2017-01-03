@@ -48,8 +48,6 @@ const UsersTable = ({ users, actions, sort, deleting, theme }) => {
         return icon;
     };
 
-    console.log(theme);
-
     return (
         <Table
             className={style.usertable}

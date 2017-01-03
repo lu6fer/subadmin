@@ -11,7 +11,11 @@ const adminApi = axios.create({
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
-    }
+    },
+    validateStatus: status => (
+        (status >= 200 && status < 300) ||
+            (status >= 400 && status < 417)
+    )
 });
 
 

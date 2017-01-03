@@ -2,7 +2,8 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import UserAdd from '../../../components/UserAdd/UserAdd';
+import UserAdd from 'components/UserAdd/UserAdd';
+// import UserAdd from '../../../components/UserAdd/UserAdd';
 import AppActions from '../../../actions/AppActions';
 
 class Add extends React.Component {
@@ -12,7 +13,8 @@ class Add extends React.Component {
     };
 
     static propTypes = {
-        actions: PropTypes.object
+        actions: PropTypes.object,
+        errors: PropTypes.object
     };
 
     render() {
@@ -22,10 +24,25 @@ class Add extends React.Component {
                 back={this.context.router.goBack}
                 theme={this.context.muiTheme}
                 save={this.props.actions.addUser}
+                errors={this.props.errors}
             />
         );
     }
 
+}
+
+/**
+ * Map Redux store state to Component props
+ *
+ * @param  {Object} state Redux store state
+ *
+ * @return {Object}
+ */
+function mapStateToProps(state) {
+    const { users } = state;
+    return {
+        errors: users.validationMessages
+    };
 }
 
 
@@ -42,4 +59,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(null, mapDispatchToProps)(Add);
+export default connect(mapStateToProps, mapDispatchToProps)(Add);

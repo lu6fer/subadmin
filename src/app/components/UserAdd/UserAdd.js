@@ -9,7 +9,7 @@ import FormsyDate from 'formsy-material-ui/lib/FormsyDate';
 
 import style from './UserAdd.scss';
 
-const UserAdd = ({ back, theme, save }) => {
+const UserAdd = ({ back, theme, save, errors }) => {
     const cancelClass = classNames(
         [style.useradd__button],
         [style.useradd__button_cancel]
@@ -27,6 +27,18 @@ const UserAdd = ({ back, theme, save }) => {
         DateTimeFormat = IntlPolyfill.DateTimeFormat;
         require('intl/locale-data/jsonp/fr');
     }
+
+    Formsy.addValidationRule('alpha_dash', (values, value) => (
+        value ? /^[\w.\-\s]+$/.test(value) : true
+    ));
+
+    Formsy.addValidationRule('address', (values, value) => (
+       value ? /^[\w*\s*\-,']+$/.test(value) : true
+    ));
+
+    Formsy.addValidationRule('phone', (values, value) => (
+        value ? /^0[1-6]{1}(([0-9]{2}){4})|((\s[0-9]{2}){4})|((-[0-9]{2}){4})$/.test(value) : true
+    ));
 
     return (
         <Paper
@@ -46,6 +58,7 @@ const UserAdd = ({ back, theme, save }) => {
             <Formsy.Form
                 className={style.useradd__form}
                 onSubmit={save}
+                validationErrors={errors}
             >
                 <div className={style.useradd__fields}>
                     <div className={style.useradd__fieldstitle}>
@@ -53,8 +66,8 @@ const UserAdd = ({ back, theme, save }) => {
                     </div>
                     <FormsyText
                         name="name"
-                        validations="isWords"
-                        validationError="Seulement des lettres"
+                        validations="alpha_dash"
+                        validationError="Doit etre composé de lettre, d'espaces ou de tiret"
                         required
                         hintText="Nom"
                         floatingLabelText="Nom"
@@ -62,8 +75,8 @@ const UserAdd = ({ back, theme, save }) => {
                     />
                     <FormsyText
                         name="first_name"
-                        validations="isWords"
-                        validationError="Seulement des lettres"
+                        validations="alpha_dash"
+                        validationError="Doit etre composé de lettre, d'espaces ou de tiret"
                         required
                         hintText="Prénom"
                         floatingLabelText="Prénom"
@@ -96,8 +109,8 @@ const UserAdd = ({ back, theme, save }) => {
                     />
                     <FormsyText
                         name="birth_city"
-                        validations="isWords"
-                        validationError="Seulement des lettres"
+                        validations="alpha_dash"
+                        validationError="Doit etre composé de lettre, d'espaces ou de tiret"
                         required
                         hintText="Ville"
                         floatingLabelText="Ville de naissance"
@@ -105,8 +118,8 @@ const UserAdd = ({ back, theme, save }) => {
                     />
                     <FormsyText
                         name="birth_country"
-                        validations="isWords"
-                        validationError="Seulement des lettres"
+                        validations="alpha_dash"
+                        validationError="Doit etre composé de lettre, d'espaces ou de tiret"
                         required
                         hintText="Pays"
                         floatingLabelText="Pays de naissance"
@@ -120,8 +133,8 @@ const UserAdd = ({ back, theme, save }) => {
                     </div>
                     <FormsyText
                         name="street"
-                        validations="isWords"
-                        validationError="Seulement des lettres"
+                        validations="address"
+                        validationError="Doit etre composé de lettre, de chiffres, d'espaces, de tiret, de souligner ou d'apostrophe"
                         required
                         hintText="Addresse"
                         floatingLabelText="Addresse"
@@ -129,8 +142,8 @@ const UserAdd = ({ back, theme, save }) => {
                     />
                     <FormsyText
                         name="zip_code"
-                        validations="isNumeric"
-                        validationError="Seulement des lettres"
+                        validations="isNumeric,isLength:5"
+                        validationError="Ce n'est pas un code postal valide, 5 chiffres"
                         required
                         hintText="Code postal"
                         floatingLabelText="Code postal"
@@ -138,8 +151,8 @@ const UserAdd = ({ back, theme, save }) => {
                     />
                     <FormsyText
                         name="city"
-                        validations="isWords"
-                        validationError="Seulement des lettres"
+                        validations="alpha_dash"
+                        validationError="Doit etre composé de lettre, d'espaces ou de tiret"
                         required
                         hintText="Ville"
                         floatingLabelText="Ville"
@@ -152,24 +165,24 @@ const UserAdd = ({ back, theme, save }) => {
                     </div>
                     <FormsyText
                         name="phone_number"
-                        validations="isWords"
-                        validationError="Seulement des lettres"
+                        validations="phone"
+                        validationError="Ce n'est pas un numéro de téléphone valide"
                         hintText="Téléphone"
                         floatingLabelText="Téléphone"
                         fullWidth={true}
                     />
                     <FormsyText
                         name="mobile_phone"
-                        validations="isWords"
-                        validationError="Seulement des lettres"
+                        validations="phone"
+                        validationError="Ce n'est pas un numéro de téléphone valide"
                         hintText="Téléphone portable"
                         floatingLabelText="Téléphone portable"
                         fullWidth={true}
                     />
                     <FormsyText
                         name="pro_phone"
-                        validations="isWords"
-                        validationError="Seulement des lettres"
+                        validations="phone"
+                        validationError="Ce n'est pas un numéro de téléphone valide"
                         hintText="Téléphone professionel"
                         floatingLabelText="Téléphone professionel"
                         fullWidth={true}
@@ -203,7 +216,8 @@ const UserAdd = ({ back, theme, save }) => {
 UserAdd.propTypes = {
     back: PropTypes.func,
     theme: PropTypes.object,
-    save: PropTypes.func
+    save: PropTypes.func,
+    errors: PropTypes.object
 };
 
 export default UserAdd;

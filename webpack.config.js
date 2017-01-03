@@ -28,6 +28,7 @@ export default {
         alias: {
             'createjs-preloadjs$': 'createjs-preloadjs/lib/preloadjs-0.6.2.combined.js',
             modernizr$: path.resolve(__dirname, '.modernizrrc'),
+            'components': '/src/app/components'
         }
     },
 
