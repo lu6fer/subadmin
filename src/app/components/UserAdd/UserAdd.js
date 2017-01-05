@@ -191,7 +191,8 @@ const UserAdd = ({ back, theme, save, errors }) => {
                 <div
                     className={style.useradd__controls}
                     style={{
-                        borderTop: `1px solid ${theme.palette.borderColor}`
+                        // borderTop: `1px solid ${theme.palette.borderColor}`
+                        boxShadow: theme.paper.zDepthShadows[2]
                     }}
                 >
                     <RaisedButton

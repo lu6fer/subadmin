@@ -27,8 +27,14 @@ export default {
     resolve: {
         alias: {
             'createjs-preloadjs$': 'createjs-preloadjs/lib/preloadjs-0.6.2.combined.js',
-            modernizr$: path.resolve(__dirname, '.modernizrrc'),
-            'components': '/src/app/components'
+            modernizr: path.resolve(__dirname, '.modernizrrc'),
+            actions: path.resolve(__dirname, 'src/app/actions'),
+            components: path.resolve(__dirname, 'src/app/components'),
+            constants: path.resolve(__dirname, 'src/app/constants'),
+            containers: path.resolve(__dirname, 'src/app/containers'),
+            reducers: path.resolve(__dirname, 'src/app/reducers'),
+            store: path.resolve(__dirname, 'src/app/store'),
+            utils: path.resolve(__dirname, 'src/app/utils')
         }
     },
 

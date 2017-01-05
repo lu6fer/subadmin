@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
-import style from './Layout.scss';
-import AppActions from '../../actions/AppActions';
+import AppActions from 'actions/AppActions';
 
-import Header from '../../components/Layout/Header';
-import Nav from '../../components/Layout/Nav';
-import Footer from '../../components/Layout/Footer';
+import Header from 'components/Layout/Header';
+import Nav from 'components/Layout/Nav';
+import Footer from 'components/Layout/Footer';
+
+import style from './Layout.scss';
 
 const Layout = ({ children, expanded, actions, block, router, muiTheme }) => (
     <div className={style.main}>

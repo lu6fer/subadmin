@@ -7,10 +7,11 @@ import cx from 'classname';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
+import AppActions from 'actions/AppActions';
+import UserTable from 'containers/Users/UsersTable/UsersTable';
+import Notification from 'containers/Notification/Notification';
+
 import style from './Users.scss';
-import AppActions from '../../actions/AppActions';
-import UserTable from './UsersTable/UsersTable';
-import Notification from '../Notification/Notification';
 
 class Users extends React.Component {
 

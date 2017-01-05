@@ -44,6 +44,45 @@ function receiveFetchUsersError(json) {
 
 /*
  |--------------------------------------------------------------------------------------------------
+ | Fetch User
+ |--------------------------------------------------------------------------------------------------
+ */
+/**
+ * Dispatch fetch user request
+ * @returns {{type: string}}
+ */
+function requestFetchUser() {
+    return {
+        type: ActionTypes.FETCH_USER_REQUEST
+    };
+}
+
+/**
+ * Dispatch fetch user success
+ * @param json
+ * @returns {{type: string, data: *}}
+ */
+function receiveFetchUserSucess(json) {
+    return {
+        type: ActionTypes.FETCH_USER_SUCCESS,
+        data: json
+    };
+}
+
+/**
+ * dispatch fetch user error
+ * @param json
+ * @returns {{type: string, data: *}}
+ */
+function receiveFetchUserError(json) {
+    return {
+        type: ActionTypes.FETCH_USER_ERROR,
+        data: json
+    };
+}
+
+/*
+ |--------------------------------------------------------------------------------------------------
  | Add Users
  |--------------------------------------------------------------------------------------------------
  */
@@ -229,6 +268,29 @@ const AppActions = {
         };
     },
 
+    fetchUser(slug) {
+        return function thunk(dispatch) {
+            dispatch(requestFetchUser());
+            return WebAPIUtils.getUser(slug)
+                .then((data) => {
+                    if (data.errors) {
+                        dispatch(receiveFetchUserError(data.messages));
+                    } else {
+                        dispatch(receiveFetchUserSucess(data.data.data));
+                    }
+                })
+                .catch((error) => {
+                    const errorData = [];
+                    if (error.response) {
+                        errorData.push(error.response.data);
+                    } else {
+                        errorData.push(error.message);
+                    }
+                    dispatch(receiveFetchUserError(errorData));
+                });
+        };
+    },
+
     /**
      * Delete user is requested
      *
@@ -284,6 +346,13 @@ const AppActions = {
         };
     },
 
+    /**
+     * Add new user
+     *
+     * @param user
+     *
+     * @returns {thunk}
+     */
     addUser(user) {
         return function thunk(dispatch) {
             dispatch(requestAddUser());

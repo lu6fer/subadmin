@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import UserAdd from 'components/UserAdd/UserAdd';
-// import UserAdd from '../../../components/UserAdd/UserAdd';
-import AppActions from '../../../actions/AppActions';
+import AppActions from 'actions/AppActions';
 
 class Add extends React.Component {
     static contextTypes = {

@@ -14,7 +14,7 @@ const adminApi = axios.create({
     },
     validateStatus: status => (
         (status >= 200 && status < 300) ||
-            (status >= 400 && status < 417)
+        (status >= 400 && status < 423)
     )
 });
 
@@ -34,6 +34,15 @@ const WebAPIUtils = {
         return adminApi.get('/users');
     },
 
+    getUser(slug) {
+        return adminApi.get(`/users/${slug}`);
+    },
+
+    /**
+     * Add new user
+     * @param user
+     * @returns {AxiosPromise}
+     */
     addUser(user) {
         return adminApi.post('/users', user);
     },

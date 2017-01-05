@@ -11,8 +11,9 @@ import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import ContentSort from 'material-ui/svg-icons/content/sort';
 
+import UserRow from 'components/UserRow/UserRow';
+
 import style from './UserTable.scss';
-import UserRow from '../../../components/UserRow/UserRow';
 
 const UsersTable = ({ users, actions, sort, deleting, theme }) => {
     /*

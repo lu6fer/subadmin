@@ -33,5 +33,13 @@
 
     "extends": "airbnb",
 
-    "globals": {}
+    "globals": {},
+
+    "settings": {
+        "import/resolver": {
+            "webpack": {
+                "config": "webpack.config.js"
+            }
+        }
+    }
 }

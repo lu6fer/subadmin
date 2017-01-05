@@ -22,7 +22,8 @@ const InitialState = {
         sort: {
             direction: 'asc',
             field: 'name'
-        }
+        },
+        user: {}
     },
     notification: {
         open: false,

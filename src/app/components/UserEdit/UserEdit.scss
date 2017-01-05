@@ -1,0 +1,68 @@
+.useredit {
+    width: 95%;
+    height: 95%;
+    overflow: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+        font-size: 24px;
+        line-height: 40px;
+        text-align: center;
+        padding: 5px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        // box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    }
+
+    &__form {
+        margin-top: 50px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px;
+        overflow: auto;
+        margin-bottom: 46px;
+    }
+
+    &__fields {
+        margin: 5px;
+    }
+
+    &__fieldstitle {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    &__controls {
+        display: -ms-flexbox;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding: 5px;
+        min-height: 46px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 46px;
+    }
+
+    &__button {
+        &_save {
+            margin-right: 5px;
+        }
+
+        &_cancel {
+            margin-left: 5px;
+        }
+    }
+}

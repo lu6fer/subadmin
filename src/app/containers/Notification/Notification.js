@@ -2,10 +2,11 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import AppActions from 'actions/AppActions';
+import Error from 'components/Notification/Error';
+import Success from 'components/Notification/Success';
+
 import style from './Notification.scss';
-import AppActions from '../../actions/AppActions';
-import Error from '../../components/Notification/Error';
-import Success from '../../components/Notification/Success';
 
 
 /* class Error extends React.Component {

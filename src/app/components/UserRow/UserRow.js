@@ -3,6 +3,7 @@ import { TableRow, TableRowColumn } from 'material-ui/Table';
 import IconButton from 'material-ui/IconButton';
 import ImageEdit from 'material-ui/svg-icons/image/edit';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
+import { browserHistory } from 'react-router';
 import cx from 'classname';
 
 import style from './UserRow.scss';
@@ -32,7 +33,11 @@ const UserRow = ({ user, actions, deleting }) => {
             <TableRowColumn
                 className={style.userrow__column}
             >
-                <IconButton>
+                <IconButton
+                    onClick={() => {
+                        browserHistory.push(`/utilisateurs/edition/${user.slug}`);
+                    }}
+                >
                     <ImageEdit
                         style={{ color: 'inherit' }}
                     />
