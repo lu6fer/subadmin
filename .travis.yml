@@ -1,18 +1,15 @@
 sudo: false
 language: node_js
 node_js:
-  - "6"
-
+- '6'
 cache:
   yarn: true
   directories:
-    - node_modules
-
+  - node_modules
 script:
-  - yarn run eslint lint
-  - yarn run test
-
+- yarn run eslint lint
+- yarn run test
 deploy:
   provider: heroku
   api_key:
-    secure: "YOUR ENCRYPTED API KEY"
+    secure: TrG35y5YJeJEeapLwq/4cFcAkjw6hpNDf0dZs9f7Bs0nK4pGkZF9ONUkCsCkacJ8pAQN0ent6sN0ECz2rLbh8sE5k2FqKCkYzTc8NQOFMnq0o/UQz2zvaQ2ZZuBb4cIewRW1knaEKVY38/jW3+SnqowbfhBkqvVj5dlj3QwXFSQCfHClSYSPT/7tJtLIIWMtf7/QUc6o5Zbb5ILoxWZAwq20JgbhKDmvxJOdtidk30oG6D/bpLwghpPr4bPdFMSNryMSQSgRHRe+wZHoCWfqGJrh9PpprBpFKjiQiUxRcIGGMQBjIQoGC32sax0aBVXQwFdIe7zsVZyHjc1I4h7sUuLlI1Gbj36hiYTgHU7YwFJTMutJExtcAQWQN5LYsciFiPDK+Z8++k79Hj4yxApWR1MVRQD15nD3xD4Bx8zcmizPzkEDZzTviqfw0ub754kvmtPRxFc77KTvKuN5DcWzQEt7k1V8BWFY6NIY3YhMbixmWRenqxPrWDf7wEGFN9B84j5lzSHQhKBpqH5IVoobYixmO7zVsSaUlntoHI46TRsDeS0ZvV7uTHf1kskifFaAzfS0N0GYpZo7Rn9mPcOWPNIC5EkEB6cLl4T1pctTF7IxU9AeeoloTslJPFT9hk3OiLH8HSw5wovgvm8//GimOgxreMLywk2eQNPytjZygnc=
