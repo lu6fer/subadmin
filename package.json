@@ -12,6 +12,9 @@
     "test": "mocha --compilers js:babel-register test/utils/setup.js test/**/*.spec.js",
     "test:watch": "yarn run test -- -w"
   },
+  "engines": {
+    "yarn": "0.18.1"
+  },
   "devDependencies": {
     "autoprefixer": "^6.5.3",
     "babel-cli": "^6.18.0",
