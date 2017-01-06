@@ -79,5 +79,9 @@ export default {
         return [assets, autoprefixer({ browsers: config.autoprefixer })];
     },
 
+    settings: {
+        'import/resolver': 'webpack',
+    },
+
     sassResources: path.resolve(__dirname, 'src', 'entry', 'style', 'shared', 'shared.scss')
 };
