@@ -18,8 +18,120 @@ const adminApi = axios.create({
     )
 });
 
+/**
+ * get asac label
+ * @returns {AxiosPromise}
+ */
+const asacLabel = () => (
+    adminApi.get('/labels/asac')
+);
+
+/**
+ * get boat label
+ * @returns {AxiosPromise}
+ */
+const boatLabel = () => (
+    adminApi.get('/labels/asac')
+);
+
+/**
+ * get dive label
+ * @returns {AxiosPromise}
+ */
+const diveLabel = () => (
+    adminApi.get('/labels/dive')
+);
+
+/**
+ * get group label
+ * @returns {AxiosPromise}
+ */
+const groupLabel = () => (
+    adminApi.get('/labels/group')
+);
+
+/**
+ * get invoice label
+ * @returns {AxiosPromise}
+ */
+const invoiceLabel = () => (
+    adminApi.get('/labels/invoice')
+);
+
+/**
+ * get insurance label
+ * @returns {AxiosPromise}
+ */
+const insuranceLabel = () => (
+    adminApi.get('/labels/insurance')
+);
+
+/**
+ * get membership label
+ * @returns {AxiosPromise}
+ */
+const originLabel = () => (
+    adminApi.get('/labels/origin')
+);
+
+/**
+ * get role label
+ * @returns {AxiosPromise}
+ */
+const roleLabel = () => (
+    adminApi.get('/labels/role')
+);
+
+/**
+ * get subscription label
+ * @returns {AxiosPromise}
+ */
+const subscriptionLabel = () => (
+    adminApi.get('/labels/subscription')
+);
+
 
 const WebAPIUtils = {
+    /*
+     |----------------------------------------------------------------------------------------------
+     | Labels
+     |----------------------------------------------------------------------------------------------
+     */
+    getLabels() {
+        return axios.all([
+            asacLabel(), boatLabel(), diveLabel(),
+            groupLabel(), invoiceLabel(), insuranceLabel(),
+            originLabel(), roleLabel(), subscriptionLabel()
+        ]);
+    },
+    getAsacLabel() {
+        return asacLabel();
+    },
+    getBoatLabel() {
+        return boatLabel();
+    },
+    getDiveLabel() {
+        return diveLabel();
+    },
+    getGroupLabel() {
+        return groupLabel();
+    },
+    getInvoiceLabel() {
+        return invoiceLabel();
+    },
+    getInsuranceLabel() {
+        return insuranceLabel();
+    },
+    getOriginLabel() {
+        return originLabel();
+    },
+    getRoleLabel() {
+        return roleLabel();
+    },
+    getSubscriptionLabel() {
+        return subscriptionLabel();
+    },
+
     /*
      |----------------------------------------------------------------------------------------------
      | Users

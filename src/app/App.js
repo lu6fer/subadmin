@@ -47,6 +47,7 @@ const App = {
 
         // dispatch initialize action
         store.dispatch(AppActions.initialize());
+        store.dispatch(AppActions.fetchLabels());
     }
 };
 

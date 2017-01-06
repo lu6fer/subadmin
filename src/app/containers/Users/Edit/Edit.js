@@ -13,7 +13,8 @@ class Edit extends React.Component {
     static propTypes = {
         actions: PropTypes.object,
         user: PropTypes.object,
-        errors: PropTypes.object
+        errors: PropTypes.object,
+        labels: PropTypes.object
     };
 
     static contextTypes = {
@@ -33,6 +34,7 @@ class Edit extends React.Component {
                 user={this.props.user}
                 theme={this.context.muiTheme}
                 errors={this.props.errors}
+                labels={this.props.labels}
             />);
         return (
             <div>
@@ -50,11 +52,12 @@ class Edit extends React.Component {
  * @return {Object}
  */
 function mapStateToProps(state) {
-    const { users, notification } = state;
+    const { users, notification, labels } = state;
     return {
         user: users.user,
         loading: users.loading,
         errors: users.validationMessages,
+        labels,
         notification
     };
 }

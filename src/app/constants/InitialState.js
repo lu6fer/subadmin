@@ -5,6 +5,17 @@
  */
 const InitialState = {
     template: 0,
+    labels: {
+        asac: [],
+        boat: [],
+        dive: [],
+        group: [],
+        invoice: [],
+        insurance: [],
+        origin: [],
+        role: [],
+        subscription: []
+    },
     layout: {
         menuExpanded: false,
         blockExpand: false

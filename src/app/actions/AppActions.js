@@ -1,7 +1,48 @@
 import { browserHistory } from 'react-router';
+import axios from 'axios';
 
 import ActionTypes from '../constants/ActionTypes';
 import WebAPIUtils from '../utils/WebAPIUtils';
+
+/*
+ |--------------------------------------------------------------------------------------------------
+ | Fetch Labels
+ |--------------------------------------------------------------------------------------------------
+ */
+/**
+ * Dispatch fetch labels request
+ * @returns {{type: string}}
+ */
+function requestFetchLabels() {
+    return {
+        type: ActionTypes.FETCH_LABELS_REQUEST
+    };
+}
+
+/**
+ * Dispatch fetch labels success
+ * @param json
+ * @returns {{type: string, data: *}}
+ */
+function receiveFetchLabelsSucess(json) {
+    console.log(json);
+    return {
+        type: ActionTypes.FETCH_LABELS_SUCCESS,
+        data: json
+    };
+}
+
+/**
+ * dispatch fetch labels error
+ * @param json
+ * @returns {{type: string, data: *}}
+ */
+function receiveFetchLabelsError(json) {
+    return {
+        type: ActionTypes.FETCH_LABELS_ERROR,
+        data: json
+    };
+}
 
 /*
  |--------------------------------------------------------------------------------------------------
@@ -240,6 +281,50 @@ const AppActions = {
         };
     },
 
+    /*
+     |----------------------------------------------------------------------------------------------
+     | Labels
+     |----------------------------------------------------------------------------------------------
+     */
+    fetchLabels() {
+        return function thunk(dispatch) {
+            dispatch(requestFetchLabels());
+            return WebAPIUtils.getLabels()
+                .then(axios.spread(
+                    (asac, boat, dive,
+                     group, invoice, insurance,
+                     origin, role, subscription) => {
+                        dispatch(receiveFetchLabelsSucess({
+                            asac: asac.data.data,
+                            boat: boat.data.data,
+                            dive: dive.data.data,
+                            group: group.data.data,
+                            invoice: invoice.data.data,
+                            insurance: insurance.data.data,
+                            origin: origin.data.data,
+                            role: role.data.data,
+                            subscription: subscription.data.data
+                        }));
+                    }
+                ))
+                .catch((error) => {
+                    const errorData = [];
+                    if (error.response) {
+                        errorData.push(error.response.data);
+                    } else {
+                        errorData.push(error.message);
+                    }
+                    dispatch(receiveFetchLabelsError(errorData));
+                });
+        };
+    },
+
+    /*
+     |----------------------------------------------------------------------------------------------
+     | Users
+     |----------------------------------------------------------------------------------------------
+     */
+
     /**
      * Fetch users from API
      *
@@ -268,6 +353,13 @@ const AppActions = {
         };
     },
 
+    /**
+     * Fetch user by slug
+     *
+     * @param slug
+     *
+     * @returns {thunk}
+     */
     fetchUser(slug) {
         return function thunk(dispatch) {
             dispatch(requestFetchUser());

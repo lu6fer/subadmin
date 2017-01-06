@@ -7,10 +7,13 @@ import areIntlLocalesSupported from 'intl-locales-supported';
 import Formsy from 'formsy-react';
 import FormsyText from 'formsy-material-ui/lib/FormsyText';
 import FormsyDate from 'formsy-material-ui/lib/FormsyDate';
+import FormsySelect from 'formsy-material-ui/lib/FormsySelect';
+import MenuItem from 'material-ui/MenuItem';
+import { Card, CardHeader, CardText } from 'material-ui/Card';
 
 import style from './UserEdit.scss';
 
-const UserEdit = ({ user, back, theme, save, errors }) => {
+const UserEdit = ({ user, back, theme, save, errors, labels }) => {
     const cancelClass = classNames(
         [style.useredit__button],
         [style.useredit__button_cancel]
@@ -208,7 +211,33 @@ const UserEdit = ({ user, back, theme, save, errors }) => {
                         <pre>{JSON.stringify(user.subscriptions)}</pre>
                     </Tab>
                     <Tab label="Plongée">
-                        <pre>{JSON.stringify(user.dive)}</pre>
+                        <Card
+                            expanded={true}
+                        >
+                            <CardHeader
+                                title="Niveau de plongée courrant"
+                                actAsExpander={true}
+                                showExpandableButton={true}
+                            />
+                            <CardText
+                                expandable={true}
+                            >
+                                <FormsySelect
+                                    name="level"
+                                    fullWidth={true}
+                                    floatingLabelText="Niveau de plongée"
+                                    value={user.dive[0].level}
+                                >
+                                    {labels.dive.map(diveLevel => (
+                                        <MenuItem
+                                            key={diveLevel.slug}
+                                            value={diveLevel.id}
+                                            primaryText={diveLevel.name}
+                                        />
+                                    ))}
+                                </FormsySelect>
+                            </CardText>
+                        </Card>
                     </Tab>
                     <Tab label="Bateau">
                         <pre>{JSON.stringify(user.boat)}</pre>
@@ -248,7 +277,8 @@ UserEdit.propTypes = {
     theme: PropTypes.object,
     save: PropTypes.func,
     errors: PropTypes.object,
-    user: PropTypes.object
+    user: PropTypes.object,
+    labels: PropTypes.object
 };
 
 export default UserEdit;
