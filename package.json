@@ -6,7 +6,7 @@
   "scripts": {
     "bump": "./node_modules/.bin/babel-node tools/run bump",
     "build": "./node_modules/.bin/babel-node tools/run build",
-    "server": "b./node_modules/.bin/babel-node tools/run server",
+    "server": "./node_modules/.bin/babel-node tools/run server",
     "start": "./node_modules/.bin/babel-node tools/run start",
     "lint": "eslint src test tools",
     "test": "mocha --compilers js:babel-register test/utils/setup.js test/**/*.spec.js",
