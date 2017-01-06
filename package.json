@@ -67,8 +67,8 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
-    "babel": "^6.5.2",
     "babel-polyfill": "^6.16.0",
+    "babel-cli": "^6.18.0",
     "breakpoint-sass": "^2.7.0",
     "classname": "^0.0.0",
     "createjs-preloadjs": "^0.6.3",
