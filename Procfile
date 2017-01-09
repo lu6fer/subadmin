@@ -1,1 +1,1 @@
-web: yarn run build; yarn run server
+web: npm rebuild node-sass ; yarn run build; yarn run server
