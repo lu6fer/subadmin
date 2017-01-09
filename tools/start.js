@@ -4,7 +4,7 @@ import historyApiFallback from 'connect-history-api-fallback';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import clean from './common/clean';
-import webpackDevConfig from '../webpack.dev.config';
+import webpackDevConfig from '../webpack.dev.config.babel';
 import config from '../config.json';
 
 /**

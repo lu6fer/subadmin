@@ -1,6 +1,6 @@
 import webpack from 'webpack';
 import clean from './common/clean';
-import webpackProdConfig from '../webpack.prod.config';
+import webpackProdConfig from '../webpack.prod.config.babel';
 
 /**
  * Build application
