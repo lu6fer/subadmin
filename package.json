@@ -71,6 +71,9 @@
     "sass-loader": "^4.0.2",
     "sass-resources-loader": "^1.1.0",
     "style-loader": "^0.13.1",
+    "modernizr": "^3.3.1",
+    "node-sass": "^3.13.0",
+    "redux-immutable-state-invariant": "^1.2.4",
 
     "eslint": "^3.10.2",
     "eslint-config-airbnb": "^13.0.0",
@@ -113,7 +116,6 @@
     "moment": "^2.16.0",
     "mustache": "^2.3.0",
     "normalize.css": "^5.0.0",
-    "progress-bar-webpack-plugin": "^1.9.0",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
     "react-hot-loader": "^3.0.0-beta.6",
@@ -128,7 +130,6 @@
     "ua-parser-js": "^0.7.12",
     "v8flags": "^2.0.11",
     "webpack": "^1.13.3",
-    "webpack-merge": "^0.17.0",
-    "webpack-notifier": "^1.4.1"
+    "webpack-merge": "^0.17.0"
   }
 }
