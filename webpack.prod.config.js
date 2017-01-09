@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import merge from 'webpack-merge';
 import common from './webpack.config';
 
-export default merge(common, {
+const webConf = merge(common, {
     entry: './src/entry/main.js',
 
     devtool: 'source-map',
@@ -15,3 +15,7 @@ export default merge(common, {
         new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
     ]
 });
+
+console.log(webConf.resolve.alias);
+
+export default webConf;

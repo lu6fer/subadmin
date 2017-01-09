@@ -1,10 +1,10 @@
 // import fetch from 'isomorphic-fetch';
 import axios from 'axios';
-import configDev from '../../config/config.dev';
+import config from 'config';
 
-// const adminUrl = `${configDev.server}/${configDev.api_root}/${configDev.api_version}/admin`;
+// const adminUrl = `${config.server}/${config.api_root}/${config.api_version}/admin`;
 const adminApi = axios.create({
-    baseURL: `${configDev.server}/${configDev.api_root}/${configDev.api_version}/admin`,
+    baseURL: `${config.server}/${config.api_root}/${config.api_version}/admin`,
     timeout: 10000,
    // withCredentials: true,
    // transformRequest: [(data) => JSON.stringify(data.data)],

@@ -1,10 +1,10 @@
 import path from 'path';
-import ProgressBarPlugin from 'progress-bar-webpack-plugin';
-import WebpackNotifierPlugin from 'webpack-notifier';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import assets from 'postcss-assets';
 import autoprefixer from 'autoprefixer';
 import config from './config.json';
+
+const env = process.env.NODE_ENV === 'production' ? 'prod' : 'dev';
 
 export default {
     output: {
@@ -15,8 +15,6 @@ export default {
     },
 
     plugins: [
-        new ProgressBarPlugin(),
-        new WebpackNotifierPlugin({ alwaysNotify: true }),
         new HtmlWebpackPlugin({ template: 'src/index.ejs', favicon: 'src/favicon.ico', inject: false })
     ],
 
@@ -34,7 +32,8 @@ export default {
             containers: path.resolve(__dirname, 'src/app/containers'),
             reducers: path.resolve(__dirname, 'src/app/reducers'),
             store: path.resolve(__dirname, 'src/app/store'),
-            utils: path.resolve(__dirname, 'src/app/utils')
+            utils: path.resolve(__dirname, 'src/app/utils'),
+            config$ : path.resolve(__dirname, 'src/app/config/config.' + env + '.js')
         }
     },
 
@@ -77,10 +76,6 @@ export default {
 
     postcss() {
         return [assets, autoprefixer({ browsers: config.autoprefixer })];
-    },
-
-    settings: {
-        'import/resolver': 'webpack',
     },
 
     sassResources: path.resolve(__dirname, 'src', 'entry', 'style', 'shared', 'shared.scss')
