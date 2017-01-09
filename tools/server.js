@@ -15,7 +15,8 @@ export default function server() {
         server: {
             baseDir: `./${config.buildDir}`,
             middleware: [historyApiFallback()]
-        }
+        },
+        port: 80
     });
 
     return Promise.resolve({ skip: true });
