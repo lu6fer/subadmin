@@ -5,7 +5,7 @@ import common from './webpack.config';
 export default merge(common, {
     entry: './src/entry/main.js',
 
-    devtool: 'source-map',
+    devtool: 'cheap-module-source-map',
 
     plugins: [
         new webpack.DefinePlugin({
