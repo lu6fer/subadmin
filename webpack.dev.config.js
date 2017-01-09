@@ -4,7 +4,7 @@ import common from './webpack.config';
 import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 import WebpackNotifierPlugin from 'webpack-notifier';
 
-const webConf = merge(common, {
+export default merge(common, {
     entry: [
         'react-hot-loader/patch',
         'webpack-hot-middleware/client?reload=true',
@@ -24,5 +24,3 @@ const webConf = merge(common, {
     ]
 });
 
-console.log(webConf.resolve.alias);
-export default webConf;
