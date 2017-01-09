@@ -92,6 +92,7 @@
     "redux-logger": "^2.7.4",
     "redux-thunk": "^2.1.0",
     "susy": "^2.2.12",
-    "ua-parser-js": "^0.7.12"
+    "ua-parser-js": "^0.7.12",
+    "v8flags": "^2.0.11"
   }
 }
