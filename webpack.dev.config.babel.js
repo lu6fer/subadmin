@@ -21,12 +21,6 @@ export default merge(common, {
         new WebpackNotifierPlugin({ alwaysNotify: true }),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin()
-    ],
-
-    module: {
-        preLoaders: [
-            {test: /\.js$/, exclude: /node_modules/, loader: 'eslint'}
-        ]
-    }
+    ]
 });
 
