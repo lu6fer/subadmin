@@ -35,6 +35,9 @@ class Edit extends React.Component {
                 theme={this.context.muiTheme}
                 errors={this.props.errors}
                 labels={this.props.labels}
+                save={(data) => {
+                    console.log(data);
+                }}
             />);
         return (
             <div>

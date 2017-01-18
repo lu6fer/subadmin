@@ -3,222 +3,240 @@ import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import classNames from 'classname';
 import areIntlLocalesSupported from 'intl-locales-supported';
-import Formsy from 'formsy-react';
-import FormsyText from 'formsy-material-ui/lib/FormsyText';
-import FormsyDate from 'formsy-material-ui/lib/FormsyDate';
+import { Field, reduxForm, propTypes } from 'redux-form';
+import { TextField, DatePicker } from 'redux-form-material-ui';
 
 import style from './UserAdd.scss';
 
-const UserAdd = ({ back, theme, save, errors }) => {
-    const cancelClass = classNames(
-        [style.useradd__button],
-        [style.useradd__button_cancel]
-    );
-    const saveClass = classNames(
-        [style.useradd__boutton],
-        [style.useradd__button_save]
-    );
+const UserAdd = reduxForm({ form: 'userAdd' })(
+    ({ back, theme, handleSubmit }) => {
+        const cancelClass = classNames(
+            [style.useradd__button],
+            [style.useradd__button_cancel]
+        );
+        const saveClass = classNames(
+            [style.useradd__boutton],
+            [style.useradd__button_save]
+        );
 
-    let DateTimeFormat;
-    if (areIntlLocalesSupported(['fr'])) {
-        DateTimeFormat = global.Intl.DateTimeFormat;
-    } else {
-        const IntlPolyfill = require('intl');
-        DateTimeFormat = IntlPolyfill.DateTimeFormat;
-        require('intl/locale-data/jsonp/fr');
-    }
+        let DateTimeFormat;
+        if (areIntlLocalesSupported(['fr'])) {
+            DateTimeFormat = global.Intl.DateTimeFormat;
+        } else {
+            const IntlPolyfill = require('intl');
+            DateTimeFormat = IntlPolyfill.DateTimeFormat;
+            require('intl/locale-data/jsonp/fr');
+        }
 
-    Formsy.addValidationRule('alpha_dash', (values, value) => (
-        value ? /^[\w.\-\s]+$/.test(value) : true
-    ));
+        const validation = {
+            address: value => (
+                value &&
+                !/^[\w*\s*\-,']+$/i.test(value) ?
+                    'Adresse invalide' :
+                    undefined
+            ),
+            phone: value => (
+                value &&
+                !/^0[1-7]{1}(([0-9]{2}){4})|((\s[0-9]{2}){4})|((-[0-9]{2}){4})$/i.test(value) ?
+                    'Numéro de téléphone invalide' :
+                    undefined
+            ),
+            alphaDash: value => (
+                value &&
+                !/^[\w.\-\s]+$/i.test(value) ?
+                    'Champ invalide' :
+                    undefined
+            ),
+            email: value => (
+                value &&
+                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
+                    'Adresse email invalide' :
+                    undefined
+            ),
+            required: value => (
+                value == null ? 'Champ obligatoire' : undefined
+            ),
+            zipCode: value => (
+                value &&
+                !/^[\d]{5}$/.test(value) ?
+                    'code postae invalide' :
+                    undefined
+            )
+        };
 
-    Formsy.addValidationRule('address', (values, value) => (
-       value ? /^[\w*\s*\-,']+$/.test(value) : true
-    ));
-
-    Formsy.addValidationRule('phone', (values, value) => (
-        value ? /^0[1-6]{1}(([0-9]{2}){4})|((\s[0-9]{2}){4})|((-[0-9]{2}){4})$/.test(value) : true
-    ));
-
-    return (
-        <Paper
-            zDepth={5}
-            className={style.useradd}
-        >
-            <div
-                className={style.useradd__title}
-                style={{
-                    backgroundColor: theme.palette.primary1Color,
-                    color: theme.palette.alternateTextColor,
-                    boxShadow: theme.paper.zDepthShadows[0]
-                }}
+        return (
+            <Paper
+                zDepth={5}
+                className={style.useradd}
             >
-                Ajout d&apos;un utilisateur
-            </div>
-            <Formsy.Form
-                className={style.useradd__form}
-                onSubmit={save}
-                validationErrors={errors}
-            >
-                <div className={style.useradd__fields}>
-                    <div className={style.useradd__fieldstitle}>
-                        Utilisateur
-                    </div>
-                    <FormsyText
-                        name="name"
-                        validations="alpha_dash"
-                        validationError="Doit etre composé de lettre, d'espaces ou de tiret"
-                        required
-                        hintText="Nom"
-                        floatingLabelText="Nom"
-                        fullWidth={true}
-                    />
-                    <FormsyText
-                        name="first_name"
-                        validations="alpha_dash"
-                        validationError="Doit etre composé de lettre, d'espaces ou de tiret"
-                        required
-                        hintText="Prénom"
-                        floatingLabelText="Prénom"
-                        fullWidth={true}
-                    />
-
-                    <FormsyText
-                        name="email"
-                        validations="isEmail"
-                        validationError="Ce n'est pas une adresse email valide"
-                        required
-                        hintText="Email"
-                        floatingLabelText="Adresse email"
-                        fullWidth={true}
-                    />
-                </div>
-                <div className={style.useradd__fields}>
-                    <div className={style.useradd__fieldstitle}>
-                        Naissance
-                    </div>
-                    <FormsyDate
-                        name="birthday"
-                        required
-                        floatingLabelText="Date de naissance"
-                        DateTimeFormat={DateTimeFormat}
-                        okLabel="OK"
-                        cancelLabel="Annuler"
-                        locale="fr"
-                        fullWidth={true}
-                    />
-                    <FormsyText
-                        name="birth_city"
-                        validations="alpha_dash"
-                        validationError="Doit etre composé de lettre, d'espaces ou de tiret"
-                        required
-                        hintText="Ville"
-                        floatingLabelText="Ville de naissance"
-                        fullWidth={true}
-                    />
-                    <FormsyText
-                        name="birth_country"
-                        validations="alpha_dash"
-                        validationError="Doit etre composé de lettre, d'espaces ou de tiret"
-                        required
-                        hintText="Pays"
-                        floatingLabelText="Pays de naissance"
-                        fullWidth={true}
-                    />
-                </div>
-
-                <div className={style.useradd__fields}>
-                    <div className={style.useradd__fieldstitle}>
-                        Address
-                    </div>
-                    <FormsyText
-                        name="street"
-                        validations="address"
-                        validationError="Doit etre composé de lettre, de chiffres, d'espaces, de tiret, de souligner ou d'apostrophe"
-                        required
-                        hintText="Addresse"
-                        floatingLabelText="Addresse"
-                        fullWidth={true}
-                    />
-                    <FormsyText
-                        name="zip_code"
-                        validations="isNumeric,isLength:5"
-                        validationError="Ce n'est pas un code postal valide, 5 chiffres"
-                        required
-                        hintText="Code postal"
-                        floatingLabelText="Code postal"
-                        fullWidth={true}
-                    />
-                    <FormsyText
-                        name="city"
-                        validations="alpha_dash"
-                        validationError="Doit etre composé de lettre, d'espaces ou de tiret"
-                        required
-                        hintText="Ville"
-                        floatingLabelText="Ville"
-                        fullWidth={true}
-                    />
-                </div>
-                <div className={style.useradd__fields}>
-                    <div className={style.useradd__fieldstitle}>
-                        Téléphone
-                    </div>
-                    <FormsyText
-                        name="phone_number"
-                        validations="phone"
-                        validationError="Ce n'est pas un numéro de téléphone valide"
-                        hintText="Téléphone"
-                        floatingLabelText="Téléphone"
-                        fullWidth={true}
-                    />
-                    <FormsyText
-                        name="mobile_phone"
-                        validations="phone"
-                        validationError="Ce n'est pas un numéro de téléphone valide"
-                        hintText="Téléphone portable"
-                        floatingLabelText="Téléphone portable"
-                        fullWidth={true}
-                    />
-                    <FormsyText
-                        name="pro_phone"
-                        validations="phone"
-                        validationError="Ce n'est pas un numéro de téléphone valide"
-                        hintText="Téléphone professionel"
-                        floatingLabelText="Téléphone professionel"
-                        fullWidth={true}
-                    />
-                </div>
                 <div
-                    className={style.useradd__controls}
+                    className={style.useradd__title}
                     style={{
-                        // borderTop: `1px solid ${theme.palette.borderColor}`
-                        boxShadow: theme.paper.zDepthShadows[2]
+                        backgroundColor: theme.palette.primary1Color,
+                        color: theme.palette.alternateTextColor,
+                        boxShadow: theme.paper.zDepthShadows[0]
                     }}
                 >
-                    <RaisedButton
-                        label="enregister"
-                        className={saveClass}
-                        type="submit"
-                    />
-                    <RaisedButton
-                        className={cancelClass}
-                        label="annuler"
-                        secondary={true}
-                        onClick={() => {
-                            back();
-                        }}
-                    />
+                    Ajout d&apos;un utilisateur
                 </div>
-            </Formsy.Form>
-        </Paper>
-    );
-};
+                <form
+                    autoComplete="off"
+                    noValidate
+                    onSubmit={handleSubmit}
+                    className={style.useradd__form}
+                >
+                    <div className={style.useradd__fields}>
+                        <div className={style.useradd__fieldstitle}>
+                            Utilisateur
+                        </div>
+                        <Field
+                            name="name"
+                            component={TextField}
+                            validate={[validation.required, validation.alphaDash]}
+                            hintText="Nom"
+                            floatingLabelText="Nom"
+                            fullWidth={true}
+                        />
+                        <Field
+                            name="first_name"
+                            component={TextField}
+                            validate={[validation.required, validation.alphaDash]}
+                            hintText="Prénom"
+                            floatingLabelText="Prénom"
+                            fullWidth={true}
+                        />
+
+                        <Field
+                            name="email"
+                            component={TextField}
+                            validate={[validation.required, validation.email]}
+                            hintText="Email"
+                            floatingLabelText="Adresse email"
+                            fullWidth={true}
+                        />
+                    </div>
+                    <div className={style.useradd__fields}>
+                        <div className={style.useradd__fieldstitle}>
+                            Naissance
+                        </div>
+                        <Field
+                            name="birthday"
+                            component={DatePicker}
+                            DateTimeFormat={DateTimeFormat}
+                            validate={validation.required}
+                            locale="fr"
+                            okLabel="OK"
+                            cancelLabel="Annuler"
+                            hintText="Date de naissance"
+                            fullWidth={true}
+                        />
+                        <Field
+                            name="birth_city"
+                            component={TextField}
+                            validate={[validation.required, validation.alphaDash]}
+                            hintText="Ville"
+                            floatingLabelText="Ville de naissance"
+                            fullWidth={true}
+                        />
+                        <Field
+                            name="birth_country"
+                            component={TextField}
+                            validate={[validation.required, validation.alphaDash]}
+                            hintText="Pays"
+                            floatingLabelText="Pays de naissance"
+                            fullWidth={true}
+                        />
+                    </div>
+
+                    <div className={style.useradd__fields}>
+                        <div className={style.useradd__fieldstitle}>
+                            Address
+                        </div>
+                        <Field
+                            name="street"
+                            component={TextField}
+                            validate={[validation.required, validation.address]}
+                            hintText="Addresse"
+                            floatingLabelText="Addresse"
+                            fullWidth={true}
+                        />
+                        <Field
+                            name="zip_code"
+                            component={TextField}
+                            validate={[validation.required, validation.zipCode]}
+                            hintText="Code postal"
+                            floatingLabelText="Code postal"
+                            fullWidth={true}
+                        />
+                        <Field
+                            name="city"
+                            component={TextField}
+                            validate={[validation.required, validation.alphaDash]}
+                            hintText="Ville"
+                            floatingLabelText="Ville"
+                            fullWidth={true}
+                        />
+                    </div>
+                    <div className={style.useradd__fields}>
+                        <div className={style.useradd__fieldstitle}>
+                            Téléphone
+                        </div>
+                        <Field
+                            name="phone_number"
+                            component={TextField}
+                            hintText="Téléphone"
+                            validate={validation.phone}
+                            floatingLabelText="Téléphone"
+                            fullWidth={true}
+                        />
+                        <Field
+                            name="mobile_phone"
+                            component={TextField}
+                            validate={validation.phone}
+                            hintText="Téléphone portable"
+                            floatingLabelText="Téléphone portable"
+                            fullWidth={true}
+                        />
+                        <Field
+                            name="pro_phone"
+                            component={TextField}
+                            validate={validation.phone}
+                            hintText="Téléphone professionel"
+                            floatingLabelText="Téléphone professionel"
+                            fullWidth={true}
+                        />
+                    </div>
+                    <div
+                        className={style.useradd__controls}
+                        style={{
+                            // borderTop: `1px solid ${theme.palette.borderColor}`
+                            boxShadow: theme.paper.zDepthShadows[2]
+                        }}
+                    >
+                        <RaisedButton
+                            label="enregister"
+                            className={saveClass}
+                            type="submit"
+                        />
+                        <RaisedButton
+                            className={cancelClass}
+                            label="annuler"
+                            secondary={true}
+                            onClick={() => {
+                                back();
+                            }}
+                        />
+                    </div>
+                </form>
+            </Paper>
+        );
+    }
+);
 
 UserAdd.propTypes = {
-    back: PropTypes.func,
+    ...propTypes,
     theme: PropTypes.object,
-    save: PropTypes.func,
-    errors: PropTypes.object
+    back: PropTypes.func
 };
 
 export default UserAdd;

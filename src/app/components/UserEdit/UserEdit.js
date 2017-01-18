@@ -5,11 +5,13 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import classNames from 'classname';
 import areIntlLocalesSupported from 'intl-locales-supported';
 import Formsy from 'formsy-react';
-import FormsyText from 'formsy-material-ui/lib/FormsyText';
-import FormsyDate from 'formsy-material-ui/lib/FormsyDate';
-import FormsySelect from 'formsy-material-ui/lib/FormsySelect';
-import MenuItem from 'material-ui/MenuItem';
-import { Card, CardHeader, CardText } from 'material-ui/Card';
+
+import UserEditTemplate from 'components/UserEdit/UserEditTemplate';
+import UserTab from 'components/UserEdit/Tabs/UserTab';
+import MemberhsipTab from 'components/UserEdit/Tabs/MembershipTab';
+import DiveTab from 'components/UserEdit/Tabs/DiveTab';
+import BoatTab from 'components/UserEdit/Tabs/BoatTab';
+import GroupTab from 'components/UserEdit/Tabs/GroupTab';
 
 import style from './UserEdit.scss';
 
@@ -64,186 +66,65 @@ const UserEdit = ({ user, back, theme, save, errors, labels }) => {
                 onSubmit={save}
                 validationErrors={errors}
             >
-                <Tabs>
-                    <Tab label="Utilisateur">
-                        <div className={style.useredit__fields}>
-                            <div className={style.useredit__fieldstitle}>
-                                Utilisateur
-                            </div>
-                            <FormsyText
-                                name="name"
-                                validations="alpha_dash"
-                                validationError="Doit etre composé de lettre, d'espaces ou de tiret"
-                                required
-                                hintText="Nom"
-                                floatingLabelText="Nom"
-                                fullWidth={true}
-                                value={user.name}
-                            />
-                            <FormsyText
-                                name="first_name"
-                                validations="alpha_dash"
-                                validationError="Doit etre composé de lettre, d'espaces ou de tiret"
-                                required
-                                hintText="Prénom"
-                                floatingLabelText="Prénom"
-                                fullWidth={true}
-                                value={user.first_name}
-                            />
-
-                            <FormsyText
-                                name="email"
-                                validations="isEmail"
-                                validationError="Ce n'est pas une adresse email valide"
-                                required
-                                hintText="Email"
-                                floatingLabelText="Adresse email"
-                                fullWidth={true}
-                                value={user.email}
-                            />
-                        </div>
-                        <div className={style.useredit__fields}>
-                            <div className={style.useredit__fieldstitle}>
-                                Naissance
-                            </div>
-                            <FormsyDate
-                                name="birthday"
-                                required
-                                floatingLabelText="Date de naissance"
-                                DateTimeFormat={DateTimeFormat}
-                                okLabel="OK"
-                                cancelLabel="Annuler"
-                                locale="fr"
-                                fullWidth={true}
-                                value={new Date(user.birthday)}
-                            />
-                            <FormsyText
-                                name="birth_city"
-                                validations="alpha_dash"
-                                validationError="Doit etre composé de lettre, d'espaces ou de tiret"
-                                required
-                                hintText="Ville"
-                                floatingLabelText="Ville de naissance"
-                                fullWidth={true}
-                                value={user.birth_city}
-                            />
-                            <FormsyText
-                                name="birth_country"
-                                validations="alpha_dash"
-                                validationError="Doit etre composé de lettre, d'espaces ou de tiret"
-                                required
-                                hintText="Pays"
-                                floatingLabelText="Pays de naissance"
-                                fullWidth={true}
-                                value={user.birth_country}
-                            />
-                        </div>
-
-                        <div className={style.useredit__fields}>
-                            <div className={style.useredit__fieldstitle}>
-                                Address
-                            </div>
-                            <FormsyText
-                                name="street"
-                                validations="address"
-                                validationError="Doit etre composé de lettre, de chiffres, d'espaces, de tiret, de souligner ou d'apostrophe"
-                                required
-                                hintText="Addresse"
-                                floatingLabelText="Addresse"
-                                fullWidth={true}
-                                value={user.street}
-                            />
-                            <FormsyText
-                                name="zip_code"
-                                validations="isNumeric,isLength:5"
-                                validationError="Ce n'est pas un code postal valide, 5 chiffres"
-                                required
-                                hintText="Code postal"
-                                floatingLabelText="Code postal"
-                                fullWidth={true}
-                                value={user.zip_code}
-                            />
-                            <FormsyText
-                                name="city"
-                                validations="alpha_dash"
-                                validationError="Doit etre composé de lettre, d'espaces ou de tiret"
-                                required
-                                hintText="Ville"
-                                floatingLabelText="Ville"
-                                fullWidth={true}
-                                value={user.city}
-                            />
-                        </div>
-                        <div className={style.useredit__fields}>
-                            <div className={style.useredit__fieldstitle}>
-                                Téléphone
-                            </div>
-                            <FormsyText
-                                name="phone_number"
-                                validations="phone"
-                                validationError="Ce n'est pas un numéro de téléphone valide"
-                                hintText="Téléphone"
-                                floatingLabelText="Téléphone"
-                                fullWidth={true}
-                                value={user.phone_number}
-                            />
-                            <FormsyText
-                                name="mobile_phone"
-                                validations="phone"
-                                validationError="Ce n'est pas un numéro de téléphone valide"
-                                hintText="Téléphone portable"
-                                floatingLabelText="Téléphone portable"
-                                fullWidth={true}
-                                value={user.mobile_phone}
-                            />
-                            <FormsyText
-                                name="pro_phone"
-                                validations="phone"
-                                validationError="Ce n'est pas un numéro de téléphone valide"
-                                hintText="Téléphone professionel"
-                                floatingLabelText="Téléphone professionel"
-                                fullWidth={true}
-                                value={user.pro_phone}
-                            />
-                        </div>
+                <Tabs
+                    className={style.useredit__tabs}
+                    contentContainerClassName={style.useredit__tabscontent}
+                    style={{
+                        flex: '1 1 100%',
+                        minHeight: 0,
+                        display: 'flex',
+                        flexDirection: 'column'
+                    }}
+                    contentContainerStyle={{
+                        flex: '1 1 100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        overflowY: 'auto'
+                    }}
+                    tabTemplate={UserEditTemplate}
+                >
+                    <Tab
+                        label="Utilisateur"
+                        className="useredit__user"
+                    >
+                        <UserTab
+                            user={user}
+                            style={style}
+                            dateFormat={DateTimeFormat}
+                        />
                     </Tab>
-                    <Tab label="inscription">
-                        <pre>{JSON.stringify(user.subscriptions)}</pre>
+                    <Tab
+                        label="inscription"
+                        className="useredit__membership"
+                    >
+                        <MemberhsipTab
+                            subscriptions={user.subscriptions}
+                        />
                     </Tab>
-                    <Tab label="Plongée">
-                        <Card
-                            expanded={true}
-                        >
-                            <CardHeader
-                                title="Niveau de plongée courrant"
-                                actAsExpander={true}
-                                showExpandableButton={true}
-                            />
-                            <CardText
-                                expandable={true}
-                            >
-                                <FormsySelect
-                                    name="level"
-                                    fullWidth={true}
-                                    floatingLabelText="Niveau de plongée"
-                                    value={user.dive[0].level}
-                                >
-                                    {labels.dive.map(diveLevel => (
-                                        <MenuItem
-                                            key={diveLevel.slug}
-                                            value={diveLevel.id}
-                                            primaryText={diveLevel.name}
-                                        />
-                                    ))}
-                                </FormsySelect>
-                            </CardText>
-                        </Card>
+                    <Tab
+                        label="Plongée"
+                    >
+                        <DiveTab
+                            dives={user.dive}
+                            labels={labels}
+                            dateFormat={DateTimeFormat}
+                        />
                     </Tab>
-                    <Tab label="Bateau">
-                        <pre>{JSON.stringify(user.boat)}</pre>
+                    <Tab
+                        label="Bateau"
+                        className="useredit__boat"
+                    >
+                        <BoatTab
+                            boats={user.boat}
+                        />
                     </Tab>
-                    <Tab label="Groupes">
-                        <pre>{JSON.stringify(user.groups)}</pre>
+                    <Tab
+                        label="Groupes"
+                        className="useredit__groups"
+                    >
+                        <GroupTab
+                            groups={user.group}
+                        />
                     </Tab>
                 </Tabs>
                 <div

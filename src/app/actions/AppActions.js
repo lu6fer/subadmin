@@ -25,7 +25,6 @@ function requestFetchLabels() {
  * @returns {{type: string, data: *}}
  */
 function receiveFetchLabelsSucess(json) {
-    console.log(json);
     return {
         type: ActionTypes.FETCH_LABELS_SUCCESS,
         data: json
@@ -514,6 +513,10 @@ const AppActions = {
                 field
             }
         };
+    },
+
+    requestAddUserDive() {
+
     }
 };
 
