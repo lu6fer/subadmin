@@ -1,8 +1,6 @@
 /* eslint-disable camelcase */
 const config = {
-    server: 'http://laravel-mysql-example-subapi.44fs.preview.openshiftapps.com',
-    // server: 'http://localhost.laravel',
-    // server: 'http://localhost2.laravel',
+    server: 'https://subapi.lu6fer.duckdns.org',
     api_root: 'api',
     api_version: 'v1'
 };
