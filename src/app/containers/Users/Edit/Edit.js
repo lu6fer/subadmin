@@ -31,11 +31,11 @@ class Edit extends React.Component {
             <CircularProgress className={style.edit__progress} /> :
             (<UserEdit
                 back={this.context.router.goBack}
-                user={this.props.user}
+                initialValues={this.props.user}
                 theme={this.context.muiTheme}
                 errors={this.props.errors}
                 labels={this.props.labels}
-                save={(data) => {
+                onSubmit={(data) => {
                     console.log(data);
                 }}
             />);

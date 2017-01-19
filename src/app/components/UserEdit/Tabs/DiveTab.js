@@ -1,31 +1,60 @@
 import React, { PropTypes } from 'react';
-import FormsyText from 'formsy-material-ui/lib/FormsyText';
-import FormsyDate from 'formsy-material-ui/lib/FormsyDate';
-import FormsySelect from 'formsy-material-ui/lib/FormsySelect';
+import { FieldArray, Field } from 'redux-form';
+import { TextField, SelectField, DatePicker } from 'redux-form-material-ui';
+import { Card, CardHeader, CardText } from 'material-ui/Card';
+import MenuItem from 'material-ui/MenuItem';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import MenuItem from 'material-ui/MenuItem';
-import { Card, CardHeader, CardText } from 'material-ui/Card';
+import areIntlLocalesSupported from 'intl-locales-supported';
 
+const DiveLevel = ({ fields, labels }) => {
+    let DateTimeFormat;
+    if (areIntlLocalesSupported(['fr'])) {
+        DateTimeFormat = global.Intl.DateTimeFormat;
+    } else {
+        const IntlPolyfill = require('intl');
+        DateTimeFormat = IntlPolyfill.DateTimeFormat;
+        require('intl/locale-data/jsonp/fr');
+    }
 
-const DiveTab = ({ dives, labels, dateFormat }) => {
-    const getDiveLevel = id => (
-        labels.dive.filter(diveLevel => (
-            diveLevel.id === id
+    /**
+     * Extract level name
+     * @param index
+     */
+    const getDiveLevel = index => (
+        labels.filter(diveLevel => (
+            diveLevel.id === fields.get(index).level
         ))
     );
 
+    /**
+     * Check if dive is archived
+     * @param index
+     */
+    const isArchive = (index) => {
+        console.log(fields.get(index));
+        if (fields.get(index).archive) {
+            return fields.get(index).archive === 0;
+        }
+        return true;
+    };
+
     return (
-        <div>
-            {dives.slice(0).reverse().map((dive, index) => (
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'column-reverse'
+            }}
+        >
+            {fields.map((dive, index) => (
                 <Card
                     key={index}
-                    initiallyExpanded={dive.archive === 0}
+                    initiallyExpanded={isArchive(index)}
                 >
                     <CardHeader
-                        title={dive.archive === 0 ?
+                        title={isArchive(index) ?
                                'Niveau de plongée courrant' :
-                               `Historique - ${getDiveLevel(dive.level)[0].name}`
+                               `Historique - ${getDiveLevel(index)[0].name}`
                         }
                         actAsExpander={true}
                         showExpandableButton={true}
@@ -33,84 +62,81 @@ const DiveTab = ({ dives, labels, dateFormat }) => {
                     <CardText
                         expandable={true}
                     >
-                        <input type="hidden" name={`dive[${index}].id`} />
-                        <FormsyText
-                            name={`dive[${index}].licence`}
-                            validations="alpha_dash"
-                            validationError="Doit etre composé de lettre, d'espaces ou de tiret"
-                            required
+                        <Field
+                            key={`licence-${index}`}
+                            name={`${dive}.licence`}
+                            component={TextField}
                             hintText="Licence"
                             floatingLabelText="Licence"
                             fullWidth={true}
-                            value={dive.licence}
-                            disabled={dive.archive === 1}
+                            disabled={!isArchive(index)}
                         />
-                        <FormsySelect
-                            name={`dive[${index}].level`}
+                        <Field
+                            key={`level-${index}`}
+                            name={`${dive}.level`}
+                            component={SelectField}
+                            hintText="Niveau de plongée"
+                            floatingLabelText="niveau de plongée"
                             fullWidth={true}
-                            floatingLabelText="Niveau de plongée"
-                            value={dive.level}
-                            disabled={dive.archive === 1}
+                            disabled={!isArchive(index)}
                         >
-                            {labels.dive.map(diveLevel => (
+                            {labels.map(diveLevel => (
                                 <MenuItem
                                     key={diveLevel.slug}
                                     value={diveLevel.id}
                                     primaryText={diveLevel.name}
                                 />
                             ))}
-                        </FormsySelect>
-                        <FormsyDate
-                            name={`dive[${index}].date`}
-                            required
-                            floatingLabelText="Date d'otention"
-                            DateTimeFormat={dateFormat}
+                        </Field>
+                        <Field
+                            key={`date-${index}`}
+                            name={`${dive}.date`}
+                            component={DatePicker}
+                            locale="fr"
                             okLabel="OK"
                             cancelLabel="Annuler"
-                            locale="fr"
+                            hintText="Date d'otention"
                             fullWidth={true}
-                            value={new Date(dive.date)}
-                            disabled={dive.archive === 1}
+                            DateTimeFormat={DateTimeFormat}
+                            format={value => (
+                                value == null ? new Date() : new Date(value)
+                            )}
                         />
-                        <FormsyText
-                            name={`dive[${index}].instructor`}
-                            validations="alpha_dash"
-                            validationError="Doit etre composé de lettre, d'espaces ou de tiret"
-                            required
+                        <Field
+                            key={`instructor-${index}`}
+                            name={`${dive}.instructor`}
+                            component={TextField}
                             hintText="Instructeur"
                             floatingLabelText="Instructeur"
                             fullWidth={true}
-                            value={dive.instructor}
-                            disabled={dive.archive === 1}
+                            disabled={!isArchive(index)}
                         />
-                        <FormsyText
-                            name={`dive[${index}].origin`}
-                            validations="alpha_dash"
-                            validationError="Doit etre composé de lettre, d'espaces ou de tiret"
-                            required
+                        <Field
+                            key={`origin-${index}`}
+                            name={`${dive}.origin`}
+                            component={TextField}
                             hintText="Origine"
                             floatingLabelText="Origine"
                             fullWidth={true}
-                            value={dive.origin}
-                            disabled={dive.archive === 1}
+                            disabled={!isArchive(index)}
                         />
-                        <FormsyText
-                            name={`dive[${index}].orign_number`}
-                            validations="alpha_dash"
-                            validationError="Doit etre composé de lettre, d'espaces ou de tiret"
-                            required
-                            hintText="N° Origine"
-                            floatingLabelText="N° Origine"
+                        <Field
+                            key={`originNumber-${index}`}
+                            name={`${dive}.origin_number`}
+                            component={TextField}
+                            hintText="N° origine"
+                            floatingLabelText="n° origine"
                             fullWidth={true}
-                            value={dive.origin_number}
-                            disabled={dive.archive === 1}
+                            disabled={!isArchive(index)}
                         />
                     </CardText>
                 </Card>
             ))}
             <FloatingActionButton
                 secondary={true}
-                className="useredit__add useredit__add_dive"
+                onClick={() => {
+                    fields.push({});
+                }}
             >
                 <ContentAdd />
             </FloatingActionButton>
@@ -118,10 +144,24 @@ const DiveTab = ({ dives, labels, dateFormat }) => {
     );
 };
 
+const DiveTab = ({ labels }) => (
+    <FieldArray
+        name="dive"
+        component={DiveLevel}
+        props={{
+            labels
+        }}
+    />
+);
+
+
+DiveLevel.propTypes = {
+    fields: PropTypes.object,
+    labels: PropTypes.array
+};
+
 DiveTab.propTypes = {
-    dives: PropTypes.array,
-    labels: PropTypes.object,
-    dateFormat: PropTypes.func
+    labels: PropTypes.array
 };
 
 export default DiveTab;
