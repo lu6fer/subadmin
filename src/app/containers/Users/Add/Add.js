@@ -12,8 +12,7 @@ class Add extends React.Component {
     };
 
     static propTypes = {
-        actions: PropTypes.object,
-        errors: PropTypes.object
+        actions: PropTypes.object
     };
 
     render() {
@@ -22,8 +21,7 @@ class Add extends React.Component {
             <UserAdd
                 back={this.context.router.goBack}
                 theme={this.context.muiTheme}
-                save={this.props.actions.addUser}
-                errors={this.props.errors}
+                onSubmit={this.props.actions.addUser}
             />
         );
     }
@@ -37,12 +35,12 @@ class Add extends React.Component {
  *
  * @return {Object}
  */
-function mapStateToProps(state) {
+/* function mapStateToProps(state) {
     const { users } = state;
     return {
         errors: users.validationMessages
     };
-}
+} */
 
 
 /**
@@ -58,4 +56,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Add);
+export default connect(null, mapDispatchToProps)(Add);

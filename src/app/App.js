@@ -8,10 +8,10 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 // import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import configureStore from 'store/configureStore';
+import AppActions from 'actions/AppActions';
 
-import configureStore from './store/configureStore';
 import routes from './routes';
-import AppActions from './actions/AppActions';
 
 let store;
 let history;

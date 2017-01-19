@@ -1,59 +1,6 @@
 .useredit {
     width: 95%;
     height: 95%;
-    overflow: hidden;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 5px;
-
-    &__form {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-
-    &__title {
-        font-size: 24px;
-        line-height: 40px;
-        text-align: center;
-        padding: 5px;
-    }
-
-    &__content {
-        flex: 1 1 100%;
-        overflow-y: auto;
-        padding: 5px;
-    }
-
-    &__controls {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        padding: 5px;
-        height: 52px;
-        align-items: center;
-    }
-
-    &__button {
-        &_save {
-            margin-right: 5px;
-        }
-
-        &_cancel {
-            margin-left: 5px;
-        }
-    }
-
-    &__fields {
-        padding: 5px;
-    }
-}
-/*
-.useredit {
-    width: 95%;
-    height: 95%;
     overflow: auto;
     position: absolute;
     top: 50%;
@@ -68,6 +15,10 @@
         line-height: 40px;
         text-align: center;
         padding: 5px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
         // box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
     }
 
@@ -117,10 +68,9 @@
     }
 
     &__tabs {
+        min-height: 100%;
         display: flex;
         flex-direction: column;
-        flex: 1 1 100%;
-        margin-top: 5px;
     }
 
     &__tabscontent {
@@ -142,4 +92,3 @@
         margin: 10px;
     }
 }
-*/

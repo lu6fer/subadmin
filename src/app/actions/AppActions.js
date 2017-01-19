@@ -1,8 +1,8 @@
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 
-import ActionTypes from '../constants/ActionTypes';
-import WebAPIUtils from '../utils/WebAPIUtils';
+import ActionTypes from 'constants/ActionTypes';
+import WebAPIUtils from 'utils/WebAPIUtils';
 
 /*
  |--------------------------------------------------------------------------------------------------
@@ -25,7 +25,6 @@ function requestFetchLabels() {
  * @returns {{type: string, data: *}}
  */
 function receiveFetchLabelsSucess(json) {
-    console.log(json);
     return {
         type: ActionTypes.FETCH_LABELS_SUCCESS,
         data: json
@@ -104,9 +103,12 @@ function requestFetchUser() {
  * @returns {{type: string, data: *}}
  */
 function receiveFetchUserSucess(json) {
+    const user = json;
+    // user.birthday = new Date(json.birthday);
+
     return {
         type: ActionTypes.FETCH_USER_SUCCESS,
-        data: json
+        data: user
     };
 }
 
@@ -514,6 +516,10 @@ const AppActions = {
                 field
             }
         };
+    },
+
+    requestAddUserDive() {
+
     }
 };
 
