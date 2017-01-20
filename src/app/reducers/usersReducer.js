@@ -26,7 +26,8 @@ export default function usersReducer(state = InitialState.users, action) {
         case ActionTypes.FETCH_USER_REQUEST:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                user: InitialState.users.user
             };
         case ActionTypes.FETCH_USER_ERROR:
             return {

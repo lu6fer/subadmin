@@ -44,12 +44,6 @@ class UserEdit extends React.Component {
         };
     }
 
-    /* handleChange = (value) => {
-        this.setState({
-            slideIndex: value
-        });
-    }; */
-
     handleChange = (value) => {
         this.setState({ slideIndex: value }); // eslint-disable-line no-invalid-this
     };
@@ -76,6 +70,7 @@ class UserEdit extends React.Component {
                     </div>
                     <div
                         className={style.useredit__content}
+                        id="useredit__content"
                     >
                         <Tabs
                             onChange={this.handleChange}

@@ -59,7 +59,7 @@ class Users extends React.Component {
 
     render() {
         const progressClass = cx(style.progress, {
-            [style.progress_hidden]: !this.props.loading
+            [style.progress_hidden]: !this.props.loading || this.props.children !== null
         });
         const usersClass = cx(style.users, {
             [style.users_hidden]: this.props.loading
@@ -84,7 +84,7 @@ class Users extends React.Component {
         return (
             <div>
                 {/* Progress */}
-                <CircularProgress className={progressClass} />
+                <CircularProgress className={progressClass} color={'#FF4081'} />
                 {/* Users */}
                 <div className={usersClass}>
                     <UserTable
