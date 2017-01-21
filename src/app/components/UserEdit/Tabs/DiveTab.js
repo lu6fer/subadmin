@@ -5,7 +5,7 @@ import { Card, CardText, CardActions, CardTitle } from 'material-ui/Card';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import AddIcon from 'material-ui/svg-icons/content/add';
-// import ContentAdd from 'material-ui/svg-icons/content/add';
+// import ContentAdd from 'material-ui/!svg-icons/content/add';
 import areIntlLocalesSupported from 'intl-locales-supported';
 // import classNames from 'classnames';
 
@@ -90,159 +90,195 @@ AffixWrapper.propTypes = {
     scrollElm: PropTypes.string
 }; */
 
+class DiveLevel extends React.Component {
+    static propTypes = {
+        fields: PropTypes.object,
+        labels: PropTypes.array
+    };
 
-const DiveLevel = ({ fields, labels }) => {
-    let DateTimeFormat;
-    if (areIntlLocalesSupported(['fr'])) {
-        DateTimeFormat = global.Intl.DateTimeFormat;
-    } else {
-        const IntlPolyfill = require('intl');
-        DateTimeFormat = IntlPolyfill.DateTimeFormat;
-        require('intl/locale-data/jsonp/fr');
+    constructor(state, props) {
+        super(state, props);
+        this.isArchive = this.isArchive.bind(this);
+        this.getDiveLevel = this.getDiveLevel.bind(this);
+        this.generateTitle = this.generateTitle.bind(this);
     }
 
+    componentWillMount() {
+        if (this.props.fields.length === 0) {
+            this.props.fields.push();
+        }
+    }
+
+    /* eslint-disable no-invalid-this */
     /**
      * Extract level name
      * @param index
      */
-    const getDiveLevel = index => (
-        labels.filter(diveLevel => (
-            diveLevel.id === fields.get(index).level
+    getDiveLevel = index => (
+        this.props.labels.filter(diveLevel => (
+            diveLevel.id === this.props.fields.get(index).level
         ))
     );
 
     /**
-     * Check if dive is archived
+     * Check if level is archived
      * @param index
+     * @returns {boolean}
      */
-    const isArchive = (index) => {
-        if (fields.get(index).archive) {
-            return fields.get(index).archive === 1;
+    isArchive = (index) => {
+        if (typeof this.props.fields.get(index) !== 'undefined') {
+            return this.props.fields.get(index).archive === 1;
         }
         return false;
     };
 
-    return (
-        <div>
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column-reverse',
-                    padding: '10px'
-                }}
-            >
-                {fields.map((dive, index) => (
-                    <Card
-                        key={index}
-                        initiallyExpanded={!isArchive(index)}
-                        zDepth={2}
-                        transitionEnabled={true}
-                    >
-                        <CardTitle
-                            title={!isArchive(index) ?
-                                   'Niveau de plongée courrant' :
-                                   'Historique'
-                            }
-                            subtitle={!isArchive(index) ?
-                                      '' :
-                                      getDiveLevel(index)[0].name
-                            }
-                            actAsExpander={true}
-                        />
-                        <CardActions
-                            actAsExpander={true}
-                            showExpandableButton={true}
-                            children={ // eslint-disable-line react/no-children-prop
-                                !isArchive(index) ?
-                                    <RaisedButton
-                                        tooltip="Ajouter un niveau de plongée"
-                                        onClick={() => {
-                                            fields.push({});
-                                        }}
-                                        icon={<AddIcon />}
-                                        primary={true}
-                                    /> :
-                                null
-                            }
-                        />
-                        <CardText
-                            expandable={true}
+    isNew = (index) => {
+        if (typeof this.props.fields.get(index) !== 'undefined') {
+            return !!this.props.fields.get(index).id;
+        }
+        return true;
+    };
+
+    generateTitle = (index) => {
+        const levelData = this.props.fields.get(index);
+        if (typeof levelData !== 'undefined' && levelData.archive === 0) {
+            return 'Niveau de plongée courrant';
+        } else if (typeof levelData !== 'undefined' && levelData.archive === 1) {
+            return 'Historique';
+        }
+        return 'Nouveau niveau';
+    };
+    /* eslint-enable no-invalid-this */
+
+    render() {
+        let DateTimeFormat;
+        if (areIntlLocalesSupported(['fr'])) {
+            DateTimeFormat = global.Intl.DateTimeFormat;
+        } else {
+            const IntlPolyfill = require('intl');
+            DateTimeFormat = IntlPolyfill.DateTimeFormat;
+            require('intl/locale-data/jsonp/fr');
+        }
+
+        return (
+            <div>
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column-reverse',
+                        padding: '10px'
+                    }}
+                >
+                    {this.props.fields.map((dive, index) => (
+                        <Card
+                            key={index}
+                            initiallyExpanded={!this.isArchive(index)}
+                            zDepth={2}
+                            transitionEnabled={true}
                         >
-                            <Field
-                                key={`licence-${index}`}
-                                name={`${dive}.licence`}
-                                component={TextField}
-                                hintText="Licence"
-                                floatingLabelText="Licence"
-                                fullWidth={true}
-                                disabled={isArchive(index)}
+                            <CardTitle
+                                title={this.generateTitle(index)}
+                                subtitle={!this.isArchive(index) ?
+                                    '' :
+                                    this.getDiveLevel(index)[0].name
+                                }
+                                actAsExpander={true}
                             />
-                            <Field
-                                key={`level-${index}`}
-                                name={`${dive}.level`}
-                                component={SelectField}
-                                hintText="Niveau de plongée"
-                                floatingLabelText="niveau de plongée"
-                                fullWidth={true}
-                                disabled={isArchive(index)}
+                            <CardActions
+                                actAsExpander={true}
+                                showExpandableButton={true}
+                                children={ // eslint-disable-line react/no-children-prop
+                                    !this.isArchive(index) && !this.isNew(index) ?
+                                        <RaisedButton
+                                            tooltip="Ajouter un niveau de plongée"
+                                            onClick={() => {
+                                                this.props.fields.push({});
+                                            }}
+                                            icon={<AddIcon />}
+                                            primary={true}
+                                        /> :
+                                        null
+                                }
+                            />
+                            <CardText
+                                expandable={true}
                             >
-                                {labels.map(diveLevel => (
-                                    <MenuItem
-                                        key={diveLevel.slug}
-                                        value={diveLevel.id}
-                                        primaryText={diveLevel.name}
-                                    />
-                                ))}
-                            </Field>
-                            <Field
-                                key={`date-${index}`}
-                                name={`${dive}.date`}
-                                component={DatePicker}
-                                locale="fr"
-                                okLabel="OK"
-                                cancelLabel="Annuler"
-                                hintText="Date d'otention"
-                                fullWidth={true}
-                                DateTimeFormat={DateTimeFormat}
-                                format={value => (
-                                    value == null ? new Date() : new Date(value)
-                                )}
-                                disabled={isArchive(index)}
-                            />
-                            <Field
-                                key={`instructor-${index}`}
-                                name={`${dive}.instructor`}
-                                component={TextField}
-                                hintText="Instructeur"
-                                floatingLabelText="Instructeur"
-                                fullWidth={true}
-                                disabled={isArchive(index)}
-                            />
-                            <Field
-                                key={`origin-${index}`}
-                                name={`${dive}.origin`}
-                                component={TextField}
-                                hintText="Origine"
-                                floatingLabelText="Origine"
-                                fullWidth={true}
-                                disabled={isArchive(index)}
-                            />
-                            <Field
-                                key={`originNumber-${index}`}
-                                name={`${dive}.origin_number`}
-                                component={TextField}
-                                hintText="N° origine"
-                                floatingLabelText="n° origine"
-                                fullWidth={true}
-                                disabled={isArchive(index)}
-                            />
-                        </CardText>
-                    </Card>
-                ))}
+                                <Field
+                                    key={`licence-${index}`}
+                                    name={`${dive}.licence`}
+                                    component={TextField}
+                                    hintText="Licence"
+                                    floatingLabelText="Licence"
+                                    fullWidth={true}
+                                    disabled={this.isArchive(index)}
+                                />
+                                <Field
+                                    key={`level-${index}`}
+                                    name={`${dive}.level`}
+                                    component={SelectField}
+                                    hintText="Niveau de plongée"
+                                    floatingLabelText="niveau de plongée"
+                                    fullWidth={true}
+                                    disabled={this.isArchive(index)}
+                                >
+                                    {this.props.labels.map(diveLevel => (
+                                        <MenuItem
+                                            key={diveLevel.slug}
+                                            value={diveLevel.id}
+                                            primaryText={diveLevel.name}
+                                        />
+                                    ))}
+                                </Field>
+                                <Field
+                                    key={`date-${index}`}
+                                    name={`${dive}.date`}
+                                    component={DatePicker}
+                                    locale="fr"
+                                    okLabel="OK"
+                                    cancelLabel="Annuler"
+                                    hintText="Date d'otention"
+                                    fullWidth={true}
+                                    DateTimeFormat={DateTimeFormat}
+                                    format={value => (
+                                        value == null ? new Date() : new Date(value)
+                                    )}
+                                    disabled={this.isArchive(index)}
+                                />
+                                <Field
+                                    key={`instructor-${index}`}
+                                    name={`${dive}.instructor`}
+                                    component={TextField}
+                                    hintText="Instructeur"
+                                    floatingLabelText="Instructeur"
+                                    fullWidth={true}
+                                    disabled={this.isArchive(index)}
+                                />
+                                <Field
+                                    key={`origin-${index}`}
+                                    name={`${dive}.origin`}
+                                    component={TextField}
+                                    hintText="Origine"
+                                    floatingLabelText="Origine"
+                                    fullWidth={true}
+                                    disabled={this.isArchive(index)}
+                                />
+                                <Field
+                                    key={`originNumber-${index}`}
+                                    name={`${dive}.origin_number`}
+                                    component={TextField}
+                                    hintText="N° origine"
+                                    floatingLabelText="n° origine"
+                                    fullWidth={true}
+                                    disabled={this.isArchive(index)}
+                                />
+                            </CardText>
+                        </Card>
+                    ))}
+                </div>
             </div>
-        </div>
-    );
-};
+        );
+    }
+}
 
 const DiveTab = ({ labels }) => (
     <FieldArray
@@ -253,12 +289,6 @@ const DiveTab = ({ labels }) => (
         }}
     />
 );
-
-
-DiveLevel.propTypes = {
-    fields: PropTypes.object,
-    labels: PropTypes.array
-};
 
 DiveTab.propTypes = {
     labels: PropTypes.array
