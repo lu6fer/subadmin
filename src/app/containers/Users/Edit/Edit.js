@@ -35,9 +35,7 @@ class Edit extends React.Component {
                 theme={this.context.muiTheme}
                 errors={this.props.errors}
                 labels={this.props.labels}
-                onSubmit={(data) => {
-                    console.log(data);
-                }}
+                onSubmit={this.props.actions.editUser}
             />);
         return (
             <div>

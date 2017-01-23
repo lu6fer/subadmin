@@ -126,6 +126,16 @@ function receiveFetchUserError(json) {
 
 /*
  |--------------------------------------------------------------------------------------------------
+ | Edit User
+ |--------------------------------------------------------------------------------------------------
+ */
+function requestEditUser() {
+    return {
+        type: ActionTypes.EDIT_USER_REQUEST
+    };
+}
+/*
+ |--------------------------------------------------------------------------------------------------
  | Add Users
  |--------------------------------------------------------------------------------------------------
  */
@@ -477,6 +487,13 @@ const AppActions = {
                     }
                     dispatch(receiveFAddUserError(errorData));
                 });
+        };
+    },
+
+    editUser(data) {
+        return function thunk(dispatch) {
+            dispatch(requestEditUser());
+            console.log(JSON.stringify(data));
         };
     },
 

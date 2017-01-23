@@ -9,87 +9,6 @@ import AddIcon from 'material-ui/svg-icons/content/add';
 import areIntlLocalesSupported from 'intl-locales-supported';
 // import classNames from 'classnames';
 
-/* class AffixWrapper extends React.Component {
-
-    constructor() {
-        super();
-
-        this.state = {
-            affix: false
-        };
-
-        this.handleScroll = this.handleScroll.bind(this);
-    }
-
-    /!**
-     * @return {void}
-     *!/
-    componentDidMount() {
-        if (this.props.scrollElm) {
-            document.getElementById(this.props.scrollElm)
-                .addEventListener('scroll', this.handleScroll);
-        } else {
-            window.addEventListener('scroll', this.handleScroll);
-        }
-        this.handleScroll();
-    }
-
-    /!**
-     * @return {void}
-     *!/
-    componentWillUnmount() {
-        if (this.props.scrollElm) {
-            document.getElementById(this.props.scrollElm)
-                .removeEventListener('scroll', this.handleScroll);
-        } else {
-            window.removeEventListener('scroll', this.handleScroll);
-        }
-    }
-
-    /!**
-     * @return {void}
-     *!/
-    handleScroll() {
-        const affix = this.state.affix;
-        const offset = this.props.offset;
-        const scrollTop = document.getElementById(this.props.scrollElm).scrollTop ||
-            document.documentElement.scrollTop ||
-            document.body.scrollTop;
-
-        console.log(scrollTop);
-
-        if (!affix && scrollTop >= offset) {
-            this.setState({
-                affix: true
-            });
-        }
-
-        if (affix && scrollTop < offset) {
-            this.setState({
-                affix: false
-            });
-        }
-    }
-
-    render() {
-        const affix = this.state.affix ? 'affix' : '';
-        const { className, offset } = this.props; // eslint-disable-line no-unused-vars
-
-        return (
-            <div className={classNames(className, affix)}>
-                {this.props.children}
-            </div>
-        );
-    }
-}
-
-AffixWrapper.propTypes = {
-    offset: PropTypes.number,
-    className: PropTypes.string,
-    children: PropTypes.object,
-    scrollElm: PropTypes.string
-}; */
-
 class DiveLevel extends React.Component {
     static propTypes = {
         fields: PropTypes.object,
@@ -125,20 +44,25 @@ class DiveLevel extends React.Component {
      * @param index
      * @returns {boolean}
      */
-    isArchive = (index) => {
-        if (typeof this.props.fields.get(index) !== 'undefined') {
-            return this.props.fields.get(index).archive === 1;
-        }
-        return false;
-    };
+    isArchive = index => (
+        !!this.props.fields.get(index) &&
+        this.props.fields.get(index).archive === 1
+    );
 
-    isNew = (index) => {
-        if (typeof this.props.fields.get(index) !== 'undefined') {
-            return !!this.props.fields.get(index).id;
-        }
-        return true;
-    };
+    /**
+     * Check if it's a new level
+     * @param index
+     * @returns {boolean}
+     */
+    isNew = index => (
+        !this.props.fields.get(index) || !this.props.fields.get(index).id
+    );
 
+    /**
+     * Generate card title
+     * @param index
+     * @returns {*}
+     */
     generateTitle = (index) => {
         const levelData = this.props.fields.get(index);
         if (typeof levelData !== 'undefined' && levelData.archive === 0) {
@@ -174,7 +98,6 @@ class DiveLevel extends React.Component {
                             key={index}
                             initiallyExpanded={!this.isArchive(index)}
                             zDepth={2}
-                            transitionEnabled={true}
                         >
                             <CardTitle
                                 title={this.generateTitle(index)}
@@ -240,7 +163,7 @@ class DiveLevel extends React.Component {
                                     fullWidth={true}
                                     DateTimeFormat={DateTimeFormat}
                                     format={value => (
-                                        value == null ? new Date() : new Date(value)
+                                        value == null ? null : new Date(value)
                                     )}
                                     disabled={this.isArchive(index)}
                                 />

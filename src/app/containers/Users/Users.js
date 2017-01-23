@@ -84,7 +84,7 @@ class Users extends React.Component {
         return (
             <div>
                 {/* Progress */}
-                <CircularProgress className={progressClass} color={'#FF4081'} />
+                <CircularProgress className={progressClass} />
                 {/* Users */}
                 <div className={usersClass}>
                     <UserTable

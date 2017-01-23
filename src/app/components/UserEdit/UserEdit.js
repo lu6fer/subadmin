@@ -1,11 +1,8 @@
-/* eslint-disable no-unused-vars */
 import React, { PropTypes } from 'react';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import classNames from 'classname';
-import areIntlLocalesSupported from 'intl-locales-supported';
-import { Field, reduxForm, propTypes } from 'redux-form';
-import { TextField, DatePicker } from 'redux-form-material-ui';
+import { reduxForm, propTypes } from 'redux-form';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
 
@@ -15,10 +12,16 @@ import GroupTab from 'components/UserEdit/Tabs/GroupTab';
 import MembershipTab from 'components/UserEdit/Tabs/MembershipTab';
 import UserTab from 'components/UserEdit/Tabs/UserTab';
 
-
 import style from './UserEdit.scss';
 
+/**
+ * Edit user
+ */
 class UserEdit extends React.Component {
+    /**
+     * PropTypes
+     * @type {{theme, back, labels}}
+     */
     static propTypes = {
         theme: PropTypes.object,
         back: PropTypes.func,
@@ -26,6 +29,10 @@ class UserEdit extends React.Component {
         ...propTypes
     };
 
+    /**
+     * Constructor
+     * @param props
+     */
     constructor(props) {
         super(props);
         this.state = {
@@ -44,10 +51,18 @@ class UserEdit extends React.Component {
         };
     }
 
+    /**
+     * Handle SwipeableViews changes
+     * @param value
+     */
     handleChange = (value) => {
         this.setState({ slideIndex: value }); // eslint-disable-line no-invalid-this
     };
 
+    /**
+     * Render
+     * @returns {XML}
+     */
     render() {
         return (
             <Paper
@@ -122,78 +137,6 @@ class UserEdit extends React.Component {
         );
     }
 }
-/* const UserEdit = ({ theme, back, handleSubmit }) => {
-    const cancelClass = classNames(
-        [style.useredit__button],
-        [style.useredit__button_cancel]
-    );
-    const saveClass = classNames(
-        [style.useredit__boutton],
-        [style.useredit__button_save]
-    );
-
-    return (
-        <Paper
-            zDepth={5}
-            className={style.useredit}
-        >
-            <form
-                className={style.useredit__form}
-                onSubmit={handleSubmit}
-            >
-                <div
-                    className={style.useredit__title}
-                    style={{
-                        backgroundColor: theme.palette.canvasColor,
-                        color: theme.palette.primary1Color,
-                        boxShadow: theme.paper.zDepthShadows[0]
-                    }}
-                >
-                    &Eacute;dition
-                </div>
-                <div
-                    className={style.useredit__content}
-                >
-                    <Tabs>
-                        <Tab
-                            label={'Utilisateur'}
-                        >
-                            <UserTab
-                                style={style}
-                            />
-                        </Tab>
-                        <Tab
-                            label={'Plongée'}
-                        >
-                            Dive
-                        </Tab>
-                    </Tabs>
-                </div>
-                <div
-                    className={style.useredit__controls}
-                    style={{
-                        boxShadow: theme.paper.zDepthShadows[2],
-                        backgroundColor: theme.palette.canvasColor
-                    }}
-                >
-                    <RaisedButton
-                        label="enregister"
-                        className={saveClass}
-                        type="submit"
-                    />
-                    <RaisedButton
-                        className={cancelClass}
-                        label="annuler"
-                        secondary={true}
-                        onClick={() => {
-                            back();
-                        }}
-                    />
-                </div>
-            </form>
-        </Paper>
-    );
-}; */
 
 export default reduxForm({
     form: 'userEdit'

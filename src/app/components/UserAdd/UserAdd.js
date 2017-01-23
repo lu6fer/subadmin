@@ -129,6 +129,9 @@ const UserAdd = reduxForm({ form: 'userAdd' })(
                             cancelLabel="Annuler"
                             hintText="Date de naissance"
                             fullWidth={true}
+                            format={value => (
+                                value == null ? new Date() : new Date(value)
+                            )}
                         />
                         <Field
                             name="birth_city"
